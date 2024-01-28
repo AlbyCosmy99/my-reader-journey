@@ -7,7 +7,9 @@ function App() {
   return (
     <div id='app-container'>
       <NavBar/>
-      <Home/>
+      <div id='content-container'>
+        <Home/>
+      </div>
       <div id='footer-container'>
         <Footer/>
       </div>

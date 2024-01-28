@@ -16,8 +16,8 @@
 .add-book-button {
     background: linear-gradient(to right, #B24592, #F15F79) !important;
     color: white !important;
-    margin-top: 1rem !important;
-    margin-bottom: 2rem !important;
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
 }
 
 .add-book-button:hover {
@@ -34,11 +34,4 @@
 
 .folders-btn {
     background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
-}
-
-.home-container {
-    background-image: url('../../../assets/welcome.png');
-    /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; */
 }
