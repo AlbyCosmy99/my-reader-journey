@@ -1,0 +1,44 @@
+.home-btn .btn {
+    width: 100%; /* Full width within its column */
+    padding: 2% 0; /* Percentage padding for responsive height */
+    margin-bottom: 15px; /* Spacing between buttons */
+    font-size: 1.5em; /* Larger font size for better readability */
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for interactions */
+    background: linear-gradient(to right, #B79891, #94716B);
+}
+
+.home-btn .btn:hover {
+    transform: scale(1.05); /* Slight increase in size on hover */
+}
+
+/* Additional styling specifically for the primary 'Add Book' button */
+.add-book-button {
+    background: linear-gradient(to right, #B24592, #F15F79) !important;
+    color: white !important;
+    margin-top: 1rem !important;
+    margin-bottom: 2rem !important;
+}
+
+.add-book-button:hover {
+    background-color: #0056b3; /* Darker shade for hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .home-btn .btn {
+        padding: 4% 0; /* Increased padding for smaller screens */
+        font-size: 1.2em; /* Adjust font size for readability */
+    }
+}
+
+.folders-btn {
+    background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
+}
+
+.home-container {
+    background-image: url('../../../assets/welcome.png');
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+}
