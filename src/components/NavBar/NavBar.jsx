@@ -6,12 +6,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-
 function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">ICON</Navbar.Brand>
+      <Navbar.Brand href="#">
+        LOGO
+      </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -26,8 +27,7 @@ function NavBar() {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button> 
+            />       
           </Form>
           <Form>
             <i class="bi bi-person-circle" style={{margin:'1rem'}}></i>

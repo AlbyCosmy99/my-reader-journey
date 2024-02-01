@@ -6,10 +6,11 @@
     border-radius: 10px; /* Rounded corners */
     transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for interactions */
     background: linear-gradient(to right, #B79891, #94716B);
+    border: 1.5px solid black !important;
 }
 
 .home-btn .btn:hover {
-    transform: scale(1.05); /* Slight increase in size on hover */
+    transform: scale(1.05);
 }
 
 /* Additional styling specifically for the primary 'Add Book' button */
@@ -21,7 +22,7 @@
 }
 
 .add-book-button:hover {
-    background-color: #0056b3; /* Darker shade for hover */
+
 }
 
 /* Responsive adjustments for smaller screens */

@@ -1,0 +1,19 @@
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #9B7973;
+}
+h1, p{
+    background-color: #f5e3ce;
+    border-radius: 5px;
+}
+
+.header {
+    font-family: 'Cute Font', sans-serif !important;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Edu TAS Beginner', cursive;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+}
