@@ -29,7 +29,7 @@ function NavBar() {
             />       
           </Form>
           <Form>
-            <i class="bi bi-person-circle" style={{margin:'1rem'}}></i>
+            <i className="bi bi-person-circle" style={{margin:'1rem'}}></i>
           </Form>
         </Navbar.Collapse>
       </Container>

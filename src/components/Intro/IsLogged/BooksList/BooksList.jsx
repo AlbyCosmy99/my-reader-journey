@@ -1,5 +1,14 @@
+import AddNewBookButton from "../../../Buttons/AddNewBookButton/AddNewBookButton";
+
 export default function BooksList({message}) {
     return (
-        <h1>{message}</h1>
+        <div className="books-list-container">
+            <div className="add-new-book-btn">
+                <AddNewBookButton />
+            </div>
+            <div>
+                ciao2
+            </div>
+        </div>
     )
 }

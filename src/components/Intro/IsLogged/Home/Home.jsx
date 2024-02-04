@@ -10,6 +10,7 @@ export default function Home({message}) {
                 <Route path="/all-my-books" exact element={<BooksList message={'all-my-books'}/>}></Route>
                 <Route path="/books-read" exact element={<BooksList message={'books-read'}/>}></Route>
                 <Route path="/books-to-read" exact element={<BooksList message={'books-to-read'}/>}></Route>
+                <Route path="/favorite-books" exact element={<BooksList message={'favorite books'}/>}></Route>
             </Routes>
         </BrowserRouter>
     )

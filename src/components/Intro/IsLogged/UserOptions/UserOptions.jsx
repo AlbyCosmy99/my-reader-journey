@@ -2,12 +2,11 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import './UserOptions.css';
 import Welcome from "../Welcome/Welcome";
 import { useNavigate } from "react-router-dom";
+import AddNewBookButton from "../../../Buttons/AddNewBookButton/AddNewBookButton";
 
 export default function UserOptions() {
     const navigate = useNavigate();
-    const navigateTo = (url) => {
-        navigate(`/${url}`);
-    }
+
     return (
         <>
             <div className="options-container">
@@ -15,27 +14,25 @@ export default function UserOptions() {
                 <Container style={{margin: 'auto'}}>
                     <Row>
                         <Col lg={12} className="options-btn">
-                            <Button className="add-book-button">
-                                ADD A NEW BOOK
-                            </Button>
+                            <AddNewBookButton />
                         </Col>
-                        <Col lg={12} className="options-btn" onClick={() => navigateTo('all-my-books')}>
-                            <Button>
+                        <Col lg={12} className="options-btn">
+                            <Button onClick={() => navigate('all-my-books')}>
                                 ALL MY BOOKS
                             </Button>
                         </Col>
-                        <Col lg={6} className="options-btn" onClick={() => navigateTo('books-read')}>
-                            <Button>
+                        <Col lg={6} className="options-btn">
+                            <Button onClick={() => navigate('books-read')}>
                                 BOOKS READ
                             </Button>
                         </Col>
-                        <Col lg={6} className="options-btn" onClick={() => navigateTo('books-to-read')}>
-                            <Button>
+                        <Col lg={6} className="options-btn">
+                            <Button onClick={() => navigate('books-to-read')}>
                                 BOOKS TO READ
                             </Button>
                         </Col>
                         <Col lg={6} className="options-btn">
-                            <Button>
+                            <Button onClick={() => navigate('favorite-books')}>
                                 FAVORITE BOOKS
                             </Button>
                         </Col>
