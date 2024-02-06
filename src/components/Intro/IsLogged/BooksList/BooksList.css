@@ -30,11 +30,13 @@
 .dropdown-toggle {
     background-color: #800020;
     transition: background-color 500ms, transform 500ms;
+    border: 1px solid #800020;
 }
 
 .dropdown-toggle:hover {
     background-color: #660000;
     transform: scale(1.05);
+    border: 1px solid #800020;
 }
 
 .btn.show {

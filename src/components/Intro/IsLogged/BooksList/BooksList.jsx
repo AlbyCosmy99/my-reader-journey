@@ -2,10 +2,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import AddNewBookButton from "../../../Buttons/AddNewBookButton/AddNewBookButton";
 import Dropdown from 'react-bootstrap/Dropdown';
 import './BooksList.css'; 
+import { useNavigate } from "react-router-dom";
 
 export default function BooksList({message}) {
+    const navigate = useNavigate();
     const books = [
         {
+            id: -1,
             title:"Se questo e' un uomo",
             author: 'Primo Levi',
             img:'https://www.lafeltrinelli.it/images/9788806219352_0_536_0_75.jpg',
@@ -13,6 +16,7 @@ export default function BooksList({message}) {
             description: 'descrizione1'
         },
         {
+            id: -2,
             title:"Se i gatti scomparissero dal mondo",
             author: 'Kawamura Genki',
             img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
@@ -26,7 +30,7 @@ export default function BooksList({message}) {
                 <AddNewBookButton />
             </div>
             <div className="card-books-container">
-                <div className="card" style={{maxHeight: '65vh', overflowY: 'auto', backgroundColor: '#9A7872', cursor:'pointer'}}>
+                <div className="card" style={{maxHeight: '65vh', overflowY: 'auto', backgroundColor: '#9A7872'}}>
                     <div className="card-header" style={{position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#9A7872', textAlign:'center', color:'#2D2019'}}>
                         <Container>
                             <Row>
@@ -52,7 +56,7 @@ export default function BooksList({message}) {
                     <div className="card-body" style={{backgroundColor: '#D3AD79'}}>
                         {books.map((book, index) => {
                             return (
-                                <div className="card elevated-card" key={index} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F'}}>
+                                <div className="card elevated-card" key={book.id} onClick={() => navigate(`/books/${book.id}`)} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
                                     <div className="card-body">
                                         <Container>
                                             <Row>
@@ -68,9 +72,7 @@ export default function BooksList({message}) {
                                                         {
                                                         book.favorite ? <i class="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
                                                         <i class="bi bi-heart" style={{ fontSize: '60px' }}></i>
-                                                        }
-                                                        
-                                                        
+                                                        }                                     
                                                     </div>
                                                 </Col>
                                             </Row>
