@@ -9,6 +9,10 @@
     border: 1.5px solid black !important;
 }
 
+.options-container {
+    margin-top: 3.5rem;
+}
+
 .options-btn .btn:hover {
     transform: scale(1.05);
 }
