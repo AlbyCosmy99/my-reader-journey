@@ -1,5 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import AddNewBookButton from "../../../Buttons/AddNewBookButton/AddNewBookButton";
+import Dropdown from 'react-bootstrap/Dropdown';
+import './BooksList.css'; 
 
 export default function BooksList({message}) {
     const books = [5,3,5,2,6,3,3,5,1,6,8,5,3,4,6,6,6,6,5,43,32,3]
@@ -11,12 +13,31 @@ export default function BooksList({message}) {
             <div style={{marginLeft: '10rem', marginRight:'10rem'}}>
                 <div className="card" style={{maxHeight: '65vh', overflowY: 'auto'}}>
                     <div className="card-header" style={{position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'white', textAlign:'center'}}>
-                        ALL MY BOOKS
+                        <Container>
+                            <Row>
+                                <Col>
+                                    ALL MY BOOKS
+                                </Col>
+                                <Col>
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                            Order by: TITLE
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>   
+                                </Col>
+                            </Row>
+                        </Container>
                     </div>
                     <div className="card-body">
                         {books.map((book, index) => {
                             return (
-                                <div className="card" key={index}>
+                                <div className="card elevated-card" key={index} style={{marginBottom:'0.5rem'}}>
                                     <div className="card-body">
                                         <Container>
                                             <Row>
