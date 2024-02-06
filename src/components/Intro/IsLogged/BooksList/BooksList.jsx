@@ -25,7 +25,7 @@ export default function BooksList({message}) {
             <div className="add-new-book-btn">
                 <AddNewBookButton />
             </div>
-            <div className="card-books-container" style={{marginLeft: '10rem', marginRight:'10rem', marginBottom:'1rem'}}>
+            <div className="card-books-container">
                 <div className="card" style={{maxHeight: '65vh', overflowY: 'auto', backgroundColor: '#9A7872', cursor:'pointer'}}>
                     <div className="card-header" style={{position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#9A7872', textAlign:'center', color:'#2D2019'}}>
                         <Container>

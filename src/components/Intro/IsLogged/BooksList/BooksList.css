@@ -55,6 +55,12 @@
     background-color: #660000;
 }
 
+.card-books-container {
+    margin-left: 10rem;
+    margin-right: 10rem;
+    margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 600px) {
     .card-books-container {
       margin-left: 0;
