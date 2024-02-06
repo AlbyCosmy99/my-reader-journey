@@ -27,3 +27,8 @@
         font-size: 1.2em; /* Adjust font size for readability */
     }
 }
+
+.options-btn {
+    padding-left: 0;
+    padding-right: 0;
+}
