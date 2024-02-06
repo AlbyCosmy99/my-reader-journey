@@ -12,13 +12,13 @@ export default function BooksList({message}) {
             </div>
             <div style={{marginLeft: '10rem', marginRight:'10rem'}}>
                 <div className="card" style={{maxHeight: '65vh', overflowY: 'auto'}}>
-                    <div className="card-header" style={{position: 'sticky', top: 0, zIndex: 1, backgroundColor: 'white', textAlign:'center'}}>
+                    <div className="card-header" style={{position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#BB9B71', textAlign:'center', color:'#2D2019'}}>
                         <Container>
                             <Row>
-                                <Col>
+                                <Col className="d-flex justify-content-center align-items-center" style={{fontSize:'30px'}}>
                                     ALL MY BOOKS
                                 </Col>
-                                <Col>
+                                <Col className="d-flex justify-content-center align-items-center">
                                     <Dropdown>
                                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                                             Order by: TITLE
@@ -34,10 +34,10 @@ export default function BooksList({message}) {
                             </Row>
                         </Container>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body" style={{backgroundColor: '#D3AD79'}}>
                         {books.map((book, index) => {
                             return (
-                                <div className="card elevated-card" key={index} style={{marginBottom:'0.5rem'}}>
+                                <div className="card elevated-card" key={index} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F'}}>
                                     <div className="card-body">
                                         <Container>
                                             <Row>
@@ -51,6 +51,7 @@ export default function BooksList({message}) {
                                                 <Col lg={6}>
                                                     <div style={{textAlign:'end', paddingRight:'3rem'}} className="d-flex justify-content-end">
                                                         <i class="bi bi-heart" style={{ fontSize: '60px' }}></i>
+                                                        <i class="bi bi-heart-fill" style={{ fontSize: '60px' }}></i>
                                                     </div>
                                                 </Col>
                                             </Row>
