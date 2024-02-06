@@ -27,3 +27,39 @@
 .card::-webkit-scrollbar-thumb:hover {
     background: #826346; /* color when hovering over the thumb */
 }
+.dropdown-toggle {
+    background-color: #800020;
+    transition: background-color 500ms, transform 500ms;
+}
+
+.dropdown-toggle:hover {
+    background-color: #660000;
+    transform: scale(1.05);
+}
+
+.btn.show {
+    background-color: #660000;
+}
+
+.dropdown-menu {
+    background-color: #800020;
+}
+
+.dropdown-item {
+    color: white;
+    background-color: #800020;
+}
+
+.dropdown-item:hover {
+    color: white;
+    background-color: #660000;
+}
+
+@media screen and (max-width: 600px) {
+    .card-books-container {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+
