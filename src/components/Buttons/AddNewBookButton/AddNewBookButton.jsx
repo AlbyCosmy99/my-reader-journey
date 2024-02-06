@@ -5,7 +5,7 @@ export default function AddNewBookButton() {
     return (
         <Container style={{margin: 'auto'}}>
             <Row>
-                <div className="options-btn">
+                <div className="options-btn add-new-book">
                     <Button className="add-book-button">
                         ADD A NEW BOOK
                     </Button>
