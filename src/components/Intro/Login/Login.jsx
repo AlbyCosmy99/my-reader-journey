@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
 import './Login.css';
+import PasswordForgotten from '../PasswordForgotten/PasswordForgotten'
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isValidPassword, setIsValidPassword] = useState(true)
     const [areValidCredentials, setAreValidCredentials] = useState(true)
+    const [passwordForgotten, setPasswordForgotten] = useState(false)
+
+    function handleForgottenPassword(event) {
+        event.preventDefault()
+        setPasswordForgotten(true)
+    }
 
     async function login(event) {
         if(!email || !password) {
@@ -29,10 +36,10 @@ export default function Login() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(
-                {
-                    email: email,
-                    password: password
-                }
+                    {
+                        email: email,
+                        password: password
+                    }
                 )
             })
             .then(res => res.json())
@@ -49,6 +56,12 @@ export default function Login() {
           } catch (error) {
             console.log('Error: ' + error.message);
           }
+    }
+
+    if(passwordForgotten) {
+        return (
+            <PasswordForgotten />
+        )
     }
 
     return (
@@ -68,7 +81,7 @@ export default function Login() {
                                 {!isValidPassword && <p className="error-message" style={{ color: 'red' }}>Password must be at least 8 characters long.</p>}
                                 {!areValidCredentials && isValidPassword && <p className="error-message" style={{ color: 'red' }}>Invalid credentials.</p>}
                                 <div className="d-flex justify-content-end mt-2 mb-2">
-                                    <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
+                                    <a href="forgot-password" className="forgot-password" onClick={(event) => handleForgottenPassword(event)}>Forgot Password?</a>
                                 </div>
                             </Form.Group>
                             <Button className="w-100 mb-3 login-btn" type="submit">Log In</Button>
