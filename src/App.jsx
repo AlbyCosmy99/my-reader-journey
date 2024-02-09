@@ -15,6 +15,7 @@ function App() {
       setIsLogged(false)
     }
   }, [])
+  
   return (
     <div id='app-container'>
       <div id='content-container'>
