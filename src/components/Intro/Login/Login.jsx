@@ -52,6 +52,7 @@ export default function Login({e_mail = ''}) {
             .then(res => res.json())
             .then(res => {
                 if(res.jwt) {
+                    console.log('inin')
                     setAreValidCredentials(true)
                     localStorage.setItem('jwt',res.jwt)
                     window.location.reload();
