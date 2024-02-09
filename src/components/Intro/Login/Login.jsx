@@ -15,34 +15,35 @@ export default function Login() {
         
         if(password.length < 8) {
             setIsValidPassword(false)
+            return
         }
         else {
             setIsValidPassword(true)
         }
 
         try {
-            const response = await fetch('https://example.com/api/login', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(
+            const response = await fetch('http://localhost:3030/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
                 {
                     email: email,
                     password: password
                 }
-              )
+                )
             });
       
             const data = await response.json();
       
             if (response.ok) {
-              setResponseMessage(data.message); // Assuming the server returns a message
+              console.log(data.message)// Assuming the server returns a message
             } else {
               throw new Error(data.error); // Assuming the server returns an error message
             }
           } catch (error) {
-            setResponseMessage('Error: ' + error.message);
+            console.log('Error: ' + error.message);
           }
     }
     
