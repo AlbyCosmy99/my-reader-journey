@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
 import './Login.css';
 import PasswordForgotten from '../PasswordForgotten/PasswordForgotten'
+import Register from '../Register/Register';
 
-export default function Login() {
-    const [email, setEmail] = useState('');
+export default function Login({e_mail = ''}) {
+    const [email, setEmail] = useState(e_mail);
     const [password, setPassword] = useState('');
     const [isValidPassword, setIsValidPassword] = useState(true)
     const [areValidCredentials, setAreValidCredentials] = useState(true)
     const [passwordForgotten, setPasswordForgotten] = useState(false)
+    const [register,setRegister] = useState(false)
 
     function handleForgottenPassword(event) {
         event.preventDefault()
         setPasswordForgotten(true)
+    }
+
+    function handleRegister(event) {
+        event.preventDefault()
+        setRegister(true)
     }
 
     async function login(event) {
@@ -64,12 +71,18 @@ export default function Login() {
         )
     }
 
+    if(register) {
+        return (
+            <Register />
+        )
+    }
+
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
             <div className="w-100" style={{ maxWidth: "400px" }}>
                 <Card className="card-custom">
                     <Card.Body>
-                        <h2 className="text-center mb-4" style={{ color: '#f2881d' }}>Sign In</h2>
+                        <h2 className="text-center mb-4" style={{ color: '#f2881d' }}>Login In</h2>
                         <Form onSubmit={event => login(event)}>
                             <Form.Group id="email">
                                 <Form.Label style={{ color: '#FF7F00' }}>Email</Form.Label>
@@ -87,7 +100,7 @@ export default function Login() {
                             <Button className="w-100 mb-3 login-btn" type="submit">Log In</Button>
                         </Form>
                         <div className="text-center" style={{ color: '#f2881d' }}>
-                            New here? <a href="#register" className="register-link">Register</a>
+                            New here? <a href="register" className="register-link" onClick={(event) => handleRegister(event)}>Register</a>
                         </div>
                     </Card.Body>
                 </Card>
