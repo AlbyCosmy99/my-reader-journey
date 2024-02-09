@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
-import './Login.css'; 
+import './Login.css';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isValidPassword, setIsValidPassword] = useState(true)
+    const [areValidCredentials, setAreValidCredentials] = useState(true)
 
     async function login(event) {
         if(!email || !password) {
@@ -15,37 +16,40 @@ export default function Login() {
         
         if(password.length < 8) {
             setIsValidPassword(false)
+            return
         }
         else {
             setIsValidPassword(true)
         }
 
         try {
-            const response = await fetch('https://example.com/api/login', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(
+            fetch('http://localhost:3030/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
                 {
                     email: email,
                     password: password
                 }
-              )
-            });
-      
-            const data = await response.json();
-      
-            if (response.ok) {
-              setResponseMessage(data.message); // Assuming the server returns a message
-            } else {
-              throw new Error(data.error); // Assuming the server returns an error message
-            }
+                )
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.jwt) {
+                    setAreValidCredentials(true)
+                    localStorage.setItem('jwt',res.jwt)
+                    window.location.reload();
+                }
+                else {
+                    setAreValidCredentials(false)
+                }           
+            })
           } catch (error) {
-            setResponseMessage('Error: ' + error.message);
+            console.log('Error: ' + error.message);
           }
     }
-    
 
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
@@ -62,6 +66,7 @@ export default function Login() {
                                 <Form.Label style={{ color: '#FF7F00' }}>Password</Form.Label>
                                 <Form.Control type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
                                 {!isValidPassword && <p className="error-message" style={{ color: 'red' }}>Password must be at least 8 characters long.</p>}
+                                {!areValidCredentials && isValidPassword && <p className="error-message" style={{ color: 'red' }}>Invalid credentials.</p>}
                                 <div className="d-flex justify-content-end mt-2 mb-2">
                                     <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
                                 </div>
