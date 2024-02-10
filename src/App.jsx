@@ -3,18 +3,34 @@ import './App.css';
 import Footer from './components/Footer/Footer';
 import Login from './components/Intro/Login/Login'
 import Home from './components/Intro/IsLogged/Home/Home'
+import { jwtDecode } from 'jwt-decode';
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(true)
 
   useEffect(() => {
-    if(localStorage.getItem('jwt')) {
-      setIsLogged(true)
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      try {
+        const payload = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        console.log(currentTime)
+        if (payload.exp < currentTime) {    
+          localStorage.removeItem('jwt')
+          setIsLogged(false);
+        } else {
+          setIsLogged(true);
+        }
+      } catch (error) {
+        console.error("Failed to decode token", error);
+        localStorage.removeItem('jwt')
+        setIsLogged(false);
+      }
+    } else {
+      localStorage.removeItem('jwt')
+      setIsLogged(false);
     }
-    else {
-      setIsLogged(false)
-    }
-  }, [])
+  }, []);
   
   return (
     <div id='app-container'>

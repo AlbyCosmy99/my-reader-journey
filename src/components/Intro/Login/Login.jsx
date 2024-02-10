@@ -3,6 +3,7 @@ import { Card, Form, Button, Container } from 'react-bootstrap';
 import './Login.css';
 import PasswordForgotten from '../PasswordForgotten/PasswordForgotten'
 import Register from '../Register/Register';
+import urlPath from '../../../urlPath';
 
 export default function Login({e_mail = ''}) {
     const [email, setEmail] = useState(e_mail);
@@ -37,10 +38,10 @@ export default function Login({e_mail = ''}) {
         }
 
         try {
-            fetch('http://localhost:3030/api/users/login', {
+            fetch(`${urlPath}/api/users/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(
                     {

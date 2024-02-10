@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
 import Login from '../Login/Login';
+import urlPath from '../../../urlPath';
 
 export default function Register() {
     const [isValidPassword, setIsValidPassword] = useState(true)
@@ -28,7 +29,7 @@ export default function Register() {
         setIsValidPassword(true)
         if(password1 === password2) {
             setPasswordsEqual(true)
-            fetch('http://localhost:3030/api/users/register', {
+            fetch(`${urlPath}/api/users/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -94,7 +95,7 @@ export default function Register() {
                             <Button className="w-100 mb-3 login-btn" type="submit">Register</Button>
                         </Form>
                         <div className="text-center" style={{ color: '#f2881d' }}>
-                            Already registered? <a className="register-link" onClick={(event) => setLogin(true)}>Login</a>
+                            Already registered? <a style={{cursor:'pointer'}} className="register-link" onClick={(event) => setLogin(true)}>Login</a>
                         </div>
                     </Card.Body>
                 </Card>
