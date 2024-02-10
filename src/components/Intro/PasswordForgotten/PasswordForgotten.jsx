@@ -122,7 +122,7 @@ export default function PasswordForgotten() {
                     <Button className="w-100 mb-3 login-btn" onClick={(event) => changePassword(event)}>Change password</Button>
                     {!passwordsEqual && <p className="error-message" style={{ color: 'red' }}>Passwords are not equal!</p>}
                     {!isValidPassword && passwordsEqual && <p className="error-message" style={{ color: 'red' }}>Password must be at least 8 characters long.</p>}
-                    <Button className="w-100 mb-1 mt-3 login-btn" onClick={(event) => handleResendMail(event)}>Change mail</Button>
+                    <Button className="w-100 mb-1 mt-3 login-btn" onClick={(event) => handleResendMail(event)}>Enter another mail</Button>
                   </> : 
                   (emailSent ? <>
                             <Form.Group id="code">
@@ -142,6 +142,7 @@ export default function PasswordForgotten() {
                                   <Form.Control className='mb-3' type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                               </Form.Group>
                               <Button className="w-100 mb-3 login-btn" type="submit">Send email</Button>
+                              <Button className="w-100 mb-3 login-btn" onClick={() => setLogin(true)}>Login in</Button>
                           </Form>
                           </>)}            
                 </Card.Body>
