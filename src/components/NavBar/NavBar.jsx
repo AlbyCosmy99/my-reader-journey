@@ -12,7 +12,7 @@ function NavBar() {
 
   const handleLogout = () => {
     localStorage.removeItem('jwt')
-    window.location.reload()
+    window.location.href = 'http://localhost:3000/'
   };
 
   return (

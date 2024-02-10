@@ -53,7 +53,6 @@ export default function Login({e_mail = ''}) {
             .then(res => res.json())
             .then(res => {
                 if(res.jwt) {
-                    console.log('inin')
                     setAreValidCredentials(true)
                     localStorage.setItem('jwt',res.jwt)
                     window.location.reload();
@@ -81,7 +80,7 @@ export default function Login({e_mail = ''}) {
 
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
-            <div className="w-100" style={{ maxWidth: "400px" }}>
+            <div className="card-container w-100" style={{ maxWidth: "400px" }}>
                 <Card className="card-custom">
                     <Card.Body>
                         <h2 className="text-center mb-4" style={{ color: '#f2881d' }}>Login In</h2>
