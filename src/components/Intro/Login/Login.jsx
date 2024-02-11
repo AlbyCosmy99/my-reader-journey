@@ -4,6 +4,7 @@ import './Login.css';
 import PasswordForgotten from '../PasswordForgotten/PasswordForgotten'
 import Register from '../Register/Register';
 import backendUrlPath from '../../../backendUrlPath.js';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Login({e_mail = ''}) {
     const [email, setEmail] = useState(e_mail);
@@ -12,6 +13,7 @@ export default function Login({e_mail = ''}) {
     const [areValidCredentials, setAreValidCredentials] = useState(true)
     const [passwordForgotten, setPasswordForgotten] = useState(false)
     const [register,setRegister] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     function handleForgottenPassword(event) {
         event.preventDefault()
@@ -38,6 +40,7 @@ export default function Login({e_mail = ''}) {
         }
 
         try {
+            setLoading(true)
             fetch(`${backendUrlPath}/api/users/login`, {
                 method: 'POST',
                 headers: {
@@ -59,11 +62,22 @@ export default function Login({e_mail = ''}) {
                 }
                 else {
                     setAreValidCredentials(false)
-                }           
+                }
+                setLoading(false)         
             })
           } catch (error) {
             console.log('Error: ' + error.message);
           }
+    }
+
+    if (loading) {
+        return (
+            <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+                <Spinner animation="border" role="status" style={{ width: "8rem", height: "8rem", color:'orange' }}>
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
+        );
     }
 
     if(passwordForgotten) {
