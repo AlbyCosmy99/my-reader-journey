@@ -58,6 +58,7 @@ export default function Login({e_mail = ''}) {
                 if(res.jwt) {
                     setAreValidCredentials(true)
                     localStorage.setItem('jwt',res.jwt)
+                    localStorage.setItem('sortBy','title')
                     setLoading(false)
                     window.location.reload();
                 }

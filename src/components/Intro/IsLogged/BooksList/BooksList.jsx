@@ -7,14 +7,15 @@ import { useEffect, useState } from "react";
 import backendUrlPath from "../../../../backendUrlPath";
 import Spinner from 'react-bootstrap/Spinner';
 
-export default function BooksList({message}) {
+export default function BooksList({message, sectionTitle}) {
     const navigate = useNavigate();
     const [books,setBooks] = useState([])
     const [loading,setLoading] = useState(false)
+    const [sortBy, setSortBy] = useState(localStorage.getItem('sortBy'))
 
     useEffect(() => {
         setLoading(true)
-        fetch(`${backendUrlPath}/api/users/books?filter=${message}`, {
+        fetch(`${backendUrlPath}/api/users/books?filter=${message}&sortBy=${sortBy}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +27,12 @@ export default function BooksList({message}) {
             setBooks(res)
             setLoading(false)
         })
-    },[])
+    },[sortBy])
+
+    function handleSelect(selection) {
+        localStorage.setItem('sortBy', selection)
+        setSortBy(localStorage.getItem('sortBy'))
+    }
 
     return (
         loading ? 
@@ -45,24 +51,24 @@ export default function BooksList({message}) {
                         <Container>
                             <Row>
                                 <Col className="d-flex justify-content-center align-items-center" style={{fontSize:'30px', color:'white'}}>
-                                    <b>ALL MY BOOKS</b>
+                                    <b>{sectionTitle}</b>
                                 </Col>
                                 {books.length > 0 ? 
                                 <Col className="d-flex justify-content-center align-items-center">
                                     <Dropdown>
                                         <Dropdown.Toggle id="dropdown-basic" style={{fontSize: '20px'}}>
-                                            Order by: TITLE
+                                            Order by: {sortBy}
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu >
-                                            <Dropdown.Item href="#/action-1">Title</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Author</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Genre</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-1">Language</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Pages</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Rating</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-1">Reading start date</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Reading end date</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Date you added the book</Dropdown.Item>
+                                        <Dropdown.Item eventKey="title" onClick={() => handleSelect('title')}>Title</Dropdown.Item>
+                                        <Dropdown.Item eventKey="author" onClick={() => handleSelect('author')}>Author</Dropdown.Item>
+                                        <Dropdown.Item eventKey="genre" onClick={() => handleSelect('genre')}>Genre</Dropdown.Item>
+                                        <Dropdown.Item eventKey="language" onClick={() => handleSelect('language')}>Language</Dropdown.Item>
+                                        <Dropdown.Item eventKey="pages" onClick={() => handleSelect('pages')}>Pages</Dropdown.Item>
+                                        <Dropdown.Item eventKey="rating" onClick={() => handleSelect('rating')}>Rating</Dropdown.Item>
+                                        <Dropdown.Item eventKey="readingStartDate" onClick={() => handleSelect('startReadingDate')}>Reading start date</Dropdown.Item>
+                                        <Dropdown.Item eventKey="readingEndDate" onClick={() => handleSelect('endReadingDate')}>Reading end date</Dropdown.Item>
+                                        <Dropdown.Item eventKey="dateAdded" onClick={() => handleSelect('dateAdded')}>Date you added the book</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>   
                                 </Col> : ''}
