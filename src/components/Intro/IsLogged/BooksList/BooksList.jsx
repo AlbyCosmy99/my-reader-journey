@@ -76,7 +76,7 @@ export default function BooksList({message}) {
                                     <Container>
                                         <Row>
                                             <Col lg={2} className="book-details" style={{textAlign:'center'}}>
-                                                <img style={{ maxWidth: '100%', maxHeight: '150px' }} className="book-img img-fluid" src={book.imageUrl} alt="book cover"/>
+                                                <img style={{ maxWidth: '100%', maxHeight: '150px' }} className="book-img img-fluid" src={book.imageUrl ? book.imageUrl : '../../../../../../assets/defaultCover.webp'} alt="book cover"/>
                                             </Col>
                                             <Col lg={8} className="book-details">
                                                 <h2>{book.title}</h2>
