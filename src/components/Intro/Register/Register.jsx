@@ -47,6 +47,7 @@ export default function Register() {
             .then(res => {
                 if(res.jwt) {
                     localStorage.setItem('jwt',res.jwt)
+                    localStorage.setItem('sortBy','title')
                     window.location.reload();
                 }
             })
