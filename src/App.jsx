@@ -14,7 +14,6 @@ function App() {
       try {
         const payload = jwtDecode(token);
         const currentTime = Date.now() / 1000;
-        console.log(currentTime)
         if (payload.exp < currentTime) {    
           localStorage.removeItem('jwt')
           setIsLogged(false);
