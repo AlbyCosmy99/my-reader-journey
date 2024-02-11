@@ -99,6 +99,7 @@ export default function Login({e_mail = ''}) {
             <div className="card-container w-100" style={{ maxWidth: "400px" }}>
                 <Card className="card-custom">
                     <Card.Body>
+                        <h1 style={{fontSize: '31px', textAlign:'center',color:'red', backgroundColor:'yellow'}}>Keep track of your books!</h1>
                         <h2 className="text-center mb-4" style={{ color: '#f2881d' }}>Login In</h2>
                         <Form onSubmit={event => login(event)}>
                             <Form.Group id="email">

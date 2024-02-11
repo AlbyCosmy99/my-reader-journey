@@ -32,7 +32,7 @@ function App() {
   }, []);
   
   return (
-    <div id='app-container'>
+    <div id='app-container' style={{backgroundColor: '#9A7872'}}>
       <div id='content-container'>
         {isLogged ? <Home/> : <Login/>}
       </div>
