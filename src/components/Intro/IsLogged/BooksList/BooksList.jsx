@@ -47,50 +47,59 @@ export default function BooksList({message}) {
                                 <Col className="d-flex justify-content-center align-items-center" style={{fontSize:'30px', color:'white'}}>
                                     <b>ALL MY BOOKS</b>
                                 </Col>
+                                {books.length > 0 ? 
                                 <Col className="d-flex justify-content-center align-items-center">
                                     <Dropdown>
                                         <Dropdown.Toggle id="dropdown-basic" style={{fontSize: '20px'}}>
                                             Order by: TITLE
                                         </Dropdown.Toggle>
-
                                         <Dropdown.Menu >
-                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Title</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">Author</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3">Genre</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Language</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">Pages</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3">Rating</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Reading start date</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">Reading end date</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3">Date you added the book</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>   
-                                </Col>
+                                </Col> : ''}
                             </Row>
                         </Container>
                     </div>
                     <div className="card-body" style={{backgroundColor: '#D3AD79'}}>
-                        {books.map((book, index) => {
-                            return (
-                                <div className="card elevated-card" key={index} onClick={() => navigate(`/books/${book.id}`)} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
-                                    <div className="card-body">
-                                        <Container>
-                                            <Row>
-                                                <Col lg={2} className="book-details" style={{textAlign:'center'}}>
-                                                    <img style={{ maxWidth: '100%', maxHeight: '150px' }} className="book-img img-fluid" src={book.img} alt="book cover"/>
-                                                </Col>
-                                                <Col lg={8} className="book-details">
-                                                    <h2>{book.title}</h2>
-                                                    <h4>{book.author}</h4>
-                                                </Col>
-                                                <Col lg={2}>
-                                                    <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
-                                                        {
-                                                        book.favorite ? <i className="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
-                                                        <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>
-                                                        }                                     
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </Container>
-                                    </div>
+                        {books.length > 0 ? books.map((book, index) => (
+                            <div className="card elevated-card" key={index} onClick={() => navigate(`/books/${book._id}`)} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
+                                <div className="card-body">
+                                    <Container>
+                                        <Row>
+                                            <Col lg={2} className="book-details" style={{textAlign:'center'}}>
+                                                <img style={{ maxWidth: '100%', maxHeight: '150px' }} className="book-img img-fluid" src={book.imageUrl} alt="book cover"/>
+                                            </Col>
+                                            <Col lg={8} className="book-details">
+                                                <h2>{book.title}</h2>
+                                                <h4>{book.author}</h4>
+                                            </Col>
+                                            <Col lg={2}>
+                                                <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
+                                                    {book.favorite ? <i className="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
+                                                    <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>}
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </Container>
                                 </div>
-                            )
-                        })}
+                            </div>
+                        )) : 
+                        <div className="d-flex justify-content-center align-items-center" style={{height: '100%'}}>
+                            <div className="card" style={{width: '18rem', color:'#733c0f',backgroundColor: '#D3AD79', textAlign:'center'}}>
+                                <div className="card-body">
+                                    <h5 className="card-title">No books available.</h5>
+                                </div>
+                            </div>
+                        </div>}
                     </div>
                 </div>
             </div>
