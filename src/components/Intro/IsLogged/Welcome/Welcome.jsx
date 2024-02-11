@@ -1,12 +1,11 @@
 import './Welcome.css';
 import { useEffect, useState } from 'react';
-import urlPath from '../../../../urlPath';
-
+import backendUrlPath from '../../../../backendUrlPath';
 export default function Welcome() {
     const [name, setName] = useState('')
     
     useEffect(() => {
-        fetch(`${urlPath}/api/users`,{
+        fetch(`${backendUrlPath}/api/users`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

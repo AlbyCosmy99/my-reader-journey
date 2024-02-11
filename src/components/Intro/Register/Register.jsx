@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
 import Login from '../Login/Login';
-import urlPath from '../../../urlPath';
+import backendUrlPath from '../../../backendUrlPath.js';
 
 export default function Register() {
     const [isValidPassword, setIsValidPassword] = useState(true)
@@ -29,7 +29,7 @@ export default function Register() {
         setIsValidPassword(true)
         if(password1 === password2) {
             setPasswordsEqual(true)
-            fetch(`${urlPath}/api/users/register`, {
+            fetch(`${backendUrlPath}/api/users/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
