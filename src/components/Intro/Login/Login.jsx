@@ -58,12 +58,17 @@ export default function Login({e_mail = ''}) {
                 if(res.jwt) {
                     setAreValidCredentials(true)
                     localStorage.setItem('jwt',res.jwt)
+                    setLoading(false)
                     window.location.reload();
                 }
                 else {
                     setAreValidCredentials(false)
-                }
-                setLoading(false)         
+                    setLoading(false) 
+                }                   
+            })
+            .catch(err => {
+                console.error('Login error:', err);
+                setLoading(false);
             })
           } catch (error) {
             console.log('Error: ' + error.message);
