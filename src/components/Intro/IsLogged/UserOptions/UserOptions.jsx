@@ -38,7 +38,7 @@ export default function UserOptions() {
                         </Col>
                         <Col lg={6} className="options-btn">
                             <Button className="folders-btn">
-                                FOLDERS
+                                SETTINGS
                             </Button>
                         </Col>
                     </Row>

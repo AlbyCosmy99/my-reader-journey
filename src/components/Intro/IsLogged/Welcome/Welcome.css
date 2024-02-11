@@ -17,3 +17,9 @@ h1, p{
     font-family: 'Josefin Sans', sans-serif;
     font-family: 'Roboto Mono', monospace;
 }
+
+@media screen and (max-width: 600px) {
+    .header {
+        font-size: 45px !important;
+    }
+  }

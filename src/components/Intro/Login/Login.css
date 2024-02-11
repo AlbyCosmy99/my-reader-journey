@@ -42,3 +42,10 @@
     background-color: #FF7F00 !important; /* Adjust the color as needed */
 }
 
+@media (max-width: 768px) {
+    .card-container {
+        max-width: 100%;
+        padding: 0 20px; 
+    }
+}
+  
