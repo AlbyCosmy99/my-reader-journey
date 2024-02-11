@@ -75,16 +75,6 @@ export default function Login({e_mail = ''}) {
           }
     }
 
-    if (loading) {
-        return (
-            <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
-                <Spinner animation="border" role="status" style={{ width: "8rem", height: "8rem", color:'orange' }}>
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
-            </div>
-        );
-    }
-
     if(passwordForgotten) {
         return (
             <PasswordForgotten />
@@ -98,6 +88,12 @@ export default function Login({e_mail = ''}) {
     }
 
     return (
+        loading ? 
+        <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+            <Spinner animation="border" role="status" style={{ width: "8rem", height: "8rem", color:'orange' }}>
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </div>:
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
             <div className="card-container w-100" style={{ maxWidth: "400px" }}>
                 <Card className="card-custom">
