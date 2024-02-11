@@ -37,8 +37,8 @@ export default function UserOptions() {
                             </Button>
                         </Col>
                         <Col lg={6} className="options-btn">
-                            <Button className="folders-btn">
-                                SETTINGS
+                            <Button className="folders-btn" onClick={() => navigate('top-rating-books')}>
+                                10/10 RATING BOOKS
                             </Button>
                         </Col>
                     </Row>

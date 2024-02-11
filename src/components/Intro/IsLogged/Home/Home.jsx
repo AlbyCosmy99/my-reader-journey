@@ -15,6 +15,7 @@ export default function Home() {
                     <Route path="/books-read" exact element={<BooksList message={'books-read'} sectionTitle={"BOOKS READ"}/>}></Route>
                     <Route path="/books-to-read" exact element={<BooksList message={'books-to-read'} sectionTitle={"ALL MY BOOKS"}/>}></Route>
                     <Route path="/favorite-books" exact element={<BooksList message={'favorite-books'} sectionTitle={"FAVORITE BOOKS"}/>}></Route>
+                    <Route path="/top-rating-books" exact element={<BooksList message={'top-rating-books'} sectionTitle={"10/10 RATING BOOKS"}/>}></Route>
                     <Route path="/books/:id" exact element={<BookDetails/>}></Route>
                 </Routes>
             </BrowserRouter>

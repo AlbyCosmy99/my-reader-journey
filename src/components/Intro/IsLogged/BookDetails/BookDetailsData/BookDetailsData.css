@@ -1,0 +1,20 @@
+.card::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+
+/* Style the track of the scrollbar */
+.card::-webkit-scrollbar-track {
+    background: #BB9B71; /* color of the track */
+}
+
+/* Style the handle of the scrollbar */
+.card::-webkit-scrollbar-thumb {
+    background-color: #5B462F; /* color of the thumb */
+    border-radius: 6px; /* roundness of the thumb */
+    border: 3px solid #BB9B71; /* creates padding around the thumb */
+}
+
+/* Style the handle of the scrollbar on hover */
+.card::-webkit-scrollbar-thumb:hover {
+    background: #826346; /* color when hovering over the thumb */
+}
