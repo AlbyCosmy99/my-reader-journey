@@ -1,22 +1,29 @@
 import './Welcome.css';
 import { useEffect, useState } from 'react';
-import backendUrlPath from '../../../../backendUrlPath';
+import { jwtDecode } from 'jwt-decode';
+
+
 export default function Welcome() {
     const [name, setName] = useState('')
-    
+
     useEffect(() => {
-        fetch(`${backendUrlPath}/api/users`,{
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-            },
-        })
-        .then(res => res.json())
-        .then(res => {
-            setName(res.name)
-        })
+        getName()
     }, [])
+    
+    function getName() {
+        const token = localStorage.getItem('jwt');
+        if(token) {
+            try {
+                const payload = jwtDecode(token);
+                setName(payload.name)
+            } catch(error) {
+                console.error("Failed to decode token", error);
+                localStorage.removeItem('jwt')
+                window.location.href = 'http://localhost:3000/'
+            }
+        }
+    }
+
     return (
         <div className="welcome-container">
             <h1 style={{marginTop:'1.6rem', fontSize:'70px', border:'4px solid #9B7973', textAlign:'center'}} className='header'>Welcome {name}</h1>
