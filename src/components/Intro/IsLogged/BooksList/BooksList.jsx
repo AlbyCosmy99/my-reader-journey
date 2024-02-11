@@ -5,12 +5,15 @@ import './BooksList.css';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import backendUrlPath from "../../../../backendUrlPath";
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function BooksList({message}) {
     const navigate = useNavigate();
     const [books,setBooks] = useState([])
+    const [loading,setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         fetch(`${backendUrlPath}/api/users/books?filter=${message}`, {
             method: 'GET',
             headers: {
@@ -21,11 +24,17 @@ export default function BooksList({message}) {
         .then(res => res.json())
         .then(res => {
             setBooks(res)
-            console.log(res)
+            setLoading(false)
         })
     },[])
 
     return (
+        loading ? 
+        <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+            <Spinner animation="border" role="status" style={{ width: "8rem", height: "8rem", color:'orange' }}>
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </div> : 
         <div className="books-list-container">
             <div className="add-new-book-btn">
                 <AddNewBookButton />
