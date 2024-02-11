@@ -3,92 +3,28 @@ import AddNewBookButton from "../../../Buttons/AddNewBookButton/AddNewBookButton
 import Dropdown from 'react-bootstrap/Dropdown';
 import './BooksList.css';
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import backendUrlPath from "../../../../backendUrlPath";
 
 export default function BooksList({message}) {
     const navigate = useNavigate();
-    const books = [
-        {
-            id: -1,
-            title:"Se questo e' un uomo",
-            author: 'Primo Levi',
-            img:'https://www.lafeltrinelli.it/images/9788806219352_0_536_0_75.jpg',
-            favorite: true,
-            description: 'descrizione1'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        {
-            id: -2,
-            title:"Se i gatti scomparissero dal mondo",
-            author: 'Kawamura Genki',
-            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
-            favorite: false,
-            description: 'descrizione2'
-        },
-        
-    ]
+    const [books,setBooks] = useState([])
+
+    useEffect(() => {
+        fetch(`${backendUrlPath}/api/users/books?filter=${message}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('jwt')}`
+            },
+        })
+        .then(res => res.json())
+        .then(res => {
+            setBooks(res)
+            console.log(res)
+        })
+    },[])
+
     return (
         <div className="books-list-container">
             <div className="add-new-book-btn">
@@ -121,7 +57,7 @@ export default function BooksList({message}) {
                     <div className="card-body" style={{backgroundColor: '#D3AD79'}}>
                         {books.map((book, index) => {
                             return (
-                                <div className="card elevated-card" key={book.id} onClick={() => navigate(`/books/${book.id}`)} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
+                                <div className="card elevated-card" key={index} onClick={() => navigate(`/books/${book.id}`)} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
                                     <div className="card-body">
                                         <Container>
                                             <Row>
@@ -135,8 +71,8 @@ export default function BooksList({message}) {
                                                 <Col lg={2}>
                                                     <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
                                                         {
-                                                        book.favorite ? <i class="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
-                                                        <i class="bi bi-heart" style={{ fontSize: '60px' }}></i>
+                                                        book.favorite ? <i className="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
+                                                        <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>
                                                         }                                     
                                                     </div>
                                                 </Col>
