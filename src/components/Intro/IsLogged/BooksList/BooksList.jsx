@@ -23,6 +23,71 @@ export default function BooksList({message}) {
             favorite: false,
             description: 'descrizione2'
         },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        {
+            id: -2,
+            title:"Se i gatti scomparissero dal mondo",
+            author: 'Kawamura Genki',
+            img:'https://www.ibs.it/images/9788806240301_0_536_0_75.jpg',
+            favorite: false,
+            description: 'descrizione2'
+        },
+        
     ]
     return (
         <div className="books-list-container">
