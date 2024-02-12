@@ -9,8 +9,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import frontendUrlPath from '../../frontendUrlPath';
 import './NavBar.css';
 import backendUrlPath from '../../backendUrlPath';
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState(''); // State to keep track of search input
   const [showSearchDropdown, setShowSearchDropdown] = useState(false); // State to control the visibility of the search dropdown
   const [showDropdown, setShowDropdown] = useState(false);
@@ -59,7 +61,7 @@ function NavBar() {
             {showSearchDropdown && books.length > 0 && (
               <Dropdown.Menu show={true} style={{ position: 'absolute', left: 0, top: '100%' }}>
                 {books.map((book, index) => (
-                  <Dropdown.Item key={index} href={`${frontendUrlPath}/books/${book._id}`}>{book.title}</Dropdown.Item>
+                  <Dropdown.Item key={index} onClick={() => navigate(`/books/${book._id}`)} >{book.title}</Dropdown.Item>
                 ))}
               </Dropdown.Menu>
             )}
