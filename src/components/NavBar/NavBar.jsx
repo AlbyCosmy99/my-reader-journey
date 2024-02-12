@@ -59,7 +59,7 @@ function NavBar() {
             {showSearchDropdown && books.length > 0 && (
               <Dropdown.Menu show={true} style={{ position: 'absolute', left: 0, top: '100%' }}>
                 {books.map((book, index) => (
-                  <Dropdown.Item key={index} onClick={() =>  window.location.href = `/books/${book._id}`}>{book.title}</Dropdown.Item>
+                  <Dropdown.Item key={index} onClick={() =>  window.location.href = `${frontendUrlPath}/books/${book._id}`}>{book.title}</Dropdown.Item>
                 ))}
               </Dropdown.Menu>
             )}
