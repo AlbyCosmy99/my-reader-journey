@@ -7,9 +7,9 @@ import AddBook from "../AddBook/AddBook";
 
 export default function Home() {
     return(
-        <>
-            <NavBar/>
+        <>       
             <BrowserRouter>
+                <NavBar/>
                 <Routes>
                     <Route path="/" exact element={<UserOptions/>}></Route>
                     <Route path="/add-book" exact element={<AddBook />}></Route>
