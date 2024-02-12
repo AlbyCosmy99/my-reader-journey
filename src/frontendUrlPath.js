@@ -1,2 +1,2 @@
-const frontendUrlPath =  'https://65c9789579610784724c6f00--starlit-biscotti-f33457.netlify.app'
+const frontendUrlPath =  'https://my-reader-journey.onrender.com'
 export default frontendUrlPath;
