@@ -1,0 +1,23 @@
+.custom-navbar-color {
+    background-color: #9A7872 !important;
+}
+  
+.logo {
+    transition: transform 0.5s ease; 
+}
+
+.logo:hover {
+    transform: scale(1.05); 
+}
+
+.search-field {
+    border: 2px solid #800020; /* Default state */
+  }
+  
+.search-field:focus, .search-field:active {
+border: 2px solid #800020; 
+outline: none; 
+}
+  
+  
+  

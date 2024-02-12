@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import './BookDetailsData.css';
 
-export default function BookDetailsData({book}) {
+export default function BookDetailsData({book}) {  
     return (
         <Card style={{backgroundColor: '#CEB289', color:'#5B462F'}}>
             <Card.Body style={{ maxHeight: '86vh', overflowY: 'auto' }}>
@@ -12,7 +12,7 @@ export default function BookDetailsData({book}) {
                 <h4><b>Genre: </b>{book.genre}</h4>
                 <h4><b>Language: </b>{book.language}</h4>
                 <h4><b>Publishing House: </b>{book.publishing_house}</h4>
-                <h4><b>Number of pages: </b>{book.pages}</h4>
+                <h4><b>Pages: </b>{book.pages}</h4>
                 <h4><b>Price: </b>{book.price}</h4>
                 <h4><b>ISBN: </b>{book.isbn}</h4>
                 <h4><b>Publication Date: </b>{book.publicationDate}</h4>
