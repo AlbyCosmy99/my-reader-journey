@@ -3,6 +3,7 @@ import { Card, Form, Button, Container, Row, Col } from 'react-bootstrap';
 import './AddBook.css';
 import backendUrlPath from '../../../../backendUrlPath';
 import { jwtDecode } from 'jwt-decode';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function AddBook() {
     const [title,setTitle] = useState('')
@@ -28,9 +29,11 @@ export default function AddBook() {
     const [notes, setNotes] = useState('')
     const [imageUrl, setImageUrl] = useState('')
 
+    const [loading, setLoading] = useState(false)
+
 
     function addBook(event) {
-        if(!title) return
+        setLoading(true)
         const token = localStorage.getItem('jwt');
         let payload = null;
         if (token) {
@@ -110,8 +113,9 @@ export default function AddBook() {
         }
 
         event.preventDefault()
+        console.log(book)
         fetch(`${backendUrlPath}/api/users/books`, {
-            method: 'GET',
+            method: 'POST',
             body: JSON.stringify(book),
             headers: {
                 'Content-Type': 'application/json',
@@ -119,11 +123,18 @@ export default function AddBook() {
             },
         })
         .then(res => res.json())
-        .then(res => {
-            console.log('added')
+        .then(() => {
+            window.history.back()
+            setLoading(false)
         })
     }
     return(
+        loading ? 
+        <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+            <Spinner animation="border" role="status" style={{ width: "8rem", height: "8rem", color:'orange' }}>
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </div> : 
         <Container className="d-flex align-items-center justify-content-center mt-5 mb-5" style={{ minHeight: "100vh"}}>
             <div className="card-container w-100" style={{ maxWidth: "600px" }}>
                 <Card className="card-custom">
@@ -141,55 +152,55 @@ export default function AddBook() {
                                     <Col lg={6}>
                                         <Form.Group id="author">
                                             <Form.Label style={{ color: '#FF7F00' }}>Author</Form.Label>
-                                            <Form.Control type="text" required value={author} onChange={(e) => setAuthor(e.target.value)} />
+                                            <Form.Control type="text"  value={author} onChange={(e) => setAuthor(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="genre">
                                             <Form.Label style={{ color: '#FF7F00' }}>Genre</Form.Label>
-                                            <Form.Control type="text" required value={genre} onChange={(e) => setGenre(e.target.value)} />
+                                            <Form.Control type="text"  value={genre} onChange={(e) => setGenre(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="language">
                                             <Form.Label style={{ color: '#FF7F00' }}>Language</Form.Label>
-                                            <Form.Control type="text" required value={language} onChange={(e) => setLanguage(e.target.value)} />
+                                            <Form.Control type="text"  value={language} onChange={(e) => setLanguage(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="imageUrl">
                                             <Form.Label style={{ color: '#FF7F00' }}>Image Url</Form.Label>
-                                            <Form.Control type="text" required value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+                                            <Form.Control type="text"  value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="publishingHouse">
                                             <Form.Label style={{ color: '#FF7F00' }}>publishing house</Form.Label>
-                                            <Form.Control type="text" required value={publishingHouse} onChange={(e) => setPublishingHouse(e.target.value)} />
+                                            <Form.Control type="text"  value={publishingHouse} onChange={(e) => setPublishingHouse(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="pages">
                                             <Form.Label style={{ color: '#FF7F00' }}>Pages</Form.Label>
-                                            <Form.Control type="number" required value={pages} onChange={(e) => setPages(e.target.value)} />
+                                            <Form.Control type="number"  value={pages} onChange={(e) => setPages(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="price">
                                             <Form.Label style={{ color: '#FF7F00' }}>Price</Form.Label>
-                                            <Form.Control type="text" required value={price} onChange={(e) => setPrice(e.target.value)} />
+                                            <Form.Control type="text"  value={price} onChange={(e) => setPrice(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="isbn">
                                             <Form.Label style={{ color: '#FF7F00' }}>ISBN</Form.Label>
-                                            <Form.Control type="text" required value={isbn} onChange={(e) => setIsbn(e.target.value)} />
+                                            <Form.Control type="text"  value={isbn} onChange={(e) => setIsbn(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="publicationDate">
                                             <Form.Label style={{ color: '#FF7F00' }}>Publication Date</Form.Label>
-                                            <Form.Control type="date" required value={publicationDate} onChange={(e) => setPublicationDate(e.target.value)} />
+                                            <Form.Control type="date"  value={publicationDate} onChange={(e) => setPublicationDate(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
@@ -282,19 +293,19 @@ export default function AddBook() {
                                     <Col lg={6}>
                                         <Form.Group id="readingStartDate">
                                             <Form.Label style={{ color: '#FF7F00' }}>Reading start date</Form.Label>
-                                            <Form.Control type="date" required value={readingStartDate} onChange={(e) => setReadingStartDate(e.target.value)} />
+                                            <Form.Control type="date"  value={readingStartDate} onChange={(e) => setReadingStartDate(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="readingEndDate">
                                             <Form.Label style={{ color: '#FF7F00' }}>Reading end date</Form.Label>
-                                            <Form.Control type="date" required value={readingEndDate} onChange={(e) => setReadingEndDate(e.target.value)} />
+                                            <Form.Control type="date"  value={readingEndDate} onChange={(e) => setReadingEndDate(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
                                         <Form.Group id="dateAdded">
                                             <Form.Label style={{ color: '#FF7F00' }}>Date Book was added</Form.Label>
-                                            <Form.Control type="date" required value={dateAdded} onChange={(e) => setDateAdded(e.target.value)} />
+                                            <Form.Control type="date"  value={dateAdded} onChange={(e) => setDateAdded(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={12}>
@@ -303,7 +314,6 @@ export default function AddBook() {
                                             <Form.Control
                                                 as="textarea"
                                                 rows={3}
-                                                required
                                                 value={description}
                                                 onChange={(e) => setDescription(e.target.value)}
                                                 style={{ resize: 'vertical' }}
