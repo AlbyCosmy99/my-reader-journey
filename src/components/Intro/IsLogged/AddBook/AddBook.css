@@ -1,0 +1,9 @@
+.back-btn {
+    background-color: red !important;
+    transition: transform ease 0.5s;
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+    background-color: red !important;
+}

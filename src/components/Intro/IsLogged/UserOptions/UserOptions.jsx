@@ -13,7 +13,7 @@ export default function UserOptions() {
                 <Welcome />
                 <Container style={{margin: 'auto'}}>
                     <Row>
-                        <Col lg={12} className="options-btn">
+                        <Col lg={12} className="options-btn" onClick={() => navigate('add-book')}>
                             <AddNewBookButton />
                         </Col>
                         <Col lg={12} className="options-btn">

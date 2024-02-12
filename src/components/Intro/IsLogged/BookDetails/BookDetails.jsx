@@ -5,12 +5,15 @@ import './BookDetails.css';
 import BookDetailsData from "./BookDetailsData/BookDetailsData";
 import { useEffect, useState } from "react";
 import backendUrlPath from "../../../../backendUrlPath";
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function BookDetails() {
     const { id } = useParams()
     const [book,setBook] = useState({})
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         fetch(`${backendUrlPath}/api/users/books/${id}`, {
             method: 'GET',
             headers: {
@@ -21,10 +24,17 @@ export default function BookDetails() {
         .then(res => res.json())
         .then(res => {
             setBook(res['book'][0])
+            setLoading(false)
         })
     },[])
 
     return (
+        loading ? 
+        <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+            <Spinner animation="border" role="status" style={{ width: "8rem", height: "8rem", color:'orange' }}>
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </div> :
         <Container style={{marginTop:'1rem', marginBottom:'1rem'}}>
             <Row>
                 <Col lg={6} sm={12}> 

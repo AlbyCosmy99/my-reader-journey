@@ -42,7 +42,7 @@ export default function BooksList({message, sectionTitle}) {
             </Spinner>
         </div> : 
         <div className="books-list-container">
-            <div className="add-new-book-btn">
+            <div className="add-new-book-btn" onClick={() => navigate('/add-book')}>
                 <AddNewBookButton />
             </div>
             <div className="card-books-container">
