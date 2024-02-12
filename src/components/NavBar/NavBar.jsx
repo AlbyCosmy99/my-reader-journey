@@ -24,7 +24,7 @@ function NavBar() {
   // Function to handle changes in the search input
   const handleSearchChange = (event) => {
     const value = event.target.value;
-    fetch(`http://localhost:3030/api/users/books?take=5`, {
+    fetch(`${backendUrlPath}/api/users/books?take=5`, {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',
