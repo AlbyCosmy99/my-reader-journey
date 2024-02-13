@@ -116,7 +116,7 @@ export default function BooksList({message, sectionTitle}) {
                                                             <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>}
                                                         </div>
                                                         </Col>
-                                                        <Col lg={6} onClick={() => deleteBook(book._id)}>
+                                                        <Col lg={6} className="book-icons" onClick={() => deleteBook(book._id)}>
                                                             <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
                                                                 <i class="bi bi-trash"style={{fontSize: '60px'}}></i>
                                                             </div>

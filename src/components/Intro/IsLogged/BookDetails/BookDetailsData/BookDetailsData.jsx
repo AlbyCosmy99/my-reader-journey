@@ -36,13 +36,13 @@ export default function BookDetailsData({book}) {
                         <h3 style={{fontSize: '25px'}}>DESCRIPTION</h3>
                     </Card.Body>
                 </Card>
-                <h4><b>Description: </b>{book.description}</h4>
+                <h4>{book.description}</h4>
                 <Card style={{marginTop:'1rem', marginBottom:'1rem', backgroundColor: '#9A7872', color: 'white', border:'2px solid #9A7872'}}>
                     <Card.Body style={{padding: 0, margin: 0,textAlign:'center'}}>
                         <h3 style={{fontSize: '25px'}}>NOTES</h3>
                     </Card.Body>
                 </Card>
-                <h4><b>Notes: </b>{book.notes}</h4>
+                <h4>{book.notes}</h4>
 
             </Card.Body>
         </Card>
