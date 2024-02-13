@@ -68,6 +68,10 @@
       margin-left: 0;
       margin-right: 0;
     }
-  }
+}
+
+.book-icons:hover {
+    transform: scale(1.05);
+}
 
 

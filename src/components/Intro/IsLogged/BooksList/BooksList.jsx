@@ -110,7 +110,7 @@ export default function BooksList({message, sectionTitle}) {
                                             <Col lg={3}>
                                                 <Container>
                                                     <Row>
-                                                        <Col lg={6}>
+                                                        <Col lg={6} className="book-icons">
                                                         <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
                                                             {book.favorite ? <i className="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
                                                             <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>}
