@@ -41,6 +41,9 @@ export default function BooksList({message, sectionTitle}) {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('jwt')}`
             },
+        })
+        .then(() => {
+            window.location.reload()
         });
     }
 
