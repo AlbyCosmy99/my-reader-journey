@@ -333,10 +333,10 @@ export default function AddBook() {
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6} className='mt-3'>
-                                        <Button className="w-100 mb-3 login-btn" type="submit">Add book</Button>
+                                        <Button style={{backgroundColor:'red'}} className="w-100 mb-3 login-btn back-btn" type="button" onClick={() => window.history.back()}>Back</Button>
                                     </Col>
                                     <Col lg={6} className='mt-3'>
-                                        <Button style={{backgroundColor:'red'}} className="w-100 mb-3 login-btn back-btn" type="button" onClick={() => window.history.back()}>Back</Button>
+                                        <Button className="w-100 mb-3 login-btn" type="submit">Add book</Button>
                                     </Col>
                                 </Row>
                             </Container>
