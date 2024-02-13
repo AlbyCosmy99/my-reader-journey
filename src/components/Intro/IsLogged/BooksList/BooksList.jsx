@@ -13,8 +13,7 @@ export default function BooksList({message, sectionTitle}) {
     const [loading,setLoading] = useState(false)
     const [sortBy, setSortBy] = useState(localStorage.getItem('sortBy'))
 
-    useEffect(() => {
-        setLoading(true)
+    function fetchBooks() {
         fetch(`${backendUrlPath}/api/users/books?filter=${message}&sortBy=${sortBy}`, {
             method: 'GET',
             headers: {
@@ -27,7 +26,13 @@ export default function BooksList({message, sectionTitle}) {
             setBooks(res)
             setLoading(false)
         })
-    },[sortBy])
+    }
+
+    useEffect(() => {
+        setLoading(true)
+        fetchBooks()
+        
+    },[fetchBooks])
 
     function handleSelect(selection) {
         localStorage.setItem('sortBy', selection)
@@ -43,7 +48,7 @@ export default function BooksList({message, sectionTitle}) {
             },
         })
         .then(() => {
-            window.location.reload()
+           fetchBooks()
         });
     }
 
