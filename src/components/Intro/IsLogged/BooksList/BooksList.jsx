@@ -24,7 +24,6 @@ export default function BooksList({message, sectionTitle}) {
         })
         .then(res => res.json())
         .then(res => {
-            setLoading(true)
             setBooks(res)
             setLoading(false)
         })
@@ -32,8 +31,7 @@ export default function BooksList({message, sectionTitle}) {
 
     useEffect(() => {
         setLoading(true)
-        fetchBooks()
-        
+        fetchBooks() 
     },[])
 
     function handleSelect(selection) {
@@ -52,7 +50,6 @@ export default function BooksList({message, sectionTitle}) {
         .then(() => {
             setLoading(true)
            fetchBooks()
-           setLoading(false)
         });
     }
 
