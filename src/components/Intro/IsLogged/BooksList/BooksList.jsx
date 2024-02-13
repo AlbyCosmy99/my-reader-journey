@@ -34,6 +34,16 @@ export default function BooksList({message, sectionTitle}) {
         setSortBy(localStorage.getItem('sortBy'))
     }
 
+    function deleteBook(bookId) {
+        fetch(`${backendUrlPath}/api/users/books/${bookId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('jwt')}`
+            },
+        });
+    }
+
     return (
         loading ? 
         <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
@@ -77,22 +87,34 @@ export default function BooksList({message, sectionTitle}) {
                     </div>
                     <div className="card-body" style={{backgroundColor: '#D3AD79'}}>
                         {books.length > 0 ? books.map((book, index) => (
-                            <div className="card elevated-card" key={index} onClick={() => navigate(`/books/${book._id}`)} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
+                            <div className="card elevated-card" key={index} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
                                 <div className="card-body">
                                     <Container>
                                         <Row>
-                                            <Col lg={2} className="book-details" style={{textAlign:'center'}}>
+                                            <Col lg={2} className="book-details" style={{textAlign:'center'}} onClick={() => navigate(`/books/${book._id}`)}>
                                                 <img style={{ maxWidth: '100%', maxHeight: '150px' }} className="book-img img-fluid" src={book.imageUrl ? book.imageUrl : '../../../../../../assets/defaultCover.webp'} alt="book cover"/>
                                             </Col>
-                                            <Col lg={8} className="book-details">
+                                            <Col lg={7} className="book-details" onClick={() => navigate(`/books/${book._id}`)}>
                                                 <h2>{book.title}</h2>
                                                 <h4>{book.author}</h4>
                                             </Col>
-                                            <Col lg={2}>
-                                                <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
-                                                    {book.favorite ? <i className="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
-                                                    <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>}
-                                                </div>
+                                            <Col lg={3}>
+                                                <Container>
+                                                    <Row>
+                                                        <Col lg={6}>
+                                                        <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
+                                                            {book.favorite ? <i className="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
+                                                            <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>}
+                                                        </div>
+                                                        </Col>
+                                                        <Col lg={6} onClick={() => deleteBook(book._id)}>
+                                                            <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
+                                                                <i class="bi bi-trash"style={{fontSize: '60px'}}></i>
+                                                            </div>
+                                                            
+                                                        </Col>
+                                                    </Row>
+                                                </Container>
                                             </Col>
                                         </Row>
                                     </Container>
