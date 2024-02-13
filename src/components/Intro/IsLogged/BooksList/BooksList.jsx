@@ -13,6 +13,7 @@ export default function BooksList({message, sectionTitle}) {
     const [loading,setLoading] = useState(false)
     const [sortBy, setSortBy] = useState(localStorage.getItem('sortBy'))
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function fetchBooks() {
         fetch(`${backendUrlPath}/api/users/books?filter=${message}&sortBy=${sortBy}`, {
             method: 'GET',
@@ -32,7 +33,7 @@ export default function BooksList({message, sectionTitle}) {
         setLoading(true)
         fetchBooks()
         
-    },[fetchBooks])
+    },[])
 
     function handleSelect(selection) {
         localStorage.setItem('sortBy', selection)
