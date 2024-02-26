@@ -15,6 +15,7 @@ export default function BooksList({message, sectionTitle}) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function fetchBooks() {
+        setLoading(true)
         fetch(`${backendUrlPath}/api/users/books?filter=${message}&sortBy=${sortBy}`, {
             method: 'GET',
             headers: {
@@ -30,7 +31,6 @@ export default function BooksList({message, sectionTitle}) {
     }
 
     useEffect(() => {
-        setLoading(true)
         fetchBooks() 
     },[])
 
@@ -52,6 +52,18 @@ export default function BooksList({message, sectionTitle}) {
            fetchBooks()
         });
     }
+
+    function setFavoriteBook(bookId) {
+        const updatedBooks = books.map(book => {
+            if (book._id === bookId) {
+                return { ...book, favorite: !book.favorite }; 
+            }
+            return book; 
+        });
+    
+        setBooks(updatedBooks); 
+    }
+    
 
     return (
         loading ? 
@@ -111,7 +123,7 @@ export default function BooksList({message, sectionTitle}) {
                                                 <Container>
                                                     <Row>
                                                         <Col lg={6} className="book-icons">
-                                                        <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
+                                                        <div onClick={() => setFavoriteBook(book._id)} style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
                                                             {book.favorite ? <i className="bi bi-heart-fill" style={{ fontSize: '60px' }}></i> :
                                                             <i className="bi bi-heart" style={{ fontSize: '60px' }}></i>}
                                                         </div>

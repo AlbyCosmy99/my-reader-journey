@@ -64,7 +64,7 @@ export default function Login({e_mail = ''}) {
                 }
                 else {
                     setAreValidCredentials(false)
-                    setLoading(false) 
+                    setLoading(false)
                 }                   
             })
             .catch(err => {
