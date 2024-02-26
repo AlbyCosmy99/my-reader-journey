@@ -37,6 +37,7 @@ export default function BooksList({message, sectionTitle}) {
     function handleSelect(selection) {
         localStorage.setItem('sortBy', selection)
         setSortBy(localStorage.getItem('sortBy'))
+        fetchBooks()
     }
 
     function deleteBook(bookId) {
