@@ -48,7 +48,6 @@ export default function BooksList({message, sectionTitle}) {
             },
         })
         .then(() => {
-            setLoading(true)
            fetchBooks()
         });
     }
@@ -69,6 +68,7 @@ export default function BooksList({message, sectionTitle}) {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`
             },
         })
+
         if(message === 'favorite-books') {
             fetchBooks()
         }
