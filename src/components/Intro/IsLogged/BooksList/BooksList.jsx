@@ -68,10 +68,11 @@ export default function BooksList({message, sectionTitle}) {
                 authorization: `Bearer ${localStorage.getItem('jwt')}`
             },
         })
-
-        if(message === 'favorite-books') {
-            fetchBooks()
-        }
+        .then(() => {
+            if(message === 'favorite-books') {
+                fetchBooks()
+            }
+        })   
     }
     
 
