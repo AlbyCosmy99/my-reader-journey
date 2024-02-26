@@ -62,6 +62,13 @@ export default function BooksList({message, sectionTitle}) {
         });
     
         setBooks(updatedBooks); 
+        fetch(`${backendUrlPath}/api/users/books/${bookId}/favorite`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('jwt')}`
+            },
+        })
     }
     
 
@@ -130,7 +137,7 @@ export default function BooksList({message, sectionTitle}) {
                                                         </Col>
                                                         <Col lg={6} className="book-icons" onClick={() => deleteBook(book._id)}>
                                                             <div style={{textAlign:'end', paddingRight:'3rem', cursor: 'pointer'}} className="d-flex justify-content-end">
-                                                                <i class="bi bi-trash"style={{fontSize: '60px'}}></i>
+                                                                <i className="bi bi-trash"style={{fontSize: '60px'}}></i>
                                                             </div>
                                                             
                                                         </Col>
