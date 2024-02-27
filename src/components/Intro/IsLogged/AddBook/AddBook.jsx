@@ -52,8 +52,6 @@ export default function AddBook() {
 
         const book = {
             title: title,
-            notes: null,
-            dateAdded: "2024-02-12T00:54:33.605Z",
             userId: userId
         }
 
@@ -87,6 +85,9 @@ export default function AddBook() {
         if(genre) {
             book.genre = genre
         }
+        if(author) {
+            book.author = author
+        }
         if(publishingHouse) {
             book.publishing_house = publishingHouse
         }
@@ -113,7 +114,7 @@ export default function AddBook() {
         }
 
         event.preventDefault()
-        console.log(book)
+
         fetch(`${backendUrlPath}/api/users/books`, {
             method: 'POST',
             body: JSON.stringify(book),
