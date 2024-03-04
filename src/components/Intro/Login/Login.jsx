@@ -3,8 +3,8 @@ import { Card, Form, Button, Container } from 'react-bootstrap';
 import './Login.css';
 import PasswordForgotten from '../PasswordForgotten/PasswordForgotten'
 import Register from '../Register/Register';
-import backendUrlPath from '../../../backendUrlPath.js';
 import Spinner from 'react-bootstrap/Spinner';
+import consts from '../../../consts.js';
 
 export default function Login({e_mail = ''}) {
     const [email, setEmail] = useState(e_mail);
@@ -41,7 +41,7 @@ export default function Login({e_mail = ''}) {
 
         try {
             setLoading(true)
-            fetch(`${backendUrlPath}/api/users/login`, {
+            fetch(`${consts.getBackendUrl()}/api/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

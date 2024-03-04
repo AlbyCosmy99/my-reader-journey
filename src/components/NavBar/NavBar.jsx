@@ -6,10 +6,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import frontendUrlPath from '../../frontendUrlPath';
 import './NavBar.css';
-import backendUrlPath from '../../backendUrlPath';
 import { useNavigate } from "react-router-dom";
+import consts from '../../consts';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -20,13 +19,13 @@ function NavBar() {
   
   const handleLogout = () => {
     localStorage.removeItem('jwt');
-    window.location.href = `${frontendUrlPath}`;
+    window.location.href = `${consts.getFrontendUrl()}`;
   };
 
   // Function to handle changes in the search input
   const handleSearchChange = (event) => {
     const value = event.target.value;
-    fetch(`${backendUrlPath}/api/users/books?take=5`, {
+    fetch(`${consts.getBackendUrl()}/api/users/books?take=5`, {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',
@@ -44,7 +43,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary custom-navbar-color">
       <Container fluid>
-        <Navbar.Brand className='logo' href={frontendUrlPath} style={{color:'#5B462F', backgroundColor: 'orange', border:'2px solid #CEB289', borderRadius:'10%'}}>MY READER JOURNEY</Navbar.Brand>
+        <Navbar.Brand className='logo' href={consts.getFrontendUrl()} style={{color:'#5B462F', backgroundColor: 'orange', border:'2px solid #CEB289', borderRadius:'10%'}}>MY READER JOURNEY</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>

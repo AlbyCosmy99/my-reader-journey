@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card';
 import './BookDetails.css';
 import BookDetailsData from "./BookDetailsData/BookDetailsData";
 import { useEffect, useState } from "react";
-import backendUrlPath from "../../../../backendUrlPath";
 import Spinner from 'react-bootstrap/Spinner';
+import consts from "../../../../consts";
 
 export default function BookDetails() {
     const { id } = useParams()
@@ -14,7 +14,7 @@ export default function BookDetails() {
 
     useEffect(() => {
         setLoading(true)
-        fetch(`${backendUrlPath}/api/users/books/${id}`, {
+        fetch(`${consts.getBackendUrl()}/api/users/books/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

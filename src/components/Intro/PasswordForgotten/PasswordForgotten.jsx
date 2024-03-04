@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
 import Login from '../Login/Login';
-import backendUrlPath from '../../../backendUrlPath.js';
+import consts from '../../../consts';
 
 export default function PasswordForgotten() {
   const [email, setEmail] = useState('')
@@ -19,7 +19,7 @@ export default function PasswordForgotten() {
   function sendEmail(event) {
     event.preventDefault()
     setEmailSent(true);
-    fetch(`${backendUrlPath}/api/users/mails/send-verification`, {
+    fetch(`${consts.getBackendUrl()}/api/users/mails/send-verification`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ export default function PasswordForgotten() {
       }
       else {
           setIsValidPassword(true)
-          fetch(`${backendUrlPath}/api/users/change-password`, {
+          fetch(`${consts.getBackendUrl()}/api/users/change-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

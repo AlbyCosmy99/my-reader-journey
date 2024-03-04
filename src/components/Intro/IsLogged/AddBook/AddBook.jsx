@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container, Row, Col } from 'react-bootstrap';
 import './AddBook.css';
-import backendUrlPath from '../../../../backendUrlPath';
 import { jwtDecode } from 'jwt-decode';
 import Spinner from 'react-bootstrap/Spinner';
+import consts from '../../../../consts';
 
 export default function AddBook() {
     const [title,setTitle] = useState('')
@@ -115,7 +115,7 @@ export default function AddBook() {
 
         event.preventDefault()
 
-        fetch(`${backendUrlPath}/api/users/books`, {
+        fetch(`${consts.getBackendUrl()}/api/users/books`, {
             method: 'POST',
             body: JSON.stringify(book),
             headers: {

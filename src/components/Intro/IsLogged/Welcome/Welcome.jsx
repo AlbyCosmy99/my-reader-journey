@@ -1,7 +1,8 @@
 import './Welcome.css';
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import frontendUrlPath from '../../../../frontendUrlPath';
+import consts from '../../../../consts';
+
 
 
 export default function Welcome() {
@@ -20,7 +21,7 @@ export default function Welcome() {
             } catch(error) {
                 console.error("Failed to decode token", error);
                 localStorage.removeItem('jwt')
-                window.location.href = `${frontendUrlPath}`
+                window.location.href = `${consts.getFrontendUrl()}`
             }
         }
     }

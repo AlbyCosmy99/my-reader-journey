@@ -4,8 +4,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import './BooksList.css';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import backendUrlPath from "../../../../backendUrlPath";
 import Spinner from 'react-bootstrap/Spinner';
+import consts from "../../../../consts";
 
 export default function BooksList({message, sectionTitle}) {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function BooksList({message, sectionTitle}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function fetchBooks() {
         setLoading(true)
-        fetch(`${backendUrlPath}/api/users/books?filter=${message}&sortBy=${sortBy}`, {
+        fetch(`${consts.getBackendUrl()}/api/users/books?filter=${message}&sortBy=${sortBy}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export default function BooksList({message, sectionTitle}) {
     }
 
     function deleteBook(bookId) {
-        fetch(`${backendUrlPath}/api/users/books/${bookId}`, {
+        fetch(`${consts.getBackendUrl()}/api/users/books/${bookId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export default function BooksList({message, sectionTitle}) {
         });
     
         setBooks(updatedBooks); 
-        fetch(`${backendUrlPath}/api/users/books/${bookId}/favorite`, {
+        fetch(`${consts.getBackendUrl()}/api/users/books/${bookId}/favorite`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
