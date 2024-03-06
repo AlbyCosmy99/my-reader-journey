@@ -1,5 +1,5 @@
 import Card from 'react-bootstrap/Card';
-import './BookDetailsData.css';
+import './BookDetailsData.css'
 
 export default function BookDetailsData({book}) {  
     return (

@@ -4,6 +4,7 @@ import './AddBook.css';
 import { jwtDecode } from 'jwt-decode';
 import Spinner from 'react-bootstrap/Spinner';
 import consts from '../../../../consts';
+import defaultCover from '../../../../assets/defaultCover.jpg'
 
 export default function AddBook() {
     const [title,setTitle] = useState('')
@@ -66,6 +67,9 @@ export default function AddBook() {
         }
         if(imageUrl) {
             book.imageUrl = imageUrl
+        }
+        else {
+            book.imageUrl = defaultCover
         }
         if(borrowed) {
             book.borrowed = borrowed

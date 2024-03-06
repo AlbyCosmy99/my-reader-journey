@@ -40,6 +40,11 @@ function NavBar() {
     setShowSearchDropdown(value.length > 0); 
   };
 
+  function navigatetoBook(bookId) {
+    setSearchValue('')
+    navigate(`/books/${bookId}`)
+  }
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary custom-navbar-color">
       <Container fluid>
@@ -57,10 +62,10 @@ function NavBar() {
               value={searchValue}
               onChange={handleSearchChange}
             />
-            {showSearchDropdown && books.length > 0 && (
+            {showSearchDropdown && books.length > 0 && searchValue !== '' && (
               <Dropdown.Menu show={true} style={{ position: 'absolute', left: 0, top: '100%' }}>
                 {books.map((book, index) => (
-                  <Dropdown.Item key={index} onClick={() => navigate(`/books/${book._id}`)} >{book.title}</Dropdown.Item>
+                  <Dropdown.Item key={index} onClick={() => navigatetoBook(book._id)} >{book.title}</Dropdown.Item>
                 ))}
               </Dropdown.Menu>
             )}

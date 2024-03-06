@@ -5,7 +5,7 @@
 }
 
 #content-container {
-  background-image: url('../assets/welcome.webp');
+  background-image: url('../src/assets/welcome.webp');
   flex: 1;
 }
 

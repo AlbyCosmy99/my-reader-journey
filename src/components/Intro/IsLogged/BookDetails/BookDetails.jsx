@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import './BookDetails.css';
@@ -37,12 +37,12 @@ export default function BookDetails() {
         </div> :
         <Container style={{marginTop:'1rem', marginBottom:'1rem'}}>
             <Row>
-                <Col lg={6} sm={12}> 
+                <Col lg={5} sm={12}> 
                     <Card style={{backgroundColor: '#CEB289'}}>
                         <Card.Img variant="top" src={book.imageUrl} />
                     </Card>
                 </Col>
-                <Col lg={6} sm={12}>
+                <Col lg={7} sm={12}>
                     <BookDetailsData book={book}/>
                 </Col>
             </Row>
