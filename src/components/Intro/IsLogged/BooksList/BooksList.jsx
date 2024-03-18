@@ -89,7 +89,7 @@ export default function BooksList({message, sectionTitle}) {
                 <AddNewBookButton />
             </div>
             <div className="card-books-container">
-                <div className="card" style={{maxHeight: '65vh', overflowY: 'auto', backgroundColor: '#9A7872'}}>
+                <div className="card" style={{maxHeight: '65vh', overflowY: 'scroll', backgroundColor: '#9A7872'}}>
                     <div className="card-header" style={{position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#9A7872', textAlign:'center', color:'#2D2019'}}>
                         <Container>
                             <Row>
