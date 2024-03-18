@@ -29,9 +29,7 @@ export default function AddBook() {
     const [description, setDescription] = useState('')
     const [notes, setNotes] = useState('')
     const [imageUrl, setImageUrl] = useState('')
-
     const [loading, setLoading] = useState(false)
-
 
     function addBook(event) {
         setLoading(true)
@@ -140,111 +138,78 @@ export default function AddBook() {
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
         </div> : 
-        <Container className="d-flex align-items-center justify-content-center mt-5 mb-5" style={{ minHeight: "100vh"}}>
-            <div className="card-container w-100" style={{ maxWidth: "600px" }}>
+        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
+            <div className="card-container w-100">
                 <Card className="card-custom">
                     <Card.Body>
-                        <h1 style={{fontSize: '31px', textAlign:'center',color:'white', backgroundColor:'#E05880'}}>Add a new book!</h1>
+                        <h1 style={{fontSize: '31px', textAlign:'center',color:'white', backgroundColor:'#f2cd3a'}}>Add a new book!</h1>
                         <Form onSubmit={event => addBook(event)}>
                             <Container>
                                 <Row>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="title">
                                             <Form.Label style={{ color: '#FF7F00' }}>Title*</Form.Label>
                                             <Form.Control type="text" required value={title} onChange={(e) => setTitle(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="author">
                                             <Form.Label style={{ color: '#FF7F00' }}>Author</Form.Label>
                                             <Form.Control type="text"  value={author} onChange={(e) => setAuthor(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="genre">
                                             <Form.Label style={{ color: '#FF7F00' }}>Genre</Form.Label>
                                             <Form.Control type="text"  value={genre} onChange={(e) => setGenre(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="language">
                                             <Form.Label style={{ color: '#FF7F00' }}>Language</Form.Label>
                                             <Form.Control type="text"  value={language} onChange={(e) => setLanguage(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="imageUrl">
                                             <Form.Label style={{ color: '#FF7F00' }}>Image Url</Form.Label>
                                             <Form.Control type="text"  value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="publishingHouse">
                                             <Form.Label style={{ color: '#FF7F00' }}>publishing house</Form.Label>
                                             <Form.Control type="text"  value={publishingHouse} onChange={(e) => setPublishingHouse(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="pages">
                                             <Form.Label style={{ color: '#FF7F00' }}>Pages</Form.Label>
                                             <Form.Control type="number"  value={pages} onChange={(e) => setPages(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={3}>
                                         <Form.Group id="price">
                                             <Form.Label style={{ color: '#FF7F00' }}>Price</Form.Label>
                                             <Form.Control type="text"  value={price} onChange={(e) => setPrice(e.target.value)} />
                                         </Form.Group>
                                     </Col>
                                     <Col lg={6}>
-                                        <Form.Group id="isbn">
-                                            <Form.Label style={{ color: '#FF7F00' }}>ISBN</Form.Label>
-                                            <Form.Control type="text"  value={isbn} onChange={(e) => setIsbn(e.target.value)} />
-                                        </Form.Group>
+                                        <div className='d-flex flex-row' style={{gap: '1rem'}}>
+                                            <Form.Group id="isbn">
+                                                <Form.Label style={{ color: '#FF7F00' }}>ISBN</Form.Label>
+                                                <Form.Control type="text"  value={isbn} onChange={(e) => setIsbn(e.target.value)} />
+                                            </Form.Group>
+                                            <Form.Group id="publicationDate">
+                                                <Form.Label style={{ color: '#FF7F00' }}>Publication Date</Form.Label>
+                                                <Form.Control type="date"  value={publicationDate} onChange={(e) => setPublicationDate(e.target.value)} />
+                                            </Form.Group>
+                                        </div>
                                     </Col>
                                     <Col lg={6}>
-                                        <Form.Group id="publicationDate">
-                                            <Form.Label style={{ color: '#FF7F00' }}>Publication Date</Form.Label>
-                                            <Form.Control type="date"  value={publicationDate} onChange={(e) => setPublicationDate(e.target.value)} />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col lg={6}>
-                                        <Form.Group id="read">
-                                            <Form.Label style={{ color: '#FF7F00', display: 'block', marginBottom: '10px' }}>Read</Form.Label>
-                                            <Form.Check 
-                                                type="checkbox"
-                                                checked={read} 
-                                                onChange={(e) => setRead(e.target.checked)}
-                                                style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }} 
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col lg={6}>
-                                        <Form.Group id="toRead">
-                                            <Form.Label style={{ color: '#FF7F00', display: 'block', marginBottom: '10px' }}>To Read</Form.Label>
-                                            <Form.Check 
-                                                type="checkbox"
-                                                checked={toRead} 
-                                                onChange={(e) => setToRead(e.target.checked)}
-                                                style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }} 
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col lg={6}>
-                                        <Form.Group id="reading">
-                                            <Form.Label style={{ color: '#FF7F00', display: 'block', marginBottom: '10px' }}>Reading</Form.Label>
-                                            <Form.Check 
-                                                type="checkbox"
-                                                checked={reading} 
-                                                onChange={(e) => setReading(e.target.checked)}
-                                                style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
-                                            />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col lg={12}>
                                         <Form.Group id="rating">
-                                            <Form.Label style={{ color: '#FF7F00' }}>Rating</Form.Label>
-                                            <div>
+                                            <Form.Label style={{ color: '#FF7F00', display:'inline-block' }}>Rating</Form.Label>
+                                            <div style={{display:'inline-block'}}>
                                                 {[...Array(10)].map((_, index) => (
                                                     <Form.Check
                                                         inline
@@ -262,52 +227,85 @@ export default function AddBook() {
                                             </div>
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={2}>
+                                        <Form.Group id="read">
+                                            <Form.Label style={{ color: '#FF7F00', display: 'inline-block', marginBottom: '10px' }}>Read</Form.Label>
+                                            <Form.Check 
+                                                type="checkbox"
+                                                checked={read} 
+                                                onChange={(e) => setRead(e.target.checked)}
+                                                style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline-block' }}
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col lg={2}>
+                                        <Form.Group id="toRead">
+                                            <Form.Label style={{ color: '#FF7F00', display: 'inline-block', marginBottom: '10px' }}>To Read</Form.Label>
+                                            <Form.Check 
+                                                type="checkbox"
+                                                checked={toRead} 
+                                                onChange={(e) => setToRead(e.target.checked)}
+                                                style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline-block' }}
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col lg={2}>
+                                        <Form.Group id="reading">
+                                            <Form.Label style={{ color: '#FF7F00', display: 'inline-block', marginBottom: '10px' }}>Reading</Form.Label>
+                                            <Form.Check 
+                                                type="checkbox"
+                                                checked={reading} 
+                                                onChange={(e) => setReading(e.target.checked)}
+                                                style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline-block' }}
+                                            />
+                                        </Form.Group>
+                                    </Col>
+                                    <Col lg={2}>
                                         <Form.Group id="favorite">
-                                            <Form.Label style={{ color: '#FF7F00', display: 'block', marginBottom: '10px' }}>Favorite</Form.Label>
+                                            <Form.Label style={{ color: '#FF7F00', display: 'inline-block', marginBottom: '10px' }}>Favorite</Form.Label>
                                             <Form.Check 
                                                 type="checkbox"
                                                 checked={favorite} 
                                                 onChange={(e) => setFavorite(e.target.checked)}
-                                                style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+                                                style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline-block' }}
                                             />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={2}>
                                         <Form.Group id="loaned">
-                                            <Form.Label style={{ color: '#FF7F00', display: 'block', marginBottom: '10px' }}>Loaned</Form.Label>
+                                            <Form.Label style={{ color: '#FF7F00', display: 'inline-block', marginBottom: '10px' }}>Loaned</Form.Label>
                                             <Form.Check 
                                                 type="checkbox"
                                                 checked={loaned} 
                                                 onChange={(e) => setLoaned(e.target.checked)}
-                                                style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+                                                style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline-block' }}
                                             />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={2}>
                                         <Form.Group id="borrowed">
-                                            <Form.Label style={{ color: '#FF7F00', display: 'block', marginBottom: '10px' }}>Borrowed</Form.Label>
+                                            <Form.Label style={{ color: '#FF7F00', display: 'inline-block', marginBottom: '10px' }}>Borrowed</Form.Label>
                                             <Form.Check 
                                                 type="checkbox"
                                                 checked={borrowed} 
                                                 onChange={(e) => setBorrowed(e.target.checked)}
-                                                style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+                                                style={{ marginLeft: '1rem', marginRight: 'auto', display: 'inline-block' }}
                                             />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={4}>
                                         <Form.Group id="readingStartDate">
                                             <Form.Label style={{ color: '#FF7F00' }}>Reading start date</Form.Label>
                                             <Form.Control type="date"  value={readingStartDate} onChange={(e) => setReadingStartDate(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={4}>
                                         <Form.Group id="readingEndDate">
                                             <Form.Label style={{ color: '#FF7F00' }}>Reading end date</Form.Label>
                                             <Form.Control type="date"  value={readingEndDate} onChange={(e) => setReadingEndDate(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col lg={4}>
                                         <Form.Group id="dateAdded">
                                             <Form.Label style={{ color: '#FF7F00' }}>Date Book was added</Form.Label>
                                             <Form.Control type="date"  value={dateAdded} onChange={(e) => setDateAdded(e.target.value)} />
