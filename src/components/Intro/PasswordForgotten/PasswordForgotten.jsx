@@ -55,7 +55,7 @@ export default function PasswordForgotten() {
 
   function startChangePassword(event) {
     event.preventDefault()
-    if(code !== 0 && insertedCode !== 0 && code == insertedCode) {
+    if(code !== 0 && insertedCode !== 0 && code === insertedCode) {
       setIsChangePassword(true)
     }
     else {
