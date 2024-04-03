@@ -4,7 +4,7 @@ const consts = {
         return this.debug ? 'http://localhost:3000' : 'https://my-reader-journey.onrender.com'
     },
     getBackendUrl() {
-        return this.debug ? 'http://localhost:3030' : 'https://my-reader-journey-backend.onrender.com'
+        return this.debug ? 'http://localhost:3030' : 'https://my-reader-journey-backend-1.onrender.com/'
         
     }
 }
