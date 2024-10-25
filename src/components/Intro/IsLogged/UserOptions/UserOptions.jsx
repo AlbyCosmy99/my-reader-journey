@@ -17,27 +17,27 @@ export default function UserOptions() {
                             <AddNewBookButton />
                         </Col>
                         <Col lg={12} className="options-btn">
-                            <Button onClick={() => navigate('all-my-books')}>
+                            <Button onClick={() => navigate('books-list?message=all-my-books&sectionTitle=ALL MY BOOKS')}>
                                 ALL MY BOOKS
                             </Button>
                         </Col>
                         <Col lg={6} className="options-btn">
-                            <Button onClick={() => navigate('books-read')}>
+                            <Button onClick={() => navigate('books-list?message=books-read&sectionTitle=BOOKS READ')}>
                                 BOOKS READ
                             </Button>
                         </Col>
                         <Col lg={6} className="options-btn">
-                            <Button onClick={() => navigate('books-to-read')}>
+                            <Button onClick={() => navigate('books-list?message=books-to-read&sectionTitle=BOOKS TO READ')}>
                                 BOOKS TO READ
                             </Button>
                         </Col>
                         <Col lg={6} className="options-btn">
-                            <Button onClick={() => navigate('favorite-books')}>
+                            <Button onClick={() => navigate('books-list?message=favorite-books&sectionTitle=FAVORITE BOOKS')}>
                                 FAVORITE BOOKS
                             </Button>
                         </Col>
                         <Col lg={6} className="options-btn">
-                            <Button className="folders-btn" onClick={() => navigate('top-rating-books')}>
+                            <Button className="folders-btn" onClick={() => navigate('books-list?message=top-rating-books&sectionTitle=10/10 RATING BOOKS')}>
                                 10/10 RATING BOOKS
                             </Button>
                         </Col>

@@ -8,6 +8,10 @@ import Login from './components/Intro/Login/Login';
 import Home from './components/Intro/IsLogged/Home/Home';
 import PasswordForgotten from './components/Intro/PasswordForgotten/PasswordForgotten';
 import Register from './components/Intro/Register/Register';
+import UserOptions from './components/Intro/IsLogged/UserOptions/UserOptions';
+import AddBook from './components/Intro/IsLogged/AddBook/AddBook';
+import BooksList from './components/Intro/IsLogged/BooksList/BooksList';
+import BookDetails from './components/Intro/IsLogged/BookDetails/BookDetails';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +32,25 @@ const router = createBrowserRouter([
       },
       {
         path: '/home',
-        element: <Home />
+        element: <Home />,
+        children: [
+          {
+            path: '',
+            element: <UserOptions />
+          },
+          {
+            path: 'add-book',
+            element: <AddBook />
+          },
+          {
+            path: 'books-list',
+            element: <BooksList />,
+          },
+          {
+            path: 'book/:id',
+            element: <BookDetails />
+          }
+        ]
       }
     ]
   },

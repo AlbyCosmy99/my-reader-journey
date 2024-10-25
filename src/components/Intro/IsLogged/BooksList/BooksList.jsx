@@ -1,19 +1,20 @@
-import { Container, Row, Col } from "react-bootstrap";
-import AddNewBookButton from "../../../Buttons/AddNewBookButton/AddNewBookButton";
-import Dropdown from 'react-bootstrap/Dropdown';
 import './BooksList.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Spinner from 'react-bootstrap/Spinner';
 import consts from "../../../../consts";
+import { Col, Container, Dropdown, Row, Spinner } from 'react-bootstrap';
+import AddNewBookButton from '../../../Buttons/AddNewBookButton/AddNewBookButton';
 
-export default function BooksList({message, sectionTitle}) {
-    const navigate = useNavigate();
+export default function BooksList() {
+    const navigate = useNavigate()
     const [books,setBooks] = useState([])
     const [loading,setLoading] = useState(false)
     const [sortBy, setSortBy] = useState(localStorage.getItem('sortBy'))
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const [searchParams] = useSearchParams()
+    const message = searchParams.get('message')
+    const sectionTitle = searchParams.get('sectionTitle')
+
     function fetchBooks() {
         setLoading(true)
         fetch(`${consts.getBackendUrl()}/api/users/books?filter=${message}&sortBy=${sortBy}`, {
@@ -26,13 +27,18 @@ export default function BooksList({message, sectionTitle}) {
         .then(res => res.json())
         .then(res => {
             setBooks(res)
+            console.log(res)
             setLoading(false)
         })
     }
 
     useEffect(() => {
+        if(!message && !sectionTitle) {
+            navigate('/home')
+            return
+        }
         fetchBooks() 
-    },[])
+    },[message, sectionTitle])
 
     function handleSelect(selection) {
         localStorage.setItem('sortBy', selection)
@@ -85,7 +91,7 @@ export default function BooksList({message, sectionTitle}) {
             </Spinner>
         </div> : 
         <div className="books-list-container">
-            <div className="add-new-book-btn" onClick={() => navigate('/add-book')}>
+            <div className="add-new-book-btn" onClick={() => navigate('/home/add-book')}>
                 <AddNewBookButton />
             </div>
             <div className="card-books-container">
@@ -124,10 +130,10 @@ export default function BooksList({message, sectionTitle}) {
                                 <div className="card-body">
                                     <Container>
                                         <Row>
-                                            <Col lg={2} className="book-details" style={{textAlign:'center'}} onClick={() => navigate(`/books/${book._id}`)}>
+                                            <Col lg={2} className="book-details" style={{textAlign:'center'}} onClick={() => navigate(`/home/book/${book._id}`)}>
                                                 <img style={{ maxWidth: '100%', maxHeight: '150px' }} className="book-img img-fluid" src={book.imageUrl ? book.imageUrl : '../../../../../../assets/defaultCover.webp'} alt="book cover"/>
                                             </Col>
-                                            <Col lg={7} className="book-details" onClick={() => navigate(`/books/${book._id}`)}>
+                                            <Col lg={7} className="book-details" onClick={() => navigate(`/home/book/${book._id}`)}>
                                                 <h2>{book.title}</h2>
                                                 <h4>{book.author}</h4>
                                             </Col>
