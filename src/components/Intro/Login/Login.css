@@ -2,13 +2,13 @@
     background: rgb(252,251,211);
     background: linear-gradient(90deg, rgba(252,251,211,1) 0%, rgba(255,245,121,1) 100%);
     border: none;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Adds depth with shadows */
-    transition: transform 0.3s ease-in-out; /* Smooth transition for a hover effect */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); 
+    transition: transform 0.3s ease-in-out;
 }
 
 .card-custom:hover {
-    transform: scale(1.03); /* Slightly enlarges the card on hover for a popping effect */
+    transform: scale(1.02);
 }
 
 .login-btn {
@@ -18,7 +18,7 @@
 }
 
 .login-btn:hover {
-    background-color: #FF8C00 !important; /* Slightly darker shade on hover */
+    background-color: #FF8C00 !important;
     scale: 1.02;
     border: 2px solid #FF8C00 !important;
 }
@@ -35,11 +35,11 @@
 
 .forgot-password:hover,
 .register-link:hover {
-    text-decoration: underline; /* Adds a little interaction on hover */
+    text-decoration: underline;
 }
 
 .login-btn:active {
-    background-color: #FF7F00 !important; /* Adjust the color as needed */
+    background-color: #FF7F00 !important;
 }
 
 @media (max-width: 768px) {

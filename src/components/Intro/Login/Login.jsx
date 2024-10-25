@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
 import './Login.css';
-import PasswordForgotten from '../PasswordForgotten/PasswordForgotten'
-import Register from '../Register/Register';
 import Spinner from 'react-bootstrap/Spinner';
 import consts from '../../../consts.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login({e_mail = ''}) {
     const [email, setEmail] = useState(e_mail);
     const [password, setPassword] = useState('');
     const [isValidPassword, setIsValidPassword] = useState(true)
     const [areValidCredentials, setAreValidCredentials] = useState(true)
-    const [passwordForgotten, setPasswordForgotten] = useState(false)
-    const [register,setRegister] = useState(false)
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
 
     function handleForgottenPassword(event) {
         event.preventDefault()
-        setPasswordForgotten(true)
+        navigate('/forgotPassword')
     }
 
     function handleRegister(event) {
         event.preventDefault()
-        setRegister(true)
+        navigate('/register')
     }
 
     async function login(event) {
@@ -74,18 +72,6 @@ export default function Login({e_mail = ''}) {
           } catch (error) {
             console.log('Error: ' + error.message);
           }
-    }
-
-    if(passwordForgotten) {
-        return (
-            <PasswordForgotten />
-        )
-    }
-
-    if(register) {
-        return (
-            <Register />
-        )
     }
 
     return (

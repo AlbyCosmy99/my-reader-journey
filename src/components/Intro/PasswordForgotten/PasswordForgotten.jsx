@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
 import Login from '../Login/Login';
 import consts from '../../../consts';
+import { useNavigate } from 'react-router-dom';
 
 export default function PasswordForgotten() {
   const [email, setEmail] = useState('')
@@ -14,7 +15,7 @@ export default function PasswordForgotten() {
   const [password2, setPassword2] = useState('')
   const [passwordsEqual, setPasswordsEqual] = useState(true)
   const [isValidPassword, setIsValidPassword] = useState(true)
-  const [login, setLogin] = useState(false)
+  const navigate = useNavigate()
 
   function sendEmail(event) {
     event.preventDefault()
@@ -88,7 +89,7 @@ export default function PasswordForgotten() {
             })
             .then(res => res.json())
             .then(res => {
-              setLogin(true)
+              navigate('/login')
             })
       }
 
@@ -96,12 +97,6 @@ export default function PasswordForgotten() {
     else {
       setPasswordsEqual(false)
     }
-  }
-
-  if(login) {
-    return (
-      <Login e_mail={email}/>
-    )
   }
  
   return (
@@ -142,7 +137,7 @@ export default function PasswordForgotten() {
                                   <Form.Control className='mb-3' type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
                               </Form.Group>
                               <Button className="w-100 mb-3 login-btn" type="submit">Send email</Button>
-                              <Button className="w-100 mb-3 login-btn" onClick={() => setLogin(true)}>Login in</Button>
+                              <Button className="w-100 mb-3 login-btn" onClick={() => navigate('/login')}>Login in</Button>
                           </Form>
                           </>)}            
                 </Card.Body>

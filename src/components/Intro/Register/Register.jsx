@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, Container } from 'react-bootstrap';
-import Login from '../Login/Login';
 import consts from '../../../consts';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const [isValidPassword, setIsValidPassword] = useState(true)
@@ -12,7 +12,7 @@ export default function Register() {
     const [password2, setPassword2] = useState('')
     const [passwordsEqual, setPasswordsEqual] = useState(true)
     const [allFieldsMessage, setAllFieldsMessage] = useState(false)
-    const [login, setLogin] = useState(false)
+    const navigate = useNavigate()
 
     function register(event) {
         event.preventDefault()
@@ -57,12 +57,6 @@ export default function Register() {
         }
     }
 
-    if(login) {
-        return (
-          <Login />
-        )
-      }
-
     return (
         <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
             <div className="w-100" style={{ maxWidth: "400px" }}>
@@ -97,7 +91,7 @@ export default function Register() {
                             <Button className="w-100 mb-3 login-btn" type="submit">Register</Button>
                         </Form>
                         <div className="text-center" style={{ color: '#f2881d' }}>
-                            Already registered? <a style={{cursor:'pointer'}} className="register-link" onClick={(event) => setLogin(true)}>Login</a>
+                            Already registered? <Link style={{cursor:'pointer'}} className="register-link" onClick={() => navigate('/login')}>Login</Link>
                         </div>
                     </Card.Body>
                 </Card>
