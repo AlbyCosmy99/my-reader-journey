@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer';
-import Login from './components/Intro/Login/Login'
-import Home from './components/Intro/IsLogged/Home/Home'
 import { jwtDecode } from 'jwt-decode';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 function App() {
-  const [isLogged, setIsLogged] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -16,25 +15,25 @@ function App() {
         const currentTime = Date.now() / 1000;
         if (payload.exp < currentTime) {    
           localStorage.removeItem('jwt')
-          setIsLogged(false);
+          navigate('/login')
         } else {
-          setIsLogged(true);
+          navigate('/home')
         }
       } catch (error) {
         console.error("Failed to decode token", error);
         localStorage.removeItem('jwt')
-        setIsLogged(false);
+        navigate('/login')
       }
     } else {
       localStorage.removeItem('jwt')
-      setIsLogged(false);
+      navigate('/login');
     }
   }, []);
   
   return (
     <div id='app-container' style={{backgroundColor: '#9A7872'}}>
       <div id='content-container'>
-        {isLogged ? <Home/> : <Login/>}
+        <Outlet />
       </div>
       <div id='footer-container'>
         <Footer/>
