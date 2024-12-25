@@ -133,16 +133,16 @@ export default function AddBook() {
     }
     return(
         loading ? 
-        <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
+        <div className="d-flex align-items-center justify-content-center">
             <Spinner animation="border" role="status" style={{ width: "8rem", height: "8rem", color:'orange' }}>
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
         </div> : 
-        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: "100vh"}}>
+        <Container className="d-flex my-5 justify-content-center">
             <div className="card-container w-100">
                 <Card className="card-custom">
                     <Card.Body>
-                        <h1 style={{fontSize: '31px', textAlign:'center',color:'white', backgroundColor:'#f2cd3a'}}>Add a new book!</h1>
+                        <h1 className='py-1' style={{fontSize: '28px', textAlign:'center',color:'white', backgroundColor:'#f2cd3a'}}>Add a new book!</h1>
                         <Form onSubmit={event => addBook(event)}>
                             <Container>
                                 <Row>
@@ -311,7 +311,7 @@ export default function AddBook() {
                                             <Form.Control type="date"  value={dateAdded} onChange={(e) => setDateAdded(e.target.value)} />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={12}>
+                                    <Col lg={6}>
                                         <Form.Group id="description">
                                             <Form.Label style={{ color: '#FF7F00' }}>Description</Form.Label>
                                             <Form.Control
@@ -323,7 +323,7 @@ export default function AddBook() {
                                             />
                                         </Form.Group>
                                     </Col>
-                                    <Col lg={12}>
+                                    <Col lg={6}>
                                         <Form.Group id="notes">
                                             <Form.Label style={{ color: '#FF7F00' }}>Notes</Form.Label>
                                             <Form.Control

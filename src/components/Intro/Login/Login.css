@@ -15,13 +15,15 @@
     background-color: #FFA500 !important;
     color: white !important;
     border: 2px solid #FFA500 !important;
+    transition: transform ease 0.5s !important;
 }
 
 .login-btn:hover {
     background-color: #FF8C00 !important;
-    scale: 1.02;
     border: 2px solid #FF8C00 !important;
+    transform: scale(1.05);
 }
+
 
 .forgot-password {
     color: red;

@@ -9,6 +9,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './NavBar.css';
 import { useNavigate } from "react-router-dom";
 import consts from '../../consts';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -42,13 +43,13 @@ function NavBar() {
 
   function navigatetoBook(bookId) {
     setSearchValue('')
-    navigate(`/books/${bookId}`)
+    navigate(`/home/book/${bookId}`)
   }
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary custom-navbar-color">
       <Container fluid>
-        <Navbar.Brand className='logo' href={consts.getFrontendUrl()} style={{color:'#5B462F', backgroundColor: 'orange', border:'2px solid #CEB289', borderRadius:'10%'}}>MY READER JOURNEY</Navbar.Brand>
+        <Navbar.Brand className='logo' as={Link} to={consts.getFrontendUrl() + "/home"} style={{color:'#5B462F', backgroundColor: 'orange', border:'2px solid #CEB289', borderRadius:'10%'}}>MY READER JOURNEY</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>

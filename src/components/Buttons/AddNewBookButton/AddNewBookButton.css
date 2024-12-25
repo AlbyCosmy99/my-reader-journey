@@ -1,17 +1,17 @@
 .add-book-button {
     background: linear-gradient(to right, #B24592, #F15F79) !important;
     color: white !important;
-    margin-top: 3rem !important;
-    margin-bottom: 3rem !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
 .options-btn .btn {
-    width: 100%; /* Full width within its column */
-    padding: 2% 0; /* Percentage padding for responsive height */
-    margin-bottom: 15px; /* Spacing between buttons */
-    font-size: 1.5em; /* Larger font size for better readability */
-    border-radius: 10px; /* Rounded corners */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for interactions */
+    width: 100%;
+    padding: 2% 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
     background: linear-gradient(to right, #B79891, #94716B);
     border: 1.5px solid black !important;
 }
@@ -20,11 +20,10 @@
     transform: scale(1.05);
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .options-btn .btn {
-        padding: 4% 0; /* Increased padding for smaller screens */
-        font-size: 1.2em; /* Adjust font size for readability */
+        padding: 4% 0;
+        font-size: 1.2em;
     }
 }
 

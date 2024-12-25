@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import consts from '../../../../consts';
 
-
-
 export default function Welcome() {
     const [name, setName] = useState('')
 
@@ -28,8 +26,8 @@ export default function Welcome() {
 
     return (
         <div className="welcome-container">
-            <h1 style={{marginTop:'1.6rem', fontSize:'70px', border:'4px solid #9B7973', textAlign:'center'}} className='header'>Welcome {name}</h1>
-            <p style={{fontSize:'25px', border:'4px solid #9B7973', textAlign:'center'}}>Keep track of your books!</p>
+            <h1 style={{marginTop:'1.6rem',borderRadius: '1rem',paddingLeft: '1rem',paddingRight: '1rem', fontSize:'50px', border:'4px solid #9B7973', textAlign:'center'}} className='header'>Welcome {name}</h1>
+            <p style={{fontSize:'25px',borderRadius: '1rem',paddingLeft: '1rem',paddingRight: '1rem', border:'4px solid #9B7973', textAlign:'center'}}>Keep track of your books!</p>
         </div>
     )
 }

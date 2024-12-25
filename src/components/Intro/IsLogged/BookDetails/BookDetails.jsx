@@ -37,12 +37,12 @@ export default function BookDetails() {
         </div> :
         <Container style={{marginTop:'1rem', marginBottom:'1rem'}}>
             <Row>
-                <Col lg={5} sm={12}> 
+                <Col lg={4} sm={12}> 
                     <Card style={{backgroundColor: '#CEB289'}}>
                         <Card.Img variant="top" src={book.imageUrl} />
                     </Card>
                 </Col>
-                <Col lg={7} sm={12}>
+                <Col lg={8} sm={12}>
                     <BookDetailsData book={book}/>
                 </Col>
             </Row>
