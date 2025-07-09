@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
@@ -13,8 +13,8 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState(''); // State to keep track of search input
-  const [showSearchDropdown, setShowSearchDropdown] = useState(false); // State to control the visibility of the search dropdown
+  const [searchValue, setSearchValue] = useState('');
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [books, setBooks] = useState([])
   
@@ -23,7 +23,6 @@ function NavBar() {
     window.location.href = `${consts.getFrontendUrl()}`;
   };
 
-  // Function to handle changes in the search input
   const handleSearchChange = (event) => {
     const value = event.target.value;
     fetch(`${consts.getBackendUrl()}/api/users/books?take=5`, {

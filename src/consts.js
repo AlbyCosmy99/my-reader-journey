@@ -1,5 +1,5 @@
 const consts = {
-    debug: false,
+    debug: true,
     getFrontendUrl() {
         return this.debug ? 'http://localhost:3000' : 'https://my-reader-journey.onrender.com'
     },
