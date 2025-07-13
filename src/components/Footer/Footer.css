@@ -1,0 +1,22 @@
+.app-footer {
+  background-color: #6f504b;
+  color: #fefefe;
+  text-align: center;
+  padding: 1rem 0.5rem; /* Compact height */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  border-top: 1px solid #5a3d38;
+  margin-top: 2rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.footer-line {
+  margin: 0.2rem 0;
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+}
+
+.tech {
+  font-weight: 500;
+  color: #ffe3da;
+}

@@ -1,25 +1,23 @@
 .welcome-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #9B7973;
-}
-h1, p{
-    background-color: #f5e3ce;
-    border-radius: 5px;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.header {
-    font-family: 'Cute Font', sans-serif !important;
-    font-family: 'Dancing Script', cursive;
-    font-family: 'Edu TAS Beginner', cursive;
-    font-family: 'Josefin Sans', sans-serif;
-    font-family: 'Roboto Mono', monospace;
+.welcome-title {
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #fff8f6;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (max-width: 600px) {
-    .header {
-        font-size: 45px !important;
-    }
-  }
+.welcome-title span {
+  color: #ffe3da; /* a soft, warm highlight */
+}
+
+.welcome-subtitle {
+  font-size: 1.4rem;
+  color: #fbe9e5;
+  margin-top: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
