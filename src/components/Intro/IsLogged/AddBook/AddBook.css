@@ -7,3 +7,7 @@
     transform: scale(1.05);
     background-color: red !important;
 }
+
+label {
+    margin-top: 0.2rem;
+}
