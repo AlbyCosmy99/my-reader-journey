@@ -95,11 +95,11 @@ export default function BooksList() {
                 <AddNewBookButton />
             </div>
             <div className="card-books-container">
-                <div className="card" style={{maxHeight: '65vh', overflowY: 'scroll', backgroundColor: '#9A7872'}}>
+                <div className="card" style={{maxHeight: '65vh', backgroundColor: '#9A7872'}}>
                     <div className="card-header" style={{position: 'sticky', top: 0, zIndex: 1, backgroundColor: '#9A7872', textAlign:'center', color:'#2D2019'}}>
                         <Container>
                             <Row>
-                                <Col className="d-flex justify-content-center align-items-center" style={{fontSize:'30px', color:'white'}}>
+                                <Col className="d-flex justify-content-center align-items-center" style={{fontSize:'28px', color:'white'}}>
                                     <b>{sectionTitle}</b>
                                 </Col>
                                 {books.length > 0 ? 
@@ -124,7 +124,7 @@ export default function BooksList() {
                             </Row>
                         </Container>
                     </div>
-                    <div className="card-body" style={{backgroundColor: '#D3AD79'}}>
+                    <div className="card-body" style={{backgroundColor: '#D3AD79', overflowY: 'scroll'}}>
                         {books.length > 0 ? books.map((book, index) => (
                             <div className="card elevated-card" key={index} style={{marginBottom:'0.5rem', backgroundColor:'#CEB289', color:'#5B462F',cursor:'pointer'}}>
                                 <div className="card-body">

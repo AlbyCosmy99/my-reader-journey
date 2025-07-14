@@ -6,26 +6,24 @@
 .elevated-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
 }
-/* Style the scrollbar itself (width, color) */
-.card::-webkit-scrollbar {
-    width: 12px; /* width of the entire scrollbar */
+
+.card-body::-webkit-scrollbar {
+    width: 12px; 
 }
 
-/* Style the track of the scrollbar */
-.card::-webkit-scrollbar-track {
-    background: #BB9B71; /* color of the track */
+
+.card-body::-webkit-scrollbar-track {
+    background: #BB9B71;
 }
 
-/* Style the handle of the scrollbar */
-.card::-webkit-scrollbar-thumb {
-    background-color: #5B462F; /* color of the thumb */
-    border-radius: 6px; /* roundness of the thumb */
-    border: 3px solid #BB9B71; /* creates padding around the thumb */
+.card-body::-webkit-scrollbar-thumb {
+    background-color: #5B462F;
+    border-radius: 6px;
+    border: 3px solid #BB9B71; 
 }
 
-/* Style the handle of the scrollbar on hover */
-.card::-webkit-scrollbar-thumb:hover {
-    background: #826346; /* color when hovering over the thumb */
+.card-body::-webkit-scrollbar-thumb:hover {
+    background: #826346;
 }
 .dropdown-toggle {
     background-color: #800020 !important;
