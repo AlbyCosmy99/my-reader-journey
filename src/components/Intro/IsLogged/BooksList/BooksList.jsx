@@ -19,10 +19,23 @@ export default function BooksList() {
   const message = searchParams.get("message");
   const sectionTitle = searchParams.get("sectionTitle");
 
+  const sortMapping = {
+    title: "Title",
+    author: "Author",
+    genre: "Genre",
+    language: "Language",
+    pages: "Pages",
+    rating: "Rating",
+    publicationDate: "Last Read",
+    dateAdded: "Recently Added",
+  };
+
   function fetchBooks() {
     setLoading(true);
     fetch(
-      `${consts.getBackendUrl()}/api/users/books?filter=${message}&sortBy=${sortBy}`,
+      `${consts.getBackendUrl()}/api/users/books?filter=${message}&sortBy=${localStorage.getItem(
+        "sortBy"
+      )}`,
       {
         method: "GET",
         headers: {
@@ -33,7 +46,7 @@ export default function BooksList() {
     )
       .then((res) => res.json())
       .then((res) => {
-        setBooks(res);
+        setBooks(res.books);
         console.log(res);
         setLoading(false);
       });
@@ -151,62 +164,56 @@ export default function BooksList() {
                         id="dropdown-basic"
                         style={{ fontSize: "20px" }}
                       >
-                        Order by: {sortBy}
+                        Order by: {sortMapping[sortBy]}
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
                         <Dropdown.Item
                           eventKey="title"
                           onClick={() => handleSelect("title")}
                         >
-                          Title
+                          {sortMapping["title"]}
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="author"
                           onClick={() => handleSelect("author")}
                         >
-                          Author
+                          {sortMapping["author"]}
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="genre"
                           onClick={() => handleSelect("genre")}
                         >
-                          Genre
+                          {sortMapping["genre"]}
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="language"
                           onClick={() => handleSelect("language")}
                         >
-                          Language
+                          {sortMapping["language"]}
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="pages"
                           onClick={() => handleSelect("pages")}
                         >
-                          Pages
+                          {sortMapping["pages"]}
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="rating"
                           onClick={() => handleSelect("rating")}
                         >
-                          Rating
+                          {sortMapping["rating"]}
                         </Dropdown.Item>
                         <Dropdown.Item
-                          eventKey="readingStartDate"
-                          onClick={() => handleSelect("startReadingDate")}
+                          eventKey="publicationDate"
+                          onClick={() => handleSelect("publicationDate")}
                         >
-                          Reading start date
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          eventKey="readingEndDate"
-                          onClick={() => handleSelect("endReadingDate")}
-                        >
-                          Reading end date
+                          {sortMapping["publicationDate"]}
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="dateAdded"
                           onClick={() => handleSelect("dateAdded")}
                         >
-                          Date you added the book
+                          {sortMapping["dateAdded"]}
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
