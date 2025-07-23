@@ -323,6 +323,7 @@ export default function BooksList() {
                         centered
                         backdrop="static"
                         keyboard={false}
+                        backdropClassName="custom-backdrop"
                       >
                         <Modal.Header
                           closeButton
