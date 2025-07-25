@@ -1,5 +1,4 @@
-// AddBook.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   Form,
@@ -131,7 +130,7 @@ export default function AddBook() {
             fontWeight: "bold",
           }}
         >
-          📚 Add a New Book
+          Add a New Book
         </Card.Header>
 
         <Card.Body
@@ -275,33 +274,34 @@ export default function AddBook() {
                 </Form.Group>
               </Col>
             </Row>
+
+            <Row className="mt-4">
+              <Col md={6}>
+                <Button
+                  variant="outline-secondary"
+                  className="w-100 py-2 shadow-sm"
+                  onClick={() => window.history.back()}
+                >
+                  Back
+                </Button>
+              </Col>
+              <Col md={6}>
+                <Button
+                  type="submit"
+                  className="w-100 py-2 shadow-sm animated-confirm-button"
+                  style={{
+                    background: "linear-gradient(90deg, #f2cd3a, #d4a373)",
+                    border: "none",
+                    color: "#000",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Add Book
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Card.Body>
-        <Row className="m-2 mb-3">
-          <Col md={6} className="mt-4">
-            <Button
-              variant="outline-secondary"
-              className="w-100 py-2 shadow-sm"
-              onClick={() => window.history.back()}
-            >
-              ⬅️ Back
-            </Button>
-          </Col>
-          <Col md={6} className="mt-4">
-            <Button
-              type="submit"
-              className="w-100 py-2 shadow-sm animated-confirm-button"
-              style={{
-                background: "linear-gradient(90deg, #f2cd3a, #d4a373)",
-                border: "none",
-                color: "#000",
-                fontWeight: "bold",
-              }}
-            >
-              ✅ Add Book
-            </Button>
-          </Col>
-        </Row>
       </Card>
     </Container>
   );
