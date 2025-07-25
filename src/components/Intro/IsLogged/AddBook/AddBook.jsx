@@ -1,8 +1,16 @@
+// AddBook.jsx
 import React, { useState } from "react";
-import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
+import {
+  Card,
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Spinner,
+} from "react-bootstrap";
 import "./AddBook.css";
 import { jwtDecode } from "jwt-decode";
-import Spinner from "react-bootstrap/Spinner";
 import consts from "../../../../consts";
 import defaultCover from "../../../../assets/defaultCover.jpg";
 
@@ -15,7 +23,7 @@ export default function AddBook() {
   const [pages, setPages] = useState(0);
   const [price, setPrice] = useState("");
   const [isbn, setIsbn] = useState("");
-  const [publicationDate, setPublicationDate] = useState(Date.now());
+  const [publicationDate, setPublicationDate] = useState("");
   const [read, setRead] = useState(true);
   const [toRead, setToRead] = useState(false);
   const [reading, setReading] = useState(false);
@@ -23,511 +31,278 @@ export default function AddBook() {
   const [favorite, setFavorite] = useState(false);
   const [loaned, setLoaned] = useState(false);
   const [borrowed, setBorrowed] = useState(false);
-  const [readingStartDate, setReadingStartDate] = useState(null);
-  const [readingEndDate, setReadingEndDate] = useState(null);
-  const [dateAdded, setDateAdded] = useState(Date.now());
+  const [readingStartDate, setReadingStartDate] = useState("");
+  const [readingEndDate, setReadingEndDate] = useState("");
+  const [dateAdded, setDateAdded] = useState("");
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
   function addBook(event) {
+    event.preventDefault();
     setLoading(true);
+
     const token = localStorage.getItem("jwt");
     let payload = null;
+
     if (token) {
       try {
         payload = jwtDecode(token);
       } catch (error) {
-        console.error("Failed to decode token", error);
+        console.error("Invalid token", error);
         localStorage.removeItem("jwt");
         window.location.reload();
+        return;
       }
-    } else {
-      localStorage.removeItem("jwt");
-      window.location.reload();
     }
-    const userId = payload.id;
+
+    const userId = payload?.id;
+    if (!userId) return;
 
     const book = {
-      title: title,
-      userId: userId,
+      userId,
+      title,
+      author,
+      genre,
+      language,
+      publishing_house: publishingHouse,
+      pages,
+      price,
+      isbn,
+      publicationDate,
+      read,
+      toRead,
+      reading,
+      favorite,
+      loaned,
+      borrowed,
+      startReadingDate: readingStartDate,
+      endReadingDate: readingEndDate,
+      dateAdded,
+      description,
+      notes,
+      imageUrl: imageUrl || defaultCover,
+      rating,
     };
-
-    if (read) {
-      book.read = read;
-    }
-    if (toRead) {
-      book.toRead = toRead;
-    }
-    if (favorite) {
-      book.favorite = favorite;
-    }
-    if (imageUrl) {
-      book.imageUrl = imageUrl;
-    } else {
-      book.imageUrl = defaultCover;
-    }
-    if (borrowed) {
-      book.borrowed = borrowed;
-    }
-    if (readingStartDate) {
-      book.startReadingDate = readingStartDate;
-    }
-    if (readingEndDate) {
-      book.endReadingDate = readingEndDate;
-    }
-    if (publicationDate) {
-      book.publicationDate = publicationDate;
-    }
-    if (isbn) {
-      book.isbn = isbn;
-    }
-    if (genre) {
-      book.genre = genre;
-    }
-    if (author) {
-      book.author = author;
-    }
-    if (publishingHouse) {
-      book.publishing_house = publishingHouse;
-    }
-    if (pages) {
-      book.pages = pages;
-    }
-    if (price) {
-      book.price = price;
-    }
-    if (rating) {
-      book.rating = rating;
-    }
-    if (language) {
-      book.language = language;
-    }
-    if (description) {
-      book.description = description;
-    }
-    if (notes) {
-      book.notes = notes;
-    }
-    if (dateAdded) {
-      book.dateAdded = dateAdded;
-    }
-
-    event.preventDefault();
 
     fetch(`${consts.getBackendUrl()}/api/users/books`, {
       method: "POST",
       body: JSON.stringify(book),
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())
       .then(() => {
-        window.history.back();
         setLoading(false);
-      });
+        window.history.back();
+      })
+      .catch(() => setLoading(false));
   }
-  return loading ? (
-    <div className="d-flex align-items-center justify-content-center">
-      <Spinner
-        animation="border"
-        role="status"
-        style={{ width: "8rem", height: "8rem", color: "orange" }}
+
+  if (loading) {
+    return (
+      <div className="d-flex align-items-center justify-content-center vh-100">
+        <Spinner
+          animation="border"
+          role="status"
+          style={{ width: "6rem", height: "6rem", color: "#f2cd3a" }}
+        >
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
+
+  return (
+    <Container className="py-4 my-5 mt-4">
+      <Card
+        className="shadow-lg border-0 rounded-4"
+        style={{ backgroundColor: "#fdf8f2" }}
       >
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    </div>
-  ) : (
-    <Container className="d-flex my-5 justify-content-center">
-      <div className="card-container w-100">
-        <Card className="card-custom">
-          <Card.Body>
-            <h1
-              className="py-1"
+        <Card.Header
+          className="text-center rounded-top-4"
+          style={{
+            background: "linear-gradient(90deg, #7f4f24, #d4a373)",
+            color: "white",
+            fontSize: "1.6rem",
+            fontWeight: "bold",
+          }}
+        >
+          📚 Add a New Book
+        </Card.Header>
+
+        <Card.Body
+          className="px-4 py-3"
+          style={{ maxHeight: "58vh", overflowY: "auto" }}
+        >
+          <Form onSubmit={addBook}>
+            <Row className="g-3">
+              {[
+                {
+                  label: "Title*",
+                  val: title,
+                  setter: setTitle,
+                  type: "text",
+                  required: true,
+                },
+                { label: "Author", val: author, setter: setAuthor },
+                { label: "Genre", val: genre, setter: setGenre },
+                { label: "Language", val: language, setter: setLanguage },
+                { label: "Image URL", val: imageUrl, setter: setImageUrl },
+                {
+                  label: "Publishing House",
+                  val: publishingHouse,
+                  setter: setPublishingHouse,
+                },
+                {
+                  label: "Pages",
+                  val: pages,
+                  setter: setPages,
+                  type: "number",
+                },
+                { label: "Price", val: price, setter: setPrice },
+                { label: "ISBN", val: isbn, setter: setIsbn },
+                {
+                  label: "Publication Date",
+                  val: publicationDate,
+                  setter: setPublicationDate,
+                  type: "date",
+                },
+              ].map((field, i) => (
+                <Col md={6} key={i}>
+                  <Form.Group>
+                    <Form.Label className="text-dark">{field.label}</Form.Label>
+                    <Form.Control
+                      type={field.type || "text"}
+                      value={field.val}
+                      onChange={(e) => field.setter(e.target.value)}
+                      required={field.required}
+                      className="bg-light"
+                    />
+                  </Form.Group>
+                </Col>
+              ))}
+
+              <Col md={12}>
+                <Form.Group>
+                  <Form.Label className="text-dark">Rating</Form.Label>
+                  <div>
+                    {[...Array(10)].map((_, index) => (
+                      <Form.Check
+                        inline
+                        key={index}
+                        label={index + 1}
+                        type="radio"
+                        name="rating"
+                        value={index + 1}
+                        checked={rating === index + 1}
+                        onChange={(e) => setRating(Number(e.target.value))}
+                      />
+                    ))}
+                  </div>
+                </Form.Group>
+              </Col>
+
+              {[
+                { label: "Read", val: read, setter: setRead },
+                { label: "To Read", val: toRead, setter: setToRead },
+                { label: "Reading", val: reading, setter: setReading },
+                { label: "Favorite", val: favorite, setter: setFavorite },
+                { label: "Loaned", val: loaned, setter: setLoaned },
+                { label: "Borrowed", val: borrowed, setter: setBorrowed },
+              ].map((toggle, i) => (
+                <Col md={2} key={i}>
+                  <Form.Check
+                    type="checkbox"
+                    label={toggle.label}
+                    checked={toggle.val}
+                    onChange={(e) => toggle.setter(e.target.checked)}
+                    className="text-dark"
+                  />
+                </Col>
+              ))}
+
+              {[
+                {
+                  label: "Reading Start Date",
+                  val: readingStartDate,
+                  setter: setReadingStartDate,
+                },
+                {
+                  label: "Reading End Date",
+                  val: readingEndDate,
+                  setter: setReadingEndDate,
+                },
+                { label: "Date Added", val: dateAdded, setter: setDateAdded },
+              ].map((dateField, i) => (
+                <Col md={4} key={i}>
+                  <Form.Group>
+                    <Form.Label className="text-dark">
+                      {dateField.label}
+                    </Form.Label>
+                    <Form.Control
+                      type="date"
+                      value={dateField.val}
+                      onChange={(e) => dateField.setter(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+              ))}
+
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label className="text-dark">Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group>
+                  <Form.Label className="text-dark">Notes</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form>
+        </Card.Body>
+        <Row className="m-2 mb-3">
+          <Col md={6} className="mt-4">
+            <Button
+              variant="outline-secondary"
+              className="w-100 py-2 shadow-sm"
+              onClick={() => window.history.back()}
+            >
+              ⬅️ Back
+            </Button>
+          </Col>
+          <Col md={6} className="mt-4">
+            <Button
+              type="submit"
+              className="w-100 py-2 shadow-sm animated-confirm-button"
               style={{
-                fontSize: "28px",
-                textAlign: "center",
-                color: "white",
-                backgroundColor: "#f2cd3a",
+                background: "linear-gradient(90deg, #f2cd3a, #d4a373)",
+                border: "none",
+                color: "#000",
+                fontWeight: "bold",
               }}
             >
-              Add a new book!
-            </h1>
-            <Form onSubmit={(event) => addBook(event)}>
-              <Container>
-                <Row>
-                  <Col lg={3}>
-                    <Form.Group id="title">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Title*
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        required
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={3}>
-                    <Form.Group id="author">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Author
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={author}
-                        onChange={(e) => setAuthor(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={3}>
-                    <Form.Group id="genre">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Genre
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={genre}
-                        onChange={(e) => setGenre(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={3}>
-                    <Form.Group id="language">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Language
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={language}
-                        onChange={(e) => setLanguage(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={3}>
-                    <Form.Group id="imageUrl">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Image Url
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={imageUrl}
-                        onChange={(e) => setImageUrl(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={3}>
-                    <Form.Group id="publishingHouse">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        publishing house
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={publishingHouse}
-                        onChange={(e) => setPublishingHouse(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={3}>
-                    <Form.Group id="pages">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Pages
-                      </Form.Label>
-                      <Form.Control
-                        type="number"
-                        value={pages}
-                        onChange={(e) => setPages(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={3}>
-                    <Form.Group id="price">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Price
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={6}>
-                    <div className="d-flex flex-row" style={{ gap: "1rem" }}>
-                      <Form.Group id="isbn">
-                        <Form.Label style={{ color: "#FF7F00" }}>
-                          ISBN
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          value={isbn}
-                          onChange={(e) => setIsbn(e.target.value)}
-                        />
-                      </Form.Group>
-                      <Form.Group id="publicationDate">
-                        <Form.Label style={{ color: "#FF7F00" }}>
-                          Publication Date
-                        </Form.Label>
-                        <Form.Control
-                          type="date"
-                          value={publicationDate}
-                          onChange={(e) => setPublicationDate(e.target.value)}
-                        />
-                      </Form.Group>
-                    </div>
-                  </Col>
-                  <Col lg={6}>
-                    <Form.Group id="rating">
-                      <Form.Label
-                        style={{ color: "#FF7F00", display: "inline-block" }}
-                      >
-                        Rating
-                      </Form.Label>
-                      <div style={{ display: "inline-block" }}>
-                        {[...Array(10)].map((_, index) => (
-                          <Form.Check
-                            inline
-                            label={index + 1}
-                            type="radio"
-                            name="rating"
-                            key={index}
-                            id={`rating-${index + 1}`}
-                            value={index + 1}
-                            checked={rating === index + 1}
-                            onChange={(e) => setRating(Number(e.target.value))}
-                            style={{ marginLeft: "10px" }}
-                          />
-                        ))}
-                      </div>
-                    </Form.Group>
-                  </Col>
-                  <Col lg={2}>
-                    <Form.Group id="read">
-                      <Form.Label
-                        style={{
-                          color: "#FF7F00",
-                          display: "inline-block",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        Read
-                      </Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        checked={read}
-                        onChange={(e) => setRead(e.target.checked)}
-                        style={{
-                          marginLeft: "1rem",
-                          marginRight: "auto",
-                          display: "inline-block",
-                        }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={2}>
-                    <Form.Group id="toRead">
-                      <Form.Label
-                        style={{
-                          color: "#FF7F00",
-                          display: "inline-block",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        To Read
-                      </Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        checked={toRead}
-                        onChange={(e) => setToRead(e.target.checked)}
-                        style={{
-                          marginLeft: "1rem",
-                          marginRight: "auto",
-                          display: "inline-block",
-                        }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={2}>
-                    <Form.Group id="reading">
-                      <Form.Label
-                        style={{
-                          color: "#FF7F00",
-                          display: "inline-block",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        Reading
-                      </Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        checked={reading}
-                        onChange={(e) => setReading(e.target.checked)}
-                        style={{
-                          marginLeft: "1rem",
-                          marginRight: "auto",
-                          display: "inline-block",
-                        }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={2}>
-                    <Form.Group id="favorite">
-                      <Form.Label
-                        style={{
-                          color: "#FF7F00",
-                          display: "inline-block",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        Favorite
-                      </Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        checked={favorite}
-                        onChange={(e) => setFavorite(e.target.checked)}
-                        style={{
-                          marginLeft: "1rem",
-                          marginRight: "auto",
-                          display: "inline-block",
-                        }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={2}>
-                    <Form.Group id="loaned">
-                      <Form.Label
-                        style={{
-                          color: "#FF7F00",
-                          display: "inline-block",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        Loaned
-                      </Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        checked={loaned}
-                        onChange={(e) => setLoaned(e.target.checked)}
-                        style={{
-                          marginLeft: "1rem",
-                          marginRight: "auto",
-                          display: "inline-block",
-                        }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={2}>
-                    <Form.Group id="borrowed">
-                      <Form.Label
-                        style={{
-                          color: "#FF7F00",
-                          display: "inline-block",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        Borrowed
-                      </Form.Label>
-                      <Form.Check
-                        type="checkbox"
-                        checked={borrowed}
-                        onChange={(e) => setBorrowed(e.target.checked)}
-                        style={{
-                          marginLeft: "1rem",
-                          marginRight: "auto",
-                          display: "inline-block",
-                        }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={4}>
-                    <Form.Group id="readingStartDate">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Reading start date
-                      </Form.Label>
-                      <Form.Control
-                        type="date"
-                        value={readingStartDate}
-                        onChange={(e) => setReadingStartDate(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={4}>
-                    <Form.Group id="readingEndDate">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Reading end date
-                      </Form.Label>
-                      <Form.Control
-                        type="date"
-                        value={readingEndDate}
-                        onChange={(e) => setReadingEndDate(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={4}>
-                    <Form.Group id="dateAdded">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Date Book was added
-                      </Form.Label>
-                      <Form.Control
-                        type="date"
-                        value={dateAdded}
-                        onChange={(e) => setDateAdded(e.target.value)}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={6}>
-                    <Form.Group id="description">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Description
-                      </Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={3}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        style={{ resize: "vertical" }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={6}>
-                    <Form.Group id="notes">
-                      <Form.Label style={{ color: "#FF7F00" }}>
-                        Notes
-                      </Form.Label>
-                      <Form.Control
-                        as="textarea"
-                        rows={3}
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        style={{ resize: "vertical" }}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col lg={6} className="mt-3">
-                    <Button
-                      style={{ backgroundColor: "red" }}
-                      className="w-100 mb-3 login-btn back-btn"
-                      type="button"
-                      onClick={() => window.history.back()}
-                    >
-                      Back
-                    </Button>
-                  </Col>
-                  <Col lg={6} className="mt-3">
-                    <Button className="w-100 mb-3 login-btn" type="submit">
-                      Add book
-                    </Button>
-                  </Col>
-                </Row>
-              </Container>
-            </Form>
-          </Card.Body>
-        </Card>
-      </div>
+              ✅ Add Book
+            </Button>
+          </Col>
+        </Row>
+      </Card>
     </Container>
   );
 }

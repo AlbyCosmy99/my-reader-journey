@@ -11,3 +11,12 @@
 label {
     margin-top: 0.2rem;
 }
+
+.animated-confirm-button {
+  transition: all 0.3s ease-in-out;
+}
+
+.animated-confirm-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
