@@ -31,8 +31,10 @@ export default function AddBook() {
   const [loaned, setLoaned] = useState(false);
   const [borrowed, setBorrowed] = useState(false);
   const [readingStartDate, setReadingStartDate] = useState("");
-  const [readingEndDate, setReadingEndDate] = useState("");
-  const [dateAdded, setDateAdded] = useState("");
+  const getToday = () => new Date().toISOString().split("T")[0];
+
+  const [readingEndDate, setReadingEndDate] = useState(getToday());
+  const [dateAdded, setDateAdded] = useState(getToday());
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -135,7 +137,7 @@ export default function AddBook() {
 
         <Card.Body
           className="px-4 py-3"
-          style={{ maxHeight: "58vh", overflowY: "auto" }}
+          style={{ maxHeight: "70vh", overflowY: "auto" }}
         >
           <Form onSubmit={addBook}>
             <Row className="g-3">

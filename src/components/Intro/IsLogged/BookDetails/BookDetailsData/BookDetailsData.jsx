@@ -156,7 +156,9 @@ export default function BookDetailsData({ book }) {
               }}
             >
               <Card.Body style={{ padding: 0, margin: 0, textAlign: "center" }}>
-                <h3 style={{ fontSize: "25px" }} className="m-0 p-1">DESCRIPTION</h3>
+                <h3 style={{ fontSize: "25px" }} className="m-0 p-1">
+                  DESCRIPTION
+                </h3>
               </Card.Body>
             </Card>
             <h4>{book.description}</h4>
@@ -176,7 +178,9 @@ export default function BookDetailsData({ book }) {
               }}
             >
               <Card.Body style={{ padding: 0, margin: 0, textAlign: "center" }}>
-                <h3 style={{ fontSize: "25px" }} className="m-0 p-1">NOTES</h3>
+                <h3 style={{ fontSize: "25px" }} className="m-0 p-1">
+                  NOTES
+                </h3>
               </Card.Body>
             </Card>
             <h4>{book.notes}</h4>
