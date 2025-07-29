@@ -26,7 +26,8 @@ export default function BooksList() {
     language: "Language (A–Z)",
     pages: "Number of Pages",
     rating: "Highest Rating",
-    publicationDate: "Last Read Date",
+    endReadingDate: "Finished On",
+    publicationDate: "Publication Date",
     dateAdded: "Recently Added to Library",
   };
 
@@ -62,7 +63,10 @@ export default function BooksList() {
 
   function handleSelect(selection) {
     localStorage.setItem("sortBy", selection);
-    setSortBy(localStorage.getItem("sortBy"));
+    let storageSortBy = localStorage.getItem("sortBy");
+    setSortBy(
+      storageSortBy[0] === "-" ? storageSortBy.slice(1) : storageSortBy
+    );
     fetchBooks();
   }
 
@@ -164,7 +168,12 @@ export default function BooksList() {
                         id="dropdown-basic"
                         style={{ fontSize: "20px" }}
                       >
-                        Order by: {sortMapping[sortBy]}
+                        Order by:{" "}
+                        {
+                          sortMapping[
+                            sortBy[0] === "-" ? sortBy.slice(1) : sortBy
+                          ]
+                        }
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
                         <Dropdown.Item
@@ -193,7 +202,7 @@ export default function BooksList() {
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="pages"
-                          onClick={() => handleSelect("pages")}
+                          onClick={() => handleSelect("-pages")}
                         >
                           {sortMapping["pages"]}
                         </Dropdown.Item>
@@ -204,14 +213,20 @@ export default function BooksList() {
                           {sortMapping["rating"]}
                         </Dropdown.Item>
                         <Dropdown.Item
+                          eventKey="endReadingDate"
+                          onClick={() => handleSelect("-endReadingDate")}
+                        >
+                          {sortMapping["endReadingDate"]}
+                        </Dropdown.Item>
+                        <Dropdown.Item
                           eventKey="publicationDate"
-                          onClick={() => handleSelect("publicationDate")}
+                          onClick={() => handleSelect("-publicationDate")}
                         >
                           {sortMapping["publicationDate"]}
                         </Dropdown.Item>
                         <Dropdown.Item
                           eventKey="dateAdded"
-                          onClick={() => handleSelect("dateAdded")}
+                          onClick={() => handleSelect("-dateAdded")}
                         >
                           {sortMapping["dateAdded"]}
                         </Dropdown.Item>

@@ -13,12 +13,22 @@ import { jwtDecode } from "jwt-decode";
 import consts from "../../../../consts";
 import defaultCover from "../../../../assets/defaultCover.jpg";
 
-// Util: get local datetime in format YYYY-MM-DDTHH:MM:SS
+// Utility: get local datetime string (YYYY-MM-DDTHH:MM:SS)
 const getNowDatetimeLocal = () => {
   const now = new Date();
   const offset = now.getTimezoneOffset();
-  const localDate = new Date(now.getTime() - offset * 60000);
-  return localDate.toISOString().slice(0, 19);
+  const local = new Date(now.getTime() - offset * 60000);
+  return local.toISOString().slice(0, 19);
+};
+
+// Utility: take YYYY-MM-DD and append current local time
+const addCurrentTime = (dateStr) => {
+  const [year, month, day] = dateStr.split("-");
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 };
 
 export default function AddBook() {
@@ -176,7 +186,7 @@ export default function AddBook() {
                   label: "Publication Date",
                   val: publicationDate,
                   setter: setPublicationDate,
-                  type: "datetime-local",
+                  type: "date",
                 },
               ].map((field, i) => (
                 <Col md={6} key={i}>
@@ -251,9 +261,11 @@ export default function AddBook() {
                       {dateField.label}
                     </Form.Label>
                     <Form.Control
-                      type="datetime-local"
-                      value={dateField.val}
-                      onChange={(e) => dateField.setter(e.target.value)}
+                      type="date"
+                      value={dateField.val ? dateField.val.split("T")[0] : ""}
+                      onChange={(e) =>
+                        dateField.setter(addCurrentTime(e.target.value))
+                      }
                     />
                   </Form.Group>
                 </Col>
