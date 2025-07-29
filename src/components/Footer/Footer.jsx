@@ -3,19 +3,28 @@ import './Footer.css';
 export default function Footer() {
   return (
     <footer className="app-footer">
-      <p className="footer-line">© {new Date().getFullYear()} MyReaderJourney</p>
-      <p className="footer-line">
-        Designed and developed by{' '}
-        <a
-          href="https://www.linkedin.com/in/andrei-albudev/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="footer-link"
-        >
-          <strong>Albu Cosmin Andrei</strong>
-        </a>
-      </p>
-      <p className="footer-line tech">Built with React + Bootstrap</p>
+      <div className="footer-content">
+        <p className="footer-line">
+          &copy; {new Date().getFullYear()} <strong>MyReaderJourney</strong>. All rights reserved.
+        </p>
+
+        <p className="footer-line">
+          Crafted with care by{' '}
+          <a
+            href="https://www.linkedin.com/in/andrei-albudev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
+            Albu Cosmin Andrei
+          </a>
+        </p>
+
+        <p className="footer-line tech">
+          <span className="dot" /> React &nbsp; <span className="dot" /> Bootstrap &nbsp;
+          <span className="dot" /> Love for books
+        </p>
+      </div>
     </footer>
   );
 }
