@@ -20,14 +20,14 @@ export default function BooksList() {
   const sectionTitle = searchParams.get("sectionTitle");
 
   const sortMapping = {
-    title: "Title",
-    author: "Author",
-    genre: "Genre",
-    language: "Language",
-    pages: "Pages",
-    rating: "Rating",
-    publicationDate: "Last Read",
-    dateAdded: "Recently Added",
+    title: "Title (A–Z)",
+    author: "Author (A–Z)",
+    genre: "Genre (A–Z)",
+    language: "Language (A–Z)",
+    pages: "Number of Pages",
+    rating: "Highest Rating",
+    publicationDate: "Last Read Date",
+    dateAdded: "Recently Added to Library",
   };
 
   function fetchBooks() {

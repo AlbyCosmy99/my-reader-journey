@@ -13,6 +13,14 @@ import { jwtDecode } from "jwt-decode";
 import consts from "../../../../consts";
 import defaultCover from "../../../../assets/defaultCover.jpg";
 
+// Util: get local datetime in format YYYY-MM-DDTHH:MM:SS
+const getNowDatetimeLocal = () => {
+  const now = new Date();
+  const offset = now.getTimezoneOffset();
+  const localDate = new Date(now.getTime() - offset * 60000);
+  return localDate.toISOString().slice(0, 19);
+};
+
 export default function AddBook() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -31,10 +39,8 @@ export default function AddBook() {
   const [loaned, setLoaned] = useState(false);
   const [borrowed, setBorrowed] = useState(false);
   const [readingStartDate, setReadingStartDate] = useState("");
-  const getToday = () => new Date().toISOString().split("T")[0];
-
-  const [readingEndDate, setReadingEndDate] = useState(getToday());
-  const [dateAdded, setDateAdded] = useState(getToday());
+  const [readingEndDate, setReadingEndDate] = useState(getNowDatetimeLocal());
+  const [dateAdded, setDateAdded] = useState(getNowDatetimeLocal());
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -170,7 +176,7 @@ export default function AddBook() {
                   label: "Publication Date",
                   val: publicationDate,
                   setter: setPublicationDate,
-                  type: "date",
+                  type: "datetime-local",
                 },
               ].map((field, i) => (
                 <Col md={6} key={i}>
@@ -245,7 +251,7 @@ export default function AddBook() {
                       {dateField.label}
                     </Form.Label>
                     <Form.Control
-                      type="date"
+                      type="datetime-local"
                       value={dateField.val}
                       onChange={(e) => dateField.setter(e.target.value)}
                     />

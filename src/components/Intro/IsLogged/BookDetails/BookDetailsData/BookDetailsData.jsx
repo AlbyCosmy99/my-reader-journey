@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import "./BookDetailsData.css";
+import formatDate from "../../../../../utils/formatDate";
 
 export default function BookDetailsData({ book }) {
   return (
@@ -78,7 +79,7 @@ export default function BookDetailsData({ book }) {
         >
           <Card.Body style={{ padding: 0, margin: 0, textAlign: "center" }}>
             <h3 style={{ fontSize: "25px" }} className="m-0 p-1">
-              ABOUT YOUR RELATIONSHIP WITH THE BOOK
+              YOUR READING STATUS
             </h3>
           </Card.Body>
         </Card>
@@ -91,7 +92,7 @@ export default function BookDetailsData({ book }) {
           {book.toRead ? "YES" : "NO"}
         </h4>
         <h4>
-          <b>Reading: </b>
+          <b>Currently Reading: </b>
           {book.reading ? "YES" : "NO"}
         </h4>
         {book.rating ? (
@@ -116,30 +117,25 @@ export default function BookDetailsData({ book }) {
         </h4>
         {book.startReadingDate ? (
           <h4>
-            <b>Reading start date: </b>
-            {String(book.startReadingDate).split("T")[0] === "null"
-              ? ""
-              : String(book.startReadingDate).split("T")[0]}
+            <b>Started on: </b>
+            {formatDate(book.startReadingDate)}
           </h4>
         ) : (
           ""
         )}
         {book.endReadingDate ? (
           <h4>
-            <b>Reading end date: </b>
-            {String(book.endReadingDate).split("T")[0] === "null"
-              ? ""
-              : String(book.endReadingDate).split("T")[0]}
+            <b>Finished on: </b>
+            {formatDate(book.endReadingDate)}
           </h4>
         ) : (
           ""
         )}
+
         {book.dateAdded ? (
           <h4>
-            <b>Date you added the book: </b>
-            {String(book.dateAdded).split("T")[0] === "null"
-              ? ""
-              : String(book.dateAdded).split("T")[0]}
+            <b>Added to library: </b>
+            {formatDate(book.dateAdded)}
           </h4>
         ) : (
           ""
