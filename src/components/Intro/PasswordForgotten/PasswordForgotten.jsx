@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, Form, Button, Container } from "react-bootstrap";
 import consts from "../../../consts";
 import { useNavigate } from "react-router-dom";
+import "./PasswordForgotten.css"; // 👈 Make sure to import the styles
 
 export default function PasswordForgotten() {
   const [email, setEmail] = useState("");
@@ -21,12 +22,8 @@ export default function PasswordForgotten() {
     setEmailSent(true);
     fetch(`${consts.getBackendUrl()}/api/users/mails/send-verification`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
     })
       .then((res) => res.json())
       .then((res) => {
@@ -45,15 +42,13 @@ export default function PasswordForgotten() {
     setIncorrectCode(false);
     setIsChangePassword(false);
     setCode("");
-    setIncorrectCode("");
+    setInsertedCode("");
     setPassword1("");
     setPassword2("");
   }
 
   function startChangePassword(event) {
     event.preventDefault();
-    console.log(typeof code, code)
-    console.log(typeof insertedCode, insertedCode)
     if (code !== 0 && insertedCode !== 0 && code === Number(insertedCode)) {
       setIsChangePassword(true);
     } else {
@@ -69,23 +64,15 @@ export default function PasswordForgotten() {
       if (password1.length < 8) {
         setIsValidPassword(false);
         return;
-      } else {
-        setIsValidPassword(true);
-        fetch(`${consts.getBackendUrl()}/api/users/change-password`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password1,
-          }),
-        })
-          .then((res) => res.json())
-          .then((res) => {
-            navigate("/login");
-          });
       }
+      setIsValidPassword(true);
+      fetch(`${consts.getBackendUrl()}/api/users/change-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password: password1 }),
+      })
+        .then((res) => res.json())
+        .then(() => navigate("/login"));
     } else {
       setPasswordsEqual(false);
     }
@@ -101,8 +88,10 @@ export default function PasswordForgotten() {
           <Card.Body>
             {isChangePassword ? (
               <>
-                <Form.Group id="password1">
-                  <Form.Label style={{ color: "#FF7F00" }}>password</Form.Label>
+                <Form.Group>
+                  <Form.Label style={{ color: "#FF7F00" }}>
+                    New Password
+                  </Form.Label>
                   <Form.Control
                     className="mb-3"
                     type="password"
@@ -111,9 +100,9 @@ export default function PasswordForgotten() {
                     onChange={(e) => setPassword1(e.target.value)}
                   />
                 </Form.Group>
-                <Form.Group id="password2">
+                <Form.Group>
                   <Form.Label style={{ color: "#FF7F00" }}>
-                    Repeat password
+                    Repeat Password
                   </Form.Label>
                   <Form.Control
                     className="mb-3"
@@ -124,32 +113,34 @@ export default function PasswordForgotten() {
                   />
                 </Form.Group>
                 <Button
-                  className="w-100 mb-3 login-btn"
-                  onClick={(event) => changePassword(event)}
+                  className="w-100 mb-3 styled-btn"
+                  onClick={changePassword}
                 >
-                  Change password
+                  Set New Password
                 </Button>
                 {!passwordsEqual && (
-                  <p className="error-message" style={{ color: "red" }}>
+                  <p className="error-message text-danger">
                     Passwords are not equal!
                   </p>
                 )}
                 {!isValidPassword && passwordsEqual && (
-                  <p className="error-message" style={{ color: "red" }}>
+                  <p className="error-message text-danger">
                     Password must be at least 8 characters long.
                   </p>
                 )}
                 <Button
-                  className="w-100 mb-1 mt-3 login-btn"
-                  onClick={(event) => handleResendMail(event)}
+                  className="w-100 mt-2 styled-btn"
+                  onClick={handleResendMail}
                 >
-                  Enter another mail
+                  Use Different Email
                 </Button>
               </>
             ) : emailSent ? (
               <>
-                <Form.Group id="code">
-                  <Form.Label style={{ color: "#FF7F00" }}>Code</Form.Label>
+                <Form.Group>
+                  <Form.Label style={{ color: "#FF7F00" }}>
+                    Verification Code
+                  </Form.Label>
                   <Form.Control
                     className="mb-3"
                     type="text"
@@ -158,25 +149,23 @@ export default function PasswordForgotten() {
                     onChange={(e) => setInsertedCode(e.target.value)}
                   />
                 </Form.Group>
-                <p className="error-message" style={{ color: "blue" }}>
-                  Check mail for verification code.
+                <p className="text-info small">
+                  Check your email for the verification code.
                 </p>
                 <Button
-                  className="w-100 mb-3 login-btn"
-                  onClick={(event) => startChangePassword(event)}
+                  className="w-100 mb-3 styled-btn"
+                  onClick={startChangePassword}
                 >
-                  Change password
+                  Verify Code
                 </Button>
                 {incorrectCode && (
-                  <p className="error-message" style={{ color: "red" }}>
-                    Incorrect code.
-                  </p>
+                  <p className="error-message text-danger">Incorrect code.</p>
                 )}
                 <Button
-                  className="w-100 mb-1 mt-3 login-btn"
-                  onClick={(event) => handleResendMail(event)}
+                  className="w-100 mt-2 styled-btn"
+                  onClick={handleResendMail}
                 >
-                  Change mail
+                  Change Email
                 </Button>
               </>
             ) : (
@@ -185,10 +174,10 @@ export default function PasswordForgotten() {
                   className="text-center mb-4"
                   style={{ color: "#f2881d", fontSize: "25px" }}
                 >
-                  Enter email to reset password
+                  Enter your email to reset your password
                 </h2>
-                <Form onSubmit={(event) => sendEmail(event)}>
-                  <Form.Group id="email">
+                <Form onSubmit={sendEmail}>
+                  <Form.Group>
                     <Form.Label style={{ color: "#FF7F00" }}>Email</Form.Label>
                     <Form.Control
                       className="mb-3"
@@ -198,14 +187,14 @@ export default function PasswordForgotten() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </Form.Group>
-                  <Button className="w-100 mb-3 login-btn" type="submit">
-                    Send email
+                  <Button className="w-100 mb-3 styled-btn" type="submit">
+                    Send Reset Link
                   </Button>
                   <Button
-                    className="w-100 mb-3 login-btn"
+                    className="w-100 styled-btn"
                     onClick={() => navigate("/login")}
                   >
-                    Login in
+                    Back to Login
                   </Button>
                 </Form>
               </>

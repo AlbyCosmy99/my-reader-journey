@@ -1,15 +1,16 @@
-import './Footer.css';
+import "./Footer.css";
 
 export default function Footer() {
   return (
     <footer className="app-footer">
       <div className="footer-content">
         <p className="footer-line">
-          &copy; {new Date().getFullYear()} <strong>MyReaderJourney</strong>. All rights reserved.
+          &copy; {new Date().getFullYear()} <strong>MyReaderJourney</strong>.
+          All rights reserved.
         </p>
 
         <p className="footer-line">
-          Crafted with care by{' '}
+          Crafted with care by{" "}
           <a
             href="https://www.linkedin.com/in/andrei-albudev/"
             target="_blank"
@@ -21,7 +22,8 @@ export default function Footer() {
         </p>
 
         <p className="footer-line tech">
-          <span className="dot" /> React &nbsp; <span className="dot" /> Bootstrap &nbsp;
+          <span className="dot" /> React &nbsp; <span className="dot" />{" "}
+          Bootstrap &nbsp;
           <span className="dot" /> Love for books
         </p>
       </div>
