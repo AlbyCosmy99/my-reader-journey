@@ -1,4 +1,4 @@
-import "./Footer.css";
+import './Footer.css';
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
 
         <p className="footer-line">
-          Created with care by{" "}
+          Created with care by{' '}
           <a
             href="https://www.linkedin.com/in/andrei-albudev/"
             target="_blank"

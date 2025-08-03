@@ -1,6 +1,6 @@
 import './Welcome.css';
-import { useEffect, useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import {useEffect, useState} from 'react';
+import {jwtDecode} from 'jwt-decode';
 import consts from '../../../../consts';
 
 export default function Welcome() {
@@ -22,7 +22,9 @@ export default function Welcome() {
 
   return (
     <div className="welcome-container">
-      <h1 className="welcome-title">Welcome, <span>{name}</span></h1>
+      <h1 className="welcome-title">
+        Welcome, <span>{name}</span>
+      </h1>
       <p className="welcome-subtitle">Keep track of your books!</p>
     </div>
   );

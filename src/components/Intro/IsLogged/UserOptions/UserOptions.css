@@ -1,30 +1,32 @@
 .options-btn .btn {
-    width: 100%; /* Full width within its column */
-    padding: 2% 0; /* Percentage padding for responsive height */
-    margin-bottom: 15px; /* Spacing between buttons */
-    font-size: 1.5em; /* Larger font size for better readability */
-    border-radius: 10px; /* Rounded corners */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for interactions */
-    background: linear-gradient(to right, #B79891, #94716B);
-    border: 1.5px solid black !important;
+  width: 100%; /* Full width within its column */
+  padding: 2% 0; /* Percentage padding for responsive height */
+  margin-bottom: 15px; /* Spacing between buttons */
+  font-size: 1.5em; /* Larger font size for better readability */
+  border-radius: 10px; /* Rounded corners */
+  transition:
+    background-color 0.3s,
+    transform 0.3s; /* Smooth transitions for interactions */
+  background: linear-gradient(to right, #b79891, #94716b);
+  border: 1.5px solid black !important;
 }
 
 .options-container {
-    margin-top: 3.5rem;
+  margin-top: 3.5rem;
 }
 
 .options-btn .btn:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-    .options-btn .btn {
-        padding: 4% 0; /* Increased padding for smaller screens */
-        font-size: 1.2em; /* Adjust font size for readability */
-    }
+  .options-btn .btn {
+    padding: 4% 0; /* Increased padding for smaller screens */
+    font-size: 1.2em; /* Adjust font size for readability */
+  }
 }
 
 .folders-btn {
-    background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
+  background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
 }

@@ -1,64 +1,65 @@
 .elevated-card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
 }
 
 .elevated-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 .card-body::-webkit-scrollbar {
-    width: 12px; 
+  width: 12px;
 }
 
-
 .card-body::-webkit-scrollbar-track {
-    background: #BB9B71;
+  background: #bb9b71;
 }
 
 .card-body::-webkit-scrollbar-thumb {
-    background-color: #5B462F;
-    border-radius: 6px;
-    border: 3px solid #BB9B71; 
+  background-color: #5b462f;
+  border-radius: 6px;
+  border: 3px solid #bb9b71;
 }
 
 .card-body::-webkit-scrollbar-thumb:hover {
-    background: #826346;
+  background: #826346;
 }
 .dropdown-toggle {
-    background-color: #800020 !important;
-    transition: background-color 500ms, transform 500ms !important;
-    border: 1px solid #800020 !important;
+  background-color: #800020 !important;
+  transition:
+    background-color 500ms,
+    transform 500ms !important;
+  border: 1px solid #800020 !important;
 }
 
 .dropdown-toggle:hover {
-    background-color: #660000 !important;
-    transform: scale(1.05) !important;
-    border: 1px solid #800020 !important;
+  background-color: #660000 !important;
+  transform: scale(1.05) !important;
+  border: 1px solid #800020 !important;
 }
 
 .btn.show {
-    background-color: #660000;
+  background-color: #660000;
 }
 
 .dropdown-menu {
-    background-color: #800020 !important;
+  background-color: #800020 !important;
 }
 
 .dropdown-item {
-    color: white !important;
-    background-color: #800020 !important;
+  color: white !important;
+  background-color: #800020 !important;
 }
 
 .dropdown-item:hover {
-    color: white !important;
-    background-color: #660000 !important;
+  color: white !important;
+  background-color: #660000 !important;
 }
 
 .card-books-container {
-    margin-left: 10rem;
-    margin-right: 10rem;
-    margin-bottom: 1rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-bottom: 1rem;
 }
 
 .custom-backdrop {
@@ -66,20 +67,17 @@
   transition: background-color 0.3s ease-in-out !important;
 }
 
-
 @media screen and (max-width: 600px) {
-    .card-books-container {
-      margin-left: 0;
-      margin-right: 0;
-    }
+  .card-books-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .book-icons {
-    transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
 }
 
 .book-icons:hover {
-    transform: scale(1.08);
+  transform: scale(1.08);
 }
-
-

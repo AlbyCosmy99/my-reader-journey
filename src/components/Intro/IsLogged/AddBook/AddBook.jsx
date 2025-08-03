@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from 'react';
 import {
   Card,
   Form,
@@ -7,11 +7,11 @@ import {
   Row,
   Col,
   Spinner,
-} from "react-bootstrap";
-import "./AddBook.css";
-import { jwtDecode } from "jwt-decode";
-import consts from "../../../../consts";
-import defaultCover from "../../../../assets/defaultCover.jpg";
+} from 'react-bootstrap';
+import './AddBook.css';
+import {jwtDecode} from 'jwt-decode';
+import consts from '../../../../consts';
+import defaultCover from '../../../../assets/defaultCover.jpg';
 
 // Utility: get local datetime string (YYYY-MM-DDTHH:MM:SS)
 const getNowDatetimeLocal = () => {
@@ -22,25 +22,25 @@ const getNowDatetimeLocal = () => {
 };
 
 // Utility: take YYYY-MM-DD and append current local time
-const addCurrentTime = (dateStr) => {
-  const [year, month, day] = dateStr.split("-");
+const addCurrentTime = dateStr => {
+  const [year, month, day] = dateStr.split('-');
   const now = new Date();
-  const hours = String(now.getHours()).padStart(2, "0");
-  const minutes = String(now.getMinutes()).padStart(2, "0");
-  const seconds = String(now.getSeconds()).padStart(2, "0");
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
   return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 };
 
 export default function AddBook() {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
-  const [language, setLanguage] = useState("");
-  const [publishingHouse, setPublishingHouse] = useState("");
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [genre, setGenre] = useState('');
+  const [language, setLanguage] = useState('');
+  const [publishingHouse, setPublishingHouse] = useState('');
   const [pages, setPages] = useState(0);
-  const [price, setPrice] = useState("");
-  const [isbn, setIsbn] = useState("");
-  const [publicationDate, setPublicationDate] = useState("");
+  const [price, setPrice] = useState('');
+  const [isbn, setIsbn] = useState('');
+  const [publicationDate, setPublicationDate] = useState('');
   const [read, setRead] = useState(true);
   const [toRead, setToRead] = useState(false);
   const [reading, setReading] = useState(false);
@@ -48,27 +48,27 @@ export default function AddBook() {
   const [favorite, setFavorite] = useState(false);
   const [loaned, setLoaned] = useState(false);
   const [borrowed, setBorrowed] = useState(false);
-  const [readingStartDate, setReadingStartDate] = useState("");
+  const [readingStartDate, setReadingStartDate] = useState('');
   const [readingEndDate, setReadingEndDate] = useState(getNowDatetimeLocal());
   const [dateAdded, setDateAdded] = useState(getNowDatetimeLocal());
-  const [description, setDescription] = useState("");
-  const [notes, setNotes] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState('');
+  const [notes, setNotes] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [loading, setLoading] = useState(false);
 
   function addBook(event) {
     event.preventDefault();
     setLoading(true);
 
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem('jwt');
     let payload = null;
 
     if (token) {
       try {
         payload = jwtDecode(token);
       } catch (error) {
-        console.error("Invalid token", error);
-        localStorage.removeItem("jwt");
+        console.error('Invalid token', error);
+        localStorage.removeItem('jwt');
         window.location.reload();
         return;
       }
@@ -104,14 +104,14 @@ export default function AddBook() {
     };
 
     fetch(`${consts.getBackendUrl()}/api/users/books`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(book),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(() => {
         setLoading(false);
         window.history.back();
@@ -125,7 +125,7 @@ export default function AddBook() {
         <Spinner
           animation="border"
           role="status"
-          style={{ width: "6rem", height: "6rem", color: "#f2cd3a" }}
+          style={{width: '6rem', height: '6rem', color: '#f2cd3a'}}
         >
           <span className="visually-hidden">Loading...</span>
         </Spinner>
@@ -137,15 +137,15 @@ export default function AddBook() {
     <Container className="py-4 my-5 mt-4">
       <Card
         className="shadow-lg border-0 rounded-4"
-        style={{ backgroundColor: "#fdf8f2" }}
+        style={{backgroundColor: '#fdf8f2'}}
       >
         <Card.Header
           className="text-center rounded-top-4"
           style={{
-            background: "linear-gradient(90deg, #7f4f24, #d4a373)",
-            color: "white",
-            fontSize: "1.6rem",
-            fontWeight: "bold",
+            background: 'linear-gradient(90deg, #7f4f24, #d4a373)',
+            color: 'white',
+            fontSize: '1.6rem',
+            fontWeight: 'bold',
           }}
         >
           Add a New Book
@@ -153,49 +153,49 @@ export default function AddBook() {
 
         <Card.Body
           className="px-4 py-3"
-          style={{ maxHeight: "70vh", overflowY: "auto" }}
+          style={{maxHeight: '70vh', overflowY: 'auto'}}
         >
           <Form onSubmit={addBook}>
             <Row className="g-3">
               {[
                 {
-                  label: "Title*",
+                  label: 'Title*',
                   val: title,
                   setter: setTitle,
-                  type: "text",
+                  type: 'text',
                   required: true,
                 },
-                { label: "Author", val: author, setter: setAuthor },
-                { label: "Genre", val: genre, setter: setGenre },
-                { label: "Language", val: language, setter: setLanguage },
-                { label: "Image URL", val: imageUrl, setter: setImageUrl },
+                {label: 'Author', val: author, setter: setAuthor},
+                {label: 'Genre', val: genre, setter: setGenre},
+                {label: 'Language', val: language, setter: setLanguage},
+                {label: 'Image URL', val: imageUrl, setter: setImageUrl},
                 {
-                  label: "Publishing House",
+                  label: 'Publishing House',
                   val: publishingHouse,
                   setter: setPublishingHouse,
                 },
                 {
-                  label: "Pages",
+                  label: 'Pages',
                   val: pages,
                   setter: setPages,
-                  type: "number",
+                  type: 'number',
                 },
-                { label: "Price", val: price, setter: setPrice },
-                { label: "ISBN", val: isbn, setter: setIsbn },
+                {label: 'Price', val: price, setter: setPrice},
+                {label: 'ISBN', val: isbn, setter: setIsbn},
                 {
-                  label: "Publication Date",
+                  label: 'Publication Date',
                   val: publicationDate,
                   setter: setPublicationDate,
-                  type: "date",
+                  type: 'date',
                 },
               ].map((field, i) => (
                 <Col md={6} key={i}>
                   <Form.Group>
                     <Form.Label className="text-dark">{field.label}</Form.Label>
                     <Form.Control
-                      type={field.type || "text"}
+                      type={field.type || 'text'}
                       value={field.val}
-                      onChange={(e) => field.setter(e.target.value)}
+                      onChange={e => field.setter(e.target.value)}
                       required={field.required}
                       className="bg-light"
                     />
@@ -216,7 +216,7 @@ export default function AddBook() {
                         name="rating"
                         value={index + 1}
                         checked={rating === index + 1}
-                        onChange={(e) => setRating(Number(e.target.value))}
+                        onChange={e => setRating(Number(e.target.value))}
                       />
                     ))}
                   </div>
@@ -224,19 +224,19 @@ export default function AddBook() {
               </Col>
 
               {[
-                { label: "Read", val: read, setter: setRead },
-                { label: "To Read", val: toRead, setter: setToRead },
-                { label: "Reading", val: reading, setter: setReading },
-                { label: "Favorite", val: favorite, setter: setFavorite },
-                { label: "Loaned", val: loaned, setter: setLoaned },
-                { label: "Borrowed", val: borrowed, setter: setBorrowed },
+                {label: 'Read', val: read, setter: setRead},
+                {label: 'To Read', val: toRead, setter: setToRead},
+                {label: 'Reading', val: reading, setter: setReading},
+                {label: 'Favorite', val: favorite, setter: setFavorite},
+                {label: 'Loaned', val: loaned, setter: setLoaned},
+                {label: 'Borrowed', val: borrowed, setter: setBorrowed},
               ].map((toggle, i) => (
                 <Col md={2} key={i}>
                   <Form.Check
                     type="checkbox"
                     label={toggle.label}
                     checked={toggle.val}
-                    onChange={(e) => toggle.setter(e.target.checked)}
+                    onChange={e => toggle.setter(e.target.checked)}
                     className="text-dark"
                   />
                 </Col>
@@ -244,16 +244,16 @@ export default function AddBook() {
 
               {[
                 {
-                  label: "Reading Start Date",
+                  label: 'Reading Start Date',
                   val: readingStartDate,
                   setter: setReadingStartDate,
                 },
                 {
-                  label: "Reading End Date",
+                  label: 'Reading End Date',
                   val: readingEndDate,
                   setter: setReadingEndDate,
                 },
-                { label: "Date Added", val: dateAdded, setter: setDateAdded },
+                {label: 'Date Added', val: dateAdded, setter: setDateAdded},
               ].map((dateField, i) => (
                 <Col md={4} key={i}>
                   <Form.Group>
@@ -262,8 +262,8 @@ export default function AddBook() {
                     </Form.Label>
                     <Form.Control
                       type="date"
-                      value={dateField.val ? dateField.val.split("T")[0] : ""}
-                      onChange={(e) =>
+                      value={dateField.val ? dateField.val.split('T')[0] : ''}
+                      onChange={e =>
                         dateField.setter(addCurrentTime(e.target.value))
                       }
                     />
@@ -278,7 +278,7 @@ export default function AddBook() {
                     as="textarea"
                     rows={3}
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={e => setDescription(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -289,7 +289,7 @@ export default function AddBook() {
                     as="textarea"
                     rows={3}
                     value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+                    onChange={e => setNotes(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -310,10 +310,10 @@ export default function AddBook() {
                   type="submit"
                   className="w-100 py-2 shadow-sm animated-confirm-button"
                   style={{
-                    background: "linear-gradient(90deg, #f2cd3a, #d4a373)",
-                    border: "none",
-                    color: "#000",
-                    fontWeight: "bold",
+                    background: 'linear-gradient(90deg, #f2cd3a, #d4a373)',
+                    border: 'none',
+                    color: '#000',
+                    fontWeight: 'bold',
                   }}
                 >
                   Add Book

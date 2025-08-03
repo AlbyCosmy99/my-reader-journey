@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { Card, Form, Button, Container } from "react-bootstrap";
-import consts from "../../../consts";
-import { useNavigate } from "react-router-dom";
-import "./PasswordForgotten.css"; // 👈 Make sure to import the styles
+import {useState} from 'react';
+import {Card, Form, Button, Container} from 'react-bootstrap';
+import consts from '../../../consts';
+import {useNavigate} from 'react-router-dom';
+import './PasswordForgotten.css'; // 👈 Make sure to import the styles
 
 export default function PasswordForgotten() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
-  const [code, setCode] = useState("");
-  const [insertedCode, setInsertedCode] = useState("");
+  const [code, setCode] = useState('');
+  const [insertedCode, setInsertedCode] = useState('');
   const [incorrectCode, setIncorrectCode] = useState(false);
   const [isChangePassword, setIsChangePassword] = useState(false);
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
   const [passwordsEqual, setPasswordsEqual] = useState(true);
   const [isValidPassword, setIsValidPassword] = useState(true);
   const navigate = useNavigate();
@@ -21,17 +21,17 @@ export default function PasswordForgotten() {
     event.preventDefault();
     setEmailSent(true);
     fetch(`${consts.getBackendUrl()}/api/users/mails/send-verification`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email}),
     })
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         if (res.code) {
           setCode(res.code);
         } else {
           setEmailSent(false);
-          setEmail("");
+          setEmail('');
         }
       });
   }
@@ -41,10 +41,10 @@ export default function PasswordForgotten() {
     setEmailSent(false);
     setIncorrectCode(false);
     setIsChangePassword(false);
-    setCode("");
-    setInsertedCode("");
-    setPassword1("");
-    setPassword2("");
+    setCode('');
+    setInsertedCode('');
+    setPassword1('');
+    setPassword2('');
   }
 
   function startChangePassword(event) {
@@ -67,12 +67,12 @@ export default function PasswordForgotten() {
       }
       setIsValidPassword(true);
       fetch(`${consts.getBackendUrl()}/api/users/change-password`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password: password1 }),
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password: password1}),
       })
-        .then((res) => res.json())
-        .then(() => navigate("/login"));
+        .then(res => res.json())
+        .then(() => navigate('/login'));
     } else {
       setPasswordsEqual(false);
     }
@@ -81,15 +81,15 @@ export default function PasswordForgotten() {
   return (
     <Container
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      style={{minHeight: '100vh'}}
     >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
+      <div className="w-100" style={{maxWidth: '400px'}}>
         <Card className="card-custom">
           <Card.Body>
             {isChangePassword ? (
               <>
                 <Form.Group>
-                  <Form.Label style={{ color: "#FF7F00" }}>
+                  <Form.Label style={{color: '#FF7F00'}}>
                     New Password
                   </Form.Label>
                   <Form.Control
@@ -97,11 +97,11 @@ export default function PasswordForgotten() {
                     type="password"
                     required
                     value={password1}
-                    onChange={(e) => setPassword1(e.target.value)}
+                    onChange={e => setPassword1(e.target.value)}
                   />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label style={{ color: "#FF7F00" }}>
+                  <Form.Label style={{color: '#FF7F00'}}>
                     Repeat Password
                   </Form.Label>
                   <Form.Control
@@ -109,7 +109,7 @@ export default function PasswordForgotten() {
                     type="password"
                     required
                     value={password2}
-                    onChange={(e) => setPassword2(e.target.value)}
+                    onChange={e => setPassword2(e.target.value)}
                   />
                 </Form.Group>
                 <Button
@@ -138,7 +138,7 @@ export default function PasswordForgotten() {
             ) : emailSent ? (
               <>
                 <Form.Group>
-                  <Form.Label style={{ color: "#FF7F00" }}>
+                  <Form.Label style={{color: '#FF7F00'}}>
                     Verification Code
                   </Form.Label>
                   <Form.Control
@@ -146,7 +146,7 @@ export default function PasswordForgotten() {
                     type="text"
                     required
                     value={insertedCode}
-                    onChange={(e) => setInsertedCode(e.target.value)}
+                    onChange={e => setInsertedCode(e.target.value)}
                   />
                 </Form.Group>
                 <p className="text-info small">
@@ -172,19 +172,19 @@ export default function PasswordForgotten() {
               <>
                 <h2
                   className="text-center mb-4"
-                  style={{ color: "#f2881d", fontSize: "25px" }}
+                  style={{color: '#f2881d', fontSize: '25px'}}
                 >
                   Enter your email to reset your password
                 </h2>
                 <Form onSubmit={sendEmail}>
                   <Form.Group>
-                    <Form.Label style={{ color: "#FF7F00" }}>Email</Form.Label>
+                    <Form.Label style={{color: '#FF7F00'}}>Email</Form.Label>
                     <Form.Control
                       className="mb-3"
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                     />
                   </Form.Group>
                   <Button className="w-100 mb-3 styled-btn" type="submit">
@@ -192,7 +192,7 @@ export default function PasswordForgotten() {
                   </Button>
                   <Button
                     className="w-100 styled-btn"
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate('/login')}
                   >
                     Back to Login
                   </Button>

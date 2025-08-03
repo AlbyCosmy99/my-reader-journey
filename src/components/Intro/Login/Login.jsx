@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Card, Form, Button, Container, Spinner } from "react-bootstrap";
-import "./Login.css"; // 👈 include .styled-btn and link styles here
-import consts from "../../../consts.js";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from 'react';
+import {Card, Form, Button, Container, Spinner} from 'react-bootstrap';
+import './Login.css'; // 👈 include .styled-btn and link styles here
+import consts from '../../../consts.js';
+import {useNavigate} from 'react-router-dom';
 
-export default function Login({ e_mail = "" }) {
+export default function Login({e_mail = ''}) {
   const [email, setEmail] = useState(e_mail);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [isValidPassword, setIsValidPassword] = useState(true);
   const [areValidCredentials, setAreValidCredentials] = useState(true);
   const navigate = useNavigate();
@@ -14,12 +14,12 @@ export default function Login({ e_mail = "" }) {
 
   function handleForgottenPassword(e) {
     e.preventDefault();
-    navigate("/forgotPassword");
+    navigate('/forgotPassword');
   }
 
   function handleRegister(e) {
     e.preventDefault();
-    navigate("/register");
+    navigate('/register');
   }
 
   async function login(event) {
@@ -36,22 +36,22 @@ export default function Login({ e_mail = "" }) {
 
     try {
       const res = await fetch(`${consts.getBackendUrl()}/api/users/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password}),
       });
 
       const data = await res.json();
       if (data.jwt) {
         setAreValidCredentials(true);
-        localStorage.setItem("jwt", data.jwt);
-        localStorage.setItem("sortBy", "title");
-        navigate("/home");
+        localStorage.setItem('jwt', data.jwt);
+        localStorage.setItem('sortBy', 'title');
+        navigate('/home');
       } else {
         setAreValidCredentials(false);
       }
     } catch (err) {
-      console.error("Login error:", err);
+      console.error('Login error:', err);
     } finally {
       setLoading(false);
     }
@@ -60,48 +60,45 @@ export default function Login({ e_mail = "" }) {
   return loading ? (
     <div
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100dvh" }}
+      style={{minHeight: '100vh'}}
     >
       <Spinner
         animation="border"
         role="status"
-        style={{ width: "6rem", height: "6rem", color: "#f2cd3a" }}
+        style={{width: '6rem', height: '6rem', color: '#f2cd3a'}}
       >
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     </div>
   ) : (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100dvh" }}
-    >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
+    <Container className="d-flex align-items-center justify-content-center responsive-container">
+      <div className="w-100" style={{maxWidth: '400px'}}>
         <Card className="card-custom">
           <Card.Body>
             <h2
               className="text-center mb-4"
-              style={{ color: "#f2881d", fontSize: "24px" }}
+              style={{color: '#f2881d', fontSize: '24px'}}
             >
               Log in to MyReaderJourney
             </h2>
             <Form onSubmit={login}>
               <Form.Group>
-                <Form.Label style={{ color: "#FF7F00" }}>Email</Form.Label>
+                <Form.Label style={{color: '#FF7F00'}}>Email</Form.Label>
                 <Form.Control
                   type="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                   className="mb-3"
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ color: "#FF7F00" }}>Password</Form.Label>
+                <Form.Label style={{color: '#FF7F00'}}>Password</Form.Label>
                 <Form.Control
                   type="password"
                   required
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                 />
                 {!isValidPassword && (
                   <p className="error-message text-danger mt-1">
@@ -127,8 +124,8 @@ export default function Login({ e_mail = "" }) {
                 Log In
               </Button>
             </Form>
-            <div className="text-center" style={{ color: "#f2881d" }}>
-              New here?{" "}
+            <div className="text-center" style={{color: '#f2881d'}}>
+              New here?{' '}
               <a
                 href="register"
                 className="styled-link"

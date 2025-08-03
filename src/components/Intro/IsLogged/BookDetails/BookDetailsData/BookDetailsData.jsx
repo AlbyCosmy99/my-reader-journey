@@ -1,12 +1,12 @@
-import Card from "react-bootstrap/Card";
-import "./BookDetailsData.css";
-import formatDate from "../../../../../utils/formatDate";
+import Card from 'react-bootstrap/Card';
+import './BookDetailsData.css';
+import formatDate from '../../../../../utils/formatDate';
 
-export default function BookDetailsData({ book }) {
+export default function BookDetailsData({book}) {
   return (
-    <Card style={{ backgroundColor: "#CEB289", color: "#5B462F" }}>
-      <Card.Body style={{ maxHeight: "86vh", overflowY: "auto" }}>
-        <div style={{ textAlign: "center" }}>
+    <Card style={{backgroundColor: '#CEB289', color: '#5B462F'}}>
+      <Card.Body style={{maxHeight: '86vh', overflowY: 'auto'}}>
+        <div style={{textAlign: 'center'}}>
           <h2>{book.title}</h2>
           <h3>{book.author}</h3>
         </div>
@@ -16,7 +16,7 @@ export default function BookDetailsData({ book }) {
             {book.genre}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.language ? (
           <h4>
@@ -24,7 +24,7 @@ export default function BookDetailsData({ book }) {
             {book.language}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.publishing_house ? (
           <h4>
@@ -32,7 +32,7 @@ export default function BookDetailsData({ book }) {
             {book.publishing_house}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.pages ? (
           <h4>
@@ -40,7 +40,7 @@ export default function BookDetailsData({ book }) {
             {book.pages}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.price ? (
           <h4>
@@ -48,7 +48,7 @@ export default function BookDetailsData({ book }) {
             {book.price}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.isbn ? (
           <h4>
@@ -56,44 +56,44 @@ export default function BookDetailsData({ book }) {
             {book.isbn}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.publicationDate ? (
           <h4>
             <b>Publication Date: </b>
-            {String(book.publicationDate).split("T")[0] === "null"
-              ? ""
-              : String(book.publicationDate).split("T")[0]}
+            {String(book.publicationDate).split('T')[0] === 'null'
+              ? ''
+              : String(book.publicationDate).split('T')[0]}
           </h4>
         ) : (
-          ""
+          ''
         )}
         <Card
           style={{
-            marginTop: "1rem",
-            marginBottom: "1rem",
-            backgroundColor: "#9A7872",
-            color: "white",
-            border: "2px solid #9A7872",
+            marginTop: '1rem',
+            marginBottom: '1rem',
+            backgroundColor: '#9A7872',
+            color: 'white',
+            border: '2px solid #9A7872',
           }}
         >
-          <Card.Body style={{ padding: 0, margin: 0, textAlign: "center" }}>
-            <h3 style={{ fontSize: "25px" }} className="m-0 p-1">
+          <Card.Body style={{padding: 0, margin: 0, textAlign: 'center'}}>
+            <h3 style={{fontSize: '25px'}} className="m-0 p-1">
               YOUR READING STATUS
             </h3>
           </Card.Body>
         </Card>
         <h4>
           <b>Read: </b>
-          {book.read ? "YES" : "NO"}
+          {book.read ? 'YES' : 'NO'}
         </h4>
         <h4>
           <b>To Read: </b>
-          {book.toRead ? "YES" : "NO"}
+          {book.toRead ? 'YES' : 'NO'}
         </h4>
         <h4>
           <b>Currently Reading: </b>
-          {book.reading ? "YES" : "NO"}
+          {book.reading ? 'YES' : 'NO'}
         </h4>
         {book.rating ? (
           <h4>
@@ -101,19 +101,19 @@ export default function BookDetailsData({ book }) {
             {book.rating}/10
           </h4>
         ) : (
-          ""
+          ''
         )}
         <h4>
           <b>Favorite: </b>
-          {book.favorite ? "YES" : "NO"}
+          {book.favorite ? 'YES' : 'NO'}
         </h4>
         <h4>
           <b>Loaned: </b>
-          {book.loaned ? "YES" : "NO"}
+          {book.loaned ? 'YES' : 'NO'}
         </h4>
         <h4>
           <b>Borrowed: </b>
-          {book.borrowed ? "YES" : "NO"}
+          {book.borrowed ? 'YES' : 'NO'}
         </h4>
         {book.startReadingDate ? (
           <h4>
@@ -121,7 +121,7 @@ export default function BookDetailsData({ book }) {
             {formatDate(book.startReadingDate)}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.endReadingDate ? (
           <h4>
@@ -129,7 +129,7 @@ export default function BookDetailsData({ book }) {
             {formatDate(book.endReadingDate)}
           </h4>
         ) : (
-          ""
+          ''
         )}
 
         {book.dateAdded ? (
@@ -138,21 +138,21 @@ export default function BookDetailsData({ book }) {
             {formatDate(book.dateAdded)}
           </h4>
         ) : (
-          ""
+          ''
         )}
         {book.description ? (
           <span>
             <Card
               style={{
-                marginTop: "1rem",
-                marginBottom: "1rem",
-                backgroundColor: "#9A7872",
-                color: "white",
-                border: "2px solid #9A7872",
+                marginTop: '1rem',
+                marginBottom: '1rem',
+                backgroundColor: '#9A7872',
+                color: 'white',
+                border: '2px solid #9A7872',
               }}
             >
-              <Card.Body style={{ padding: 0, margin: 0, textAlign: "center" }}>
-                <h3 style={{ fontSize: "25px" }} className="m-0 p-1">
+              <Card.Body style={{padding: 0, margin: 0, textAlign: 'center'}}>
+                <h3 style={{fontSize: '25px'}} className="m-0 p-1">
                   DESCRIPTION
                 </h3>
               </Card.Body>
@@ -160,21 +160,21 @@ export default function BookDetailsData({ book }) {
             <h4>{book.description}</h4>
           </span>
         ) : (
-          ""
+          ''
         )}
         {book.notes ? (
           <span>
             <Card
               style={{
-                marginTop: "1rem",
-                marginBottom: "1rem",
-                backgroundColor: "#9A7872",
-                color: "white",
-                border: "2px solid #9A7872",
+                marginTop: '1rem',
+                marginBottom: '1rem',
+                backgroundColor: '#9A7872',
+                color: 'white',
+                border: '2px solid #9A7872',
               }}
             >
-              <Card.Body style={{ padding: 0, margin: 0, textAlign: "center" }}>
-                <h3 style={{ fontSize: "25px" }} className="m-0 p-1">
+              <Card.Body style={{padding: 0, margin: 0, textAlign: 'center'}}>
+                <h3 style={{fontSize: '25px'}} className="m-0 p-1">
                   NOTES
                 </h3>
               </Card.Body>
@@ -182,7 +182,7 @@ export default function BookDetailsData({ book }) {
             <h4>{book.notes}</h4>
           </span>
         ) : (
-          ""
+          ''
         )}
       </Card.Body>
     </Card>

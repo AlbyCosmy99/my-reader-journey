@@ -23,3 +23,13 @@
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
 }
+
+.responsive-container {
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .responsive-container {
+    min-height: 85vh;
+  }
+}

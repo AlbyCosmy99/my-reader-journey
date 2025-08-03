@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef } from "react";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Dropdown from "react-bootstrap/Dropdown";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "./NavBar.css";
-import { useNavigate, Link } from "react-router-dom";
-import consts from "../../consts";
+import {useState, useEffect, useRef} from 'react';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './NavBar.css';
+import {useNavigate, Link} from 'react-router-dom';
+import consts from '../../consts';
 
 function NavBar() {
   const navigate = useNavigate();
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [showSearchDropdown, setShowSearchDropdown] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [books, setBooks] = useState([]);
@@ -20,46 +20,46 @@ function NavBar() {
   const dropdownRef = useRef(null);
 
   const handleLogout = () => {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem('jwt');
     window.location.href = `${consts.getFrontendUrl()}`;
   };
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = event => {
     const value = event.target.value;
     fetch(`${consts.getBackendUrl()}/api/users/books?take=5`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     })
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         setBooks(
-          res.filter((book) =>
-            book.title.toLowerCase().includes(value.toLowerCase())
-          )
+          res.filter(book =>
+            book.title.toLowerCase().includes(value.toLowerCase()),
+          ),
         );
       });
     setSearchValue(value);
     setShowSearchDropdown(value.length > 0);
   };
 
-  const navigatetoBook = (bookId) => {
-    setSearchValue("");
+  const navigatetoBook = bookId => {
+    setSearchValue('');
     navigate(`/home/book/${bookId}`);
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowDropdown(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -68,7 +68,7 @@ function NavBar() {
       <Container fluid>
         <Navbar.Brand
           as={Link}
-          to={consts.getFrontendUrl() + "/home"}
+          to={consts.getFrontendUrl() + '/home'}
           className="logo text-light"
         >
           <span className="logo-reader">My</span>Reader
@@ -79,7 +79,7 @@ function NavBar() {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
+            style={{maxHeight: '100px'}}
             navbarScroll
           />
 
@@ -92,10 +92,10 @@ function NavBar() {
               value={searchValue}
               onChange={handleSearchChange}
             />
-            {showSearchDropdown && books.length > 0 && searchValue !== "" && (
+            {showSearchDropdown && books.length > 0 && searchValue !== '' && (
               <Dropdown.Menu
                 show={true}
-                style={{ position: "absolute", left: 0, top: "100%" }}
+                style={{position: 'absolute', left: 0, top: '100%'}}
               >
                 {books.map((book, index) => (
                   <Dropdown.Item
@@ -117,11 +117,11 @@ function NavBar() {
                 <Dropdown.Toggle
                   variant="link"
                   id="dropdown-basic"
-                  style={{ color: "white" }}
+                  style={{color: 'white'}}
                 >
                   <i
                     className="bi bi-person-circle"
-                    style={{ margin: "1rem", cursor: "pointer" }}
+                    style={{margin: '1rem', cursor: 'pointer'}}
                   ></i>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>

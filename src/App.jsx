@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import './App.css';
 import Footer from './components/Footer/Footer';
-import { jwtDecode } from 'jwt-decode';
-import { Outlet, useNavigate } from 'react-router-dom';
+import {jwtDecode} from 'jwt-decode';
+import {Outlet, useNavigate} from 'react-router-dom';
 
 function App() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('jwt');
@@ -13,30 +13,30 @@ function App() {
       try {
         const payload = jwtDecode(token);
         const currentTime = Date.now() / 1000;
-        if (payload.exp < currentTime) {    
-          localStorage.removeItem('jwt')
-          navigate('/login')
+        if (payload.exp < currentTime) {
+          localStorage.removeItem('jwt');
+          navigate('/login');
         } else {
-          navigate('/home')
+          navigate('/home');
         }
       } catch (error) {
-        console.error("Failed to decode token", error);
-        localStorage.removeItem('jwt')
-        navigate('/login')
+        console.error('Failed to decode token', error);
+        localStorage.removeItem('jwt');
+        navigate('/login');
       }
     } else {
-      localStorage.removeItem('jwt')
+      localStorage.removeItem('jwt');
       navigate('/login');
     }
   }, []);
-  
+
   return (
-    <div id='app-container' style={{backgroundColor: '#9A7872'}}>
-      <div id='content-container'>
+    <div id="app-container" style={{backgroundColor: '#9A7872'}}>
+      <div id="content-container">
         <Outlet />
       </div>
-      <div id='footer-container'>
-        <Footer/>
+      <div id="footer-container">
+        <Footer />
       </div>
     </div>
   );

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { Card, Form, Button, Container } from "react-bootstrap";
-import consts from "../../../consts";
-import { Link, useNavigate } from "react-router-dom";
-import "./Register.css"; // ✅ Include CSS for styled-btn, styled-link
+import React, {useState} from 'react';
+import {Card, Form, Button, Container} from 'react-bootstrap';
+import consts from '../../../consts';
+import {Link, useNavigate} from 'react-router-dom';
+import './Register.css'; // ✅ Include CSS for styled-btn, styled-link
 
 export default function Register() {
   const [isValidPassword, setIsValidPassword] = useState(true);
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
   const [passwordsEqual, setPasswordsEqual] = useState(true);
   const [allFieldsMessage, setAllFieldsMessage] = useState(false);
   const navigate = useNavigate();
@@ -32,8 +32,8 @@ export default function Register() {
     if (password1 === password2) {
       setPasswordsEqual(true);
       fetch(`${consts.getBackendUrl()}/api/users/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           name,
           surname,
@@ -41,11 +41,11 @@ export default function Register() {
           password: password1,
         }),
       })
-        .then((res) => res.json())
-        .then((res) => {
+        .then(res => res.json())
+        .then(res => {
           if (res.jwt) {
-            localStorage.setItem("jwt", res.jwt);
-            localStorage.setItem("sortBy", "title");
+            localStorage.setItem('jwt', res.jwt);
+            localStorage.setItem('sortBy', 'title');
             window.location.reload();
           }
         });
@@ -55,62 +55,59 @@ export default function Register() {
   }
 
   return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
+    <Container className="d-flex align-items-center justify-content-center responsive-container">
+      <div className="w-100" style={{maxWidth: '400px'}}>
         <Card className="card-custom">
           <Card.Body>
             <h2
               className="text-center mb-4"
-              style={{ color: "#f2881d", fontSize: "24px" }}
+              style={{color: '#f2881d', fontSize: '24px'}}
             >
               Create Your Account
             </h2>
             <Form onSubmit={register}>
               <Form.Group>
-                <Form.Label style={{ color: "#FF7F00" }}>Name</Form.Label>
+                <Form.Label style={{color: '#FF7F00'}}>Name</Form.Label>
                 <Form.Control
                   className="mb-2"
                   type="text"
                   required
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={e => setName(e.target.value)}
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ color: "#FF7F00" }}>Surname</Form.Label>
+                <Form.Label style={{color: '#FF7F00'}}>Surname</Form.Label>
                 <Form.Control
                   className="mb-2"
                   type="text"
                   required
                   value={surname}
-                  onChange={(e) => setSurname(e.target.value)}
+                  onChange={e => setSurname(e.target.value)}
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ color: "#FF7F00" }}>Email</Form.Label>
+                <Form.Label style={{color: '#FF7F00'}}>Email</Form.Label>
                 <Form.Control
                   className="mb-2"
                   type="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value)}
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ color: "#FF7F00" }}>Password</Form.Label>
+                <Form.Label style={{color: '#FF7F00'}}>Password</Form.Label>
                 <Form.Control
                   className="mb-2"
                   type="password"
                   required
                   value={password1}
-                  onChange={(e) => setPassword1(e.target.value)}
+                  onChange={e => setPassword1(e.target.value)}
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label style={{ color: "#FF7F00" }}>
+                <Form.Label style={{color: '#FF7F00'}}>
                   Repeat Password
                 </Form.Label>
                 <Form.Control
@@ -118,7 +115,7 @@ export default function Register() {
                   type="password"
                   required
                   value={password2}
-                  onChange={(e) => setPassword2(e.target.value)}
+                  onChange={e => setPassword2(e.target.value)}
                 />
               </Form.Group>
 
@@ -143,8 +140,8 @@ export default function Register() {
               </Button>
             </Form>
 
-            <div className="text-center" style={{ color: "#f2881d" }}>
-              Already registered?{" "}
+            <div className="text-center" style={{color: '#f2881d'}}>
+              Already registered?{' '}
               <Link to="/login" className="styled-link">
                 Login
               </Link>

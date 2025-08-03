@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import App from './App';
 import Login from './components/Intro/Login/Login';
 import Home from './components/Intro/IsLogged/Home/Home';
@@ -15,7 +15,7 @@ import BookDetails from './components/Intro/IsLogged/BookDetails/BookDetails';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -24,11 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/forgotPassword',
-        element: <PasswordForgotten />
+        element: <PasswordForgotten />,
       },
       {
         path: '/register',
-        element: <Register />
+        element: <Register />,
       },
       {
         path: '/home',
@@ -36,11 +36,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: '',
-            element: <UserOptions />
+            element: <UserOptions />,
           },
           {
             path: 'add-book',
-            element: <AddBook />
+            element: <AddBook />,
           },
           {
             path: 'books-list',
@@ -48,11 +48,11 @@ const router = createBrowserRouter([
           },
           {
             path: 'book/:id',
-            element: <BookDetails />
-          }
-        ]
-      }
-    ]
+            element: <BookDetails />,
+          },
+        ],
+      },
+    ],
   },
 ]);
 
@@ -60,7 +60,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 reportWebVitals();

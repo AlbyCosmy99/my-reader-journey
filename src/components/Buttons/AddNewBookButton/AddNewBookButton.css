@@ -1,33 +1,35 @@
 .add-book-button {
-    background: linear-gradient(to right, #B24592, #F15F79) !important;
-    color: white !important;
-    margin-top: 2rem !important;
-    margin-bottom: 1.5rem !important;
+  background: linear-gradient(to right, #b24592, #f15f79) !important;
+  color: white !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 .options-btn .btn {
-    width: 100%;
-    padding: 2% 0;
-    margin-bottom: 15px;
-    font-size: 1.5em;
-    border-radius: 10px;
-    transition: background-color 0.3s, transform 0.3s;
-    background: linear-gradient(to right, #B79891, #94716B);
-    border: 1.5px solid black !important;
+  width: 100%;
+  padding: 2% 0;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  border-radius: 10px;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+  background: linear-gradient(to right, #b79891, #94716b);
+  border: 1.5px solid black !important;
 }
 
 .options-btn .btn:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
-    .options-btn .btn {
-        padding: 4% 0;
-        font-size: 1.2em;
-    }
+  .options-btn .btn {
+    padding: 4% 0;
+    font-size: 1.2em;
+  }
 }
 
-.add-new-book{
-    padding-left: 0;
-    padding-right: 0;
+.add-new-book {
+  padding-left: 0;
+  padding-right: 0;
 }

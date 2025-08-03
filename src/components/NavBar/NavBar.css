@@ -1,5 +1,5 @@
 .custom-navbar-color {
-  background-color: #9A7872 !important;
+  background-color: #9a7872 !important;
 }
 
 .logo {
@@ -10,9 +10,11 @@
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
   background-color: #fff8f6;
-  color: #5B3B33 !important;
-  border: 2px solid #CEB289;
-  transition: transform 0.5s ease, background-color 0.3s ease;
+  color: #5b3b33 !important;
+  border: 2px solid #ceb289;
+  transition:
+    transform 0.5s ease,
+    background-color 0.3s ease;
   text-decoration: none;
 }
 
@@ -22,11 +24,11 @@
 }
 
 .logo-reader {
-  color: #5B3B33;
+  color: #5b3b33;
 }
 
 .logo-journey {
-  color: #CE9C94;
+  color: #ce9c94;
 }
 
 .search-field {
