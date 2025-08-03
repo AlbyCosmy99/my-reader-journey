@@ -1,10 +1,11 @@
 .card-custom {
   background: rgb(252, 251, 211);
-  background: linear-gradient(
-    90deg,
-    rgba(252, 251, 211, 1) 0%,
+  background: radial-gradient(
+    circle at top left,
+    #fffdde 0%,
     rgba(255, 245, 121, 1) 100%
   );
+
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
@@ -69,7 +70,7 @@
 }
 
 .styled-link {
-  color: #f2cd3a;
+  color: #de8d31;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;

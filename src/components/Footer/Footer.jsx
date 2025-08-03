@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
 
         <p className="footer-line">
-          Crafted with care by{" "}
+          Created with care by{" "}
           <a
             href="https://www.linkedin.com/in/andrei-albudev/"
             target="_blank"
@@ -22,8 +22,10 @@ export default function Footer() {
         </p>
 
         <p className="footer-line tech">
-          <span className="dot" /> React &nbsp; <span className="dot" />{" "}
-          Bootstrap &nbsp;
+          <span className="dot" /> React &nbsp;
+          <span className="dot" /> Bootstrap &nbsp;
+          <span className="dot" /> Express.js &nbsp;
+          <span className="dot" /> MongoDB &nbsp;
           <span className="dot" /> Love for books
         </p>
       </div>
