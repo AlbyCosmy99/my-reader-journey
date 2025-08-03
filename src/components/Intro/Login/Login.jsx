@@ -60,7 +60,7 @@ export default function Login({ e_mail = "" }) {
   return loading ? (
     <div
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100dvh" }}
     >
       <Spinner
         animation="border"
@@ -73,7 +73,7 @@ export default function Login({ e_mail = "" }) {
   ) : (
     <Container
       className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100dvh" }}
     >
       <div className="w-100" style={{ maxWidth: "400px" }}>
         <Card className="card-custom">
