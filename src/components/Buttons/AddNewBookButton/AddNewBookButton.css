@@ -22,14 +22,18 @@
   transform: scale(1.05);
 }
 
+.add-new-book {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 @media (max-width: 768px) {
   .options-btn .btn {
     padding: 4% 0;
     font-size: 1.2em;
   }
-}
 
-.add-new-book {
-  padding-left: 0;
-  padding-right: 0;
+  .options-btn .btn:hover {
+    transform: scale(1);
+  }
 }

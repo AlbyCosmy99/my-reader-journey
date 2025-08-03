@@ -42,3 +42,12 @@
   border: 2px solid #800020;
   outline: none;
 }
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+  .logo:hover {
+    transform: scale(1);
+  }
+}

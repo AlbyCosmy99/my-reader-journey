@@ -8,9 +8,7 @@
 
   border: none;
   border-radius: 10px;
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.2),
-    0 6px 20px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -98,5 +96,8 @@
 
   .responsive-container {
     min-height: 85vh;
+  }
+  .login-btn:hover {
+    transform: scale(1);
   }
 }

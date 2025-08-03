@@ -36,7 +36,7 @@ function NavBar() {
       .then(res => res.json())
       .then(res => {
         setBooks(
-          res.filter(book =>
+          res.books.filter(book =>
             book.title.toLowerCase().includes(value.toLowerCase()),
           ),
         );
