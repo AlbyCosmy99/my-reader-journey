@@ -1,0 +1,18 @@
+.book-detail-image {
+  max-height: 87vh;
+}
+.book-details-main-data-mobile {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .book-detail-image {
+    max-height: 100%;
+    width: 8rem;
+  }
+  .book-details-main-data-mobile {
+    display: block;
+  }
+  .book-title-main-data-mobile {
+    line-break: anywhere;
+  }
+}

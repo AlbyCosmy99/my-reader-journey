@@ -1,6 +1,6 @@
 import {Button, Modal} from 'react-bootstrap';
 import consts from '../../consts';
-import './ConfirmBookDeletionModal.css'
+import './ConfirmBookDeletionModal.css';
 const ConfirmBookDeletionModal = ({
   showDeleteModal,
   setShowDeleteModal,

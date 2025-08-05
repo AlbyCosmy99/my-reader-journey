@@ -45,12 +45,35 @@ export default function BookDetails() {
     <Container style={{marginTop: '1rem', marginBottom: '1rem'}}>
       <Row>
         <Col lg={4} sm={12}>
-          <Card style={{backgroundColor: '#CEB289'}}>
+          <Card
+            style={{
+              backgroundColor: '#CEB289',
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '1rem',
+              alignItems: 'center',
+            }}
+          >
             <Card.Img
               variant="top"
+              className="book-detail-image"
               src={book.imageUrl}
-              style={{maxHeight: '87vh', borderRadius: '5px'}}
+              style={{borderRadius: '5px'}}
             />
+            <div
+              style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginRight: '1rem',
+              }}
+              className="book-details-main-data-mobile"
+            >
+              <h2 className="book-title-main-data-mobile">{book.title}</h2>
+              <h3>{book.author}</h3>
+            </div>
           </Card>
         </Col>
         <Col lg={8} sm={12}>

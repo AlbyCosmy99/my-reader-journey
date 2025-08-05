@@ -6,7 +6,7 @@ export default function BookDetailsData({book}) {
   return (
     <Card style={{backgroundColor: '#CEB289', color: '#5B462F'}}>
       <Card.Body style={{maxHeight: '86vh', overflowY: 'auto'}}>
-        <div style={{textAlign: 'center'}}>
+        <div className="book-details-main-data">
           <h2>{book.title}</h2>
           <h3>{book.author}</h3>
         </div>
@@ -78,9 +78,7 @@ export default function BookDetailsData({book}) {
           }}
         >
           <Card.Body style={{padding: 0, margin: 0, textAlign: 'center'}}>
-            <h3 style={{fontSize: '25px'}} className="m-0 p-1">
-              YOUR READING STATUS
-            </h3>
+            <h3 className="m-0 p-1 your-reading-status">YOUR READING STATUS</h3>
           </Card.Body>
         </Card>
         <h4>
