@@ -8,11 +8,16 @@
   .book-detail-image {
     max-height: 100%;
     width: 8rem;
+    margin: 0.5rem;
   }
   .book-details-main-data-mobile {
     display: block;
   }
   .book-title-main-data-mobile {
     line-break: anywhere;
+  }
+  .book-data-container {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }

@@ -46,6 +46,7 @@ export default function BookDetails() {
       <Row>
         <Col lg={4} sm={12}>
           <Card
+            className="book-data-container"
             style={{
               backgroundColor: '#CEB289',
               display: 'flex',

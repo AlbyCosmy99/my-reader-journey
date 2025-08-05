@@ -4,7 +4,13 @@ import formatDate from '../../../../../utils/formatDate';
 
 export default function BookDetailsData({book}) {
   return (
-    <Card style={{backgroundColor: '#CEB289', color: '#5B462F'}}>
+    <Card
+      style={{
+        backgroundColor: '#CEB289',
+        color: '#5B462F',
+      }}
+      className="book-details-data-container"
+    >
       <Card.Body style={{maxHeight: '86vh', overflowY: 'auto'}}>
         <div className="book-details-main-data">
           <h2>{book.title}</h2>
@@ -77,7 +83,13 @@ export default function BookDetailsData({book}) {
             border: '2px solid #9A7872',
           }}
         >
-          <Card.Body style={{padding: 0, margin: 0, textAlign: 'center'}}>
+          <Card.Body
+            style={{
+              padding: 0,
+              margin: 0,
+              textAlign: 'center',
+            }}
+          >
             <h3 className="m-0 p-1 your-reading-status">YOUR READING STATUS</h3>
           </Card.Body>
         </Card>
