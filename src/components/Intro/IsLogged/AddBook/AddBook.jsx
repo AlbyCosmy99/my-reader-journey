@@ -140,11 +140,10 @@ export default function AddBook() {
         style={{backgroundColor: '#fdf8f2'}}
       >
         <Card.Header
-          className="text-center rounded-top-4"
+          className="text-center rounded-top-4 add-book-header"
           style={{
             background: 'linear-gradient(90deg, #7f4f24, #d4a373)',
             color: 'white',
-            fontSize: '1.6rem',
             fontWeight: 'bold',
           }}
         >
@@ -152,8 +151,8 @@ export default function AddBook() {
         </Card.Header>
 
         <Card.Body
-          className="px-4 py-3"
-          style={{maxHeight: '70vh', overflowY: 'auto'}}
+          className="px-4 py-3 add-book-body"
+          style={{maxHeight: '65vh', overflowY: 'auto'}}
         >
           <Form onSubmit={addBook}>
             <Row className="g-3">
@@ -296,7 +295,7 @@ export default function AddBook() {
             </Row>
 
             <Row className="mt-4">
-              <Col md={6}>
+              <Col>
                 <Button
                   variant="outline-secondary"
                   className="w-100 py-2 shadow-sm"
@@ -305,7 +304,7 @@ export default function AddBook() {
                   Back
                 </Button>
               </Col>
-              <Col md={6}>
+              <Col>
                 <Button
                   type="submit"
                   className="w-100 py-2 shadow-sm animated-confirm-button"

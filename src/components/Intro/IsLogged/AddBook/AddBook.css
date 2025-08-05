@@ -21,6 +21,14 @@ label {
   box-shadow: 0 0.7rem 1.2rem rgba(0, 0, 0, 0.2);
 }
 
+.add-book-header {
+  font-size: 1.6rem;
+}
+
+.add-book-body {
+  max-height: 70vh;
+}
+
 @media (max-width: 768px) {
   .back-btn:hover {
     transform: scale(1);
@@ -28,5 +36,13 @@ label {
 
   .animated-confirm-button:hover {
     transform: scale(1);
+  }
+
+  .add-book-header {
+    font-size: 1.2rem;
+  }
+
+  .add-book-body {
+    max-height: 65vh;
   }
 }
