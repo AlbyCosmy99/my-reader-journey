@@ -2,10 +2,8 @@ import {useState} from 'react';
 import {Button, Col, Container, Modal, Row} from 'react-bootstrap';
 import consts from '../../consts';
 import {useNavigate, useSearchParams} from 'react-router-dom';
-import MobileMiniBookCard from './MobileMiniBookCard';
 
-const MiniBookCard = ({book, fetchBooks, books, setBooks}) => {
-  const isMobile = window.innerWidth <= 768;
+const MobileMiniBookCard = ({book, fetchBooks, books, setBooks}) => {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
@@ -58,14 +56,7 @@ const MiniBookCard = ({book, fetchBooks, books, setBooks}) => {
       }
     });
   }
-  return isMobile ? (
-    <MobileMiniBookCard
-      book={book}
-      fetchBooks={fetchBooks}
-      books={books}
-      setBooks={setBooks}
-    />
-  ) : (
+  return (
     <div
       className="card elevated-card"
       key={book._id}
@@ -80,13 +71,15 @@ const MiniBookCard = ({book, fetchBooks, books, setBooks}) => {
         <Container>
           <Row>
             <Col
-              lg={2}
               className="book-details"
-              style={{textAlign: 'center'}}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
               onClick={() => navigate(`/home/book/${book._id}`)}
             >
               <img
-                style={{maxWidth: '100%', maxHeight: '150px'}}
+                style={{maxWidth: '100%', maxHeight: '100px'}}
                 className="book-img img-fluid"
                 src={
                   book.imageUrl
@@ -96,58 +89,59 @@ const MiniBookCard = ({book, fetchBooks, books, setBooks}) => {
                 alt="book cover"
               />
             </Col>
+            <Col style={{display: 'flex', justifyContent: 'flex-end'}}>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '30px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <div className="book-icons">
+                  <div
+                    onClick={() => setFavoriteBook(book._id)}
+                    style={{
+                      textAlign: 'end',
+                      cursor: 'pointer',
+                    }}
+                    className="d-flex justify-content-end"
+                  >
+                    {book.favorite ? (
+                      <i
+                        className="bi bi-heart-fill"
+                        style={{fontSize: '35px'}}
+                      ></i>
+                    ) : (
+                      <i className="bi bi-heart" style={{fontSize: '35px'}}></i>
+                    )}
+                  </div>
+                </div>
+                <div
+                  lg={6}
+                  className="book-icons"
+                  onClick={() => handleDeleteModalShow(book)}
+                >
+                  <div
+                    style={{
+                      textAlign: 'end',
+                      cursor: 'pointer',
+                    }}
+                    className="d-flex justify-content-end"
+                  >
+                    <i className="bi bi-trash" style={{fontSize: '35px'}}></i>
+                  </div>
+                </div>
+              </div>
+            </Col>
             <Col
-              lg={7}
+              sm={12}
+              style={{marginTop: '1rem'}}
               className="book-details"
               onClick={() => navigate(`/home/book/${book._id}`)}
             >
-              <h2>{book.title}</h2>
-              <h4>{book.author}</h4>
-            </Col>
-            <Col lg={3}>
-              <Container>
-                <Row>
-                  <Col lg={6} className="book-icons">
-                    <div
-                      onClick={() => setFavoriteBook(book._id)}
-                      style={{
-                        textAlign: 'end',
-                        paddingRight: '3rem',
-                        cursor: 'pointer',
-                      }}
-                      className="d-flex justify-content-end"
-                    >
-                      {book.favorite ? (
-                        <i
-                          className="bi bi-heart-fill"
-                          style={{fontSize: '60px'}}
-                        ></i>
-                      ) : (
-                        <i
-                          className="bi bi-heart"
-                          style={{fontSize: '60px'}}
-                        ></i>
-                      )}
-                    </div>
-                  </Col>
-                  <Col
-                    lg={6}
-                    className="book-icons"
-                    onClick={() => handleDeleteModalShow(book)}
-                  >
-                    <div
-                      style={{
-                        textAlign: 'end',
-                        paddingRight: '3rem',
-                        cursor: 'pointer',
-                      }}
-                      className="d-flex justify-content-end"
-                    >
-                      <i className="bi bi-trash" style={{fontSize: '60px'}}></i>
-                    </div>
-                  </Col>
-                </Row>
-              </Container>
+              <h2 style={{fontSize: '20px'}}>{book.title}</h2>
+              <h4 style={{fontSize: '16px'}}>{book.author}</h4>
             </Col>
           </Row>
           <Modal
@@ -233,4 +227,4 @@ const MiniBookCard = ({book, fetchBooks, books, setBooks}) => {
   );
 };
 
-export default MiniBookCard;
+export default MobileMiniBookCard;
