@@ -156,18 +156,20 @@ export default function BooksList() {
             <Container>
               <Row>
                 <Col
-                  className="d-flex justify-content-center align-items-center"
-                  style={{fontSize: '28px', color: 'white'}}
+                  className="d-flex justify-content-center align-items-center section-title"
+                  sm={12}
+                  md={6}
                 >
                   <b>{sectionTitle}</b>
                 </Col>
                 {books.length > 0 ? (
-                  <Col className="d-flex justify-content-center align-items-center">
+                  <Col
+                    className="d-flex justify-content-center align-items-center"
+                    sm={12}
+                    md={6}
+                  >
                     <Dropdown>
-                      <Dropdown.Toggle
-                        id="dropdown-basic"
-                        style={{fontSize: '20px'}}
-                      >
+                      <Dropdown.Toggle id="dropdown-basic order-by-text">
                         Order by:{' '}
                         {
                           sortMapping[
