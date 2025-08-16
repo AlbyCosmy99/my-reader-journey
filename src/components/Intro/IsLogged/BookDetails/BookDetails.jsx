@@ -59,6 +59,7 @@ export default function BookDetails() {
               variant="top"
               className="book-detail-image"
               src={book.imageUrl}
+              alt='book cover'
               style={{borderRadius: '5px'}}
             />
             <div
