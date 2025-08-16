@@ -76,7 +76,6 @@ export default function BookDetailsData({book}) {
         )}
         <Card
           style={{
-            marginTop: '1rem',
             marginBottom: '1rem',
             backgroundColor: '#9A7872',
             color: 'white',
