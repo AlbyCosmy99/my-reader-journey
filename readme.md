@@ -33,18 +33,6 @@ This project was developed in **February 2024** as the **final capstone project*
 ---
 
 
-## 📖 Screenshots
-
-### Home Page
-Welcome screen with navigation to all sections.  
-![Home Page](docs/scresenshots/home.png)
-
-### All My Books
-List and manage all your books with actions (favorite, delete).  
-![All My Books](docs/screenshots/all-books.png)
-
----
-
 ## ✨ Future improvements
 
 - User authentication & profiles  
