@@ -3,7 +3,7 @@
 **My Reader Journey** is a web application to help readers **track and organize their books**.  
 This project was developed in **February 2024** as the **final capstone project** of the *Epicode Full-Stack Developer* course.  
 
-👉 Online link: https://my-reader-journey.onrender.com
+👉 VIew site here: https://my-reader-journey.onrender.com
 
 ---
 
