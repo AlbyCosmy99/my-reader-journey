@@ -35,10 +35,9 @@ This project was developed in **February 2024** as the **final capstone project*
 
 ## ✨ Future improvements
 
-- User authentication & profiles  
 - Book search with external APIs (Google Books, OpenLibrary)  
-- Statistics dashboard (books read per year, favorite genres, etc.)  
-- Dark mode support  
+- Statistics dashboard (books read per year, favorite genres, etc.)
+- support of import/export of csv and pdf files 
 
 ---
 
