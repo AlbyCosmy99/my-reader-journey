@@ -19,7 +19,7 @@ This project was developed in **February 2024** as the **final capstone project*
   - 🌟 10/10 Rating Books  
 - Sort and filter books (e.g., order alphabetically)  
 - Clean and responsive UI with **React + Bootstrap**  
-- Persistent storage via backend API (separate repo: https://github.com/AlbyCosmy99/my-reader-journey-backend)  
+- Persistent storage via backend and DB
 
 ---
 
